@@ -93,6 +93,8 @@ function Game(){
 
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
 
+
+
     this.setupNextQuestion = function(){
         for(var i = 0; i < self.categories.length; i++){
             var newOptionElement = new $('<option>').text(self.categories[i]);
@@ -160,17 +162,17 @@ function Game(){
 
     this.constructWikiHint = function(){
         $('#hintTitle').text('Wikipedia');
-        $('#searchButton').attr('title', 'Use 3 points');
+        $('#searchButton').attr('data-original-title', 'Use 3 points');
     };
 
     this.constructYoutubeHint = function(){
         $('#hintTitle').text('Youtube');
-        $('#searchButton').attr('title', 'Use 2 points');
+        $('#searchButton').attr('data-original-title', 'Use 2 points');
     };
 
     this.constructTwitterHint = function(){
         $('#hintTitle').text('Twitter');
-        $('#searchButton').attr('title', 'Use 1 points');
+        $('#searchButton').attr('data-original-title', 'Use 1 point');
     };
 }
 
