@@ -1,9 +1,24 @@
 #mainScreen{
     width: 100%;
+    margin-top: 15vh;
 }
 
 #question{
     height: 5em;
+}
+
+body{
+    background-image: url("images/general-back.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#answer1, #answer2, #answer3, #answer4{
+    margin-bottom: 10px;
+}
+
+.modal-dialog{
+    width: 75%;
 }
 
 /*#question{*/
