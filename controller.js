@@ -1,42 +1,5 @@
 function Controller()
 {
-
-
-    this.checkTheAnswer = function(turn,playerAnswer,realAnswer)
-    {
-        if (playerAnswer === realAnswer)
-        {
-            return true;
-        }
-
-        else
-        {
-            return false;
-        }
-    }
-
-
-
-
-    };
-
-    this.questionSelection = function(viewData)
-    {
-        var questionInfo = {};
-        questionInfo.category = viewData.categoryId;
-        questionInfo.difficulty = viewData.difficultydata;
-        return questionifo;
-
-    };
-
-
-
-
-
-}
-
-function View()
-{
     this.playerOneName = null;
     this.playerTwoName = null;
     this.playerOneAvatar = null;
@@ -102,6 +65,57 @@ function View()
                 alert("you can not this hint anymore");
             }
         }
+
+
+
+        this.checkTheAnswer = function(playerAnswer,realAnswer)
+    {
+        if (playerAnswer === realAnswer)
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+    };
+
+    this.pointing = function(turn,difficultylevel,help)
+    {
+        if ( turn === 1 && help === flase)
+        {
+            playerOnePoint *= difficultylevel*10;
+        }
+
+        if ( turn === 1 && help === true)
+        {
+            playerOnePoint *= (difficultylevel*10)/2;
+        }
+    }
+
+
+
+
+    };
+
+    this.questionSelection = function(viewData)
+    {
+        var questionInfo = {};
+        questionInfo.category = viewData.categoryId;
+        questionInfo.difficulty = viewData.difficultydata;
+        return questionifo;
+
+    };
+
+
+
+
+
+}
+
+function View()
+{
 
 
     };
