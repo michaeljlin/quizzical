@@ -2,9 +2,109 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <!-- jQuery CDN -->
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script src="model.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Quizzical</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="quiz.css" type="text/css">
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="model.js"></script>
+    <script src="controller.js"></script>
+    <script src="view.js"></script>
+
 </head>
 <body>
 
+    <div class="modal fade" id="hint" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="hintTitle" class="modal-title">
+                        Test
+                    </div>
+                </div>
+                <div id="hintBody" class="modal-body">
+                    Testbody
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mainScreen" class="container">
+        <div class="category">
+            <div class="row">
+                <p class="col-md-1 col-md-offset-1 label label-default">General Knowledge</p>
+                <p class="col-md-1 label label-default">Science and Nature</p>
+                <p class="col-md-1 label label-default">History</p>
+                <p class="col-md-1 label label-default">Geography</p>
+                <p class="col-md-1 label label-default">Celebrities</p>
+                <p class="col-md-1 label label-default">Animals</p>
+                <p class="col-md-1 label label-default">Sports</p>
+                <p class="col-md-1 label label-default">Books</p>
+                <p class="col-md-1 label label-default">Music</p>
+                <p class="col-md-1 label label-default">Film</p>
+            </div>
+            <!--<div class="row">-->
+                <!--<p class="col-md-1 col-md-offset-1 label label-default">General Knowledge</p>-->
+                <!--<p class="col-md-1 label label-default">Science and Nature</p>-->
+                <!--<p class="col-md-1 label label-default">History</p>-->
+                <!--<p class="col-md-1 label label-default">Geography</p>-->
+                <!--<p class="col-md-1 label label-default">Celebrities</p>-->
+                <!--<p class="col-md-1 label label-default">Animals</p>-->
+                <!--<p class="col-md-1 label label-default">Sports</p>-->
+                <!--<p class="col-md-1 label label-default">Books</p>-->
+                <!--<p class="col-md-1 label label-default">Music</p>-->
+                <!--<p class="col-md-1 label label-default">Film</p>-->
+            <!--</div>-->
+        </div>
+
+        <section class="column col-md-12">
+            <aside class="panel panel-default col-md-2 col-md-offset-1 row">
+                <div class="panel-heading">Status</div>
+                <p class="col-md-12">Current Turn: <span id="turn" class="label label-default">Player 1</span></p>
+                <p class="col-md-12">P1 Points: <span id="playerOnePoints" class="label label-default">0</span></p>
+                <p class="col-md-12">P2 Points: <span id="playerTwoPoints" class="label label-default">0</span></p>
+            </aside>
+
+            <article class=" col-md-8 row">
+                <div id="questionBody" class="col-md-10 col-md-offset-1 panel panel-info text-center">
+                    <div id="questionCategory" class="panel-heading">Category Here</div>
+                    <div id="question" class="panel-body">Question Here</div>
+                </div>
+                <div id="answers" class="col-md-12 row">
+                    <div id="answer1" class="col-md-6"><div class="btn btn-default btn-block text-center">answer1</div></div>
+                    <div id="answer2" class="col-md-6"><div class="btn btn-default btn-block text-center">answer2</div></div>
+                    <div id="answer3" class="col-md-6"><div class="btn btn-default btn-block text-center">answer3</div></div>
+                    <div id="answer4" class="col-md-6"><div class="btn btn-default btn-block text-center">answer4</div></div>
+                </div>
+                <div id="help" class="col-md-12 text-center">
+                    <div class="btn-group btn-group-lg" role="group">
+                        <button id="wiki" type="button" data-toggle="tooltip" data-placement="left" title="Use 3 points" class="btn btn-default">Wikipedia</button>
+                        <button id="youtube" type="button" data-toggle="tooltip" data-placement="bottom" title="Use 2 points" class="btn btn-default">Youtube</button>
+                        <button id="twitter" type="button" data-toggle="tooltip" data-placement="right" title="Use 1 point" class="btn btn-default">Twitter</button>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <footer>
+            <p>footerTest</p>
+        </footer>
+    </div>
 </body>
 </html>
