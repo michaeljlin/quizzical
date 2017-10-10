@@ -17,8 +17,12 @@ body{
     margin-bottom: 10px;
 }
 
-.modal-dialog{
+.hintStyle{
     width: 75%;
+}
+
+.nextQuestionContainer{
+    width: 100%;
 }
 
 /*#question{*/

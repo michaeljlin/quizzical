@@ -79,7 +79,8 @@ function initializeGame(){
     $(document).on('click', '#youtube', {type:'youtube'}, newGame.hintToggle);
     $(document).on('click', '#twitter', {type:'twitter'}, newGame.hintToggle);
 
-    newGame.setupButtons();
+    // newGame.setupButtons();
+    newGame.setupNextQuestion();
 
     $('.btn').css({'outline': 'none'});
 
@@ -92,12 +93,19 @@ function Game(){
 
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
 
+    this.setupNextQuestion = function(){
+        for(var i = 0; i < self.categories.length; i++){
+            var newOptionElement = new $('<option>').text(self.categories[i]);
+            $('.form-control').append(newOptionElement);
+        }
+    };
+
     this.setupButtons = function(){
         for (var i = 0; i < self.categories.length; i++){
             console.log("Running for: "+i);
                 var newCategoryHolder = new $('<div>').addClass('col-md-1');
                 var newButtonGroup = new $('<div>').addClass('btn-group');
-                var newButton = new $('<button>').addClass('btn btn-default dropdown-toggle').attr({
+                var newButton = new $('<button>').addClass('btn btn-default btn-block dropdown-toggle').attr({
                     "data-toggle":"dropdown",
                     "aria-haspopup": true,
                     "aria-expanded": false
@@ -129,6 +137,10 @@ function Game(){
                 $('#catButtons').append(newCategoryHolder);
 
         }
+    };
+
+    this.nextQuestion = function(){
+        $('#nextQuestion').modal('toggle');
     };
 
     this.hintToggle = function(hint){

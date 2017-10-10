@@ -31,7 +31,7 @@
 <body>
 
     <div class="modal fade" id="hint" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog hintStyle" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <div id="hintTitle" class="modal-title">
@@ -53,6 +53,46 @@
                                 <button id="searchButton" data-toggle="tooltip" type="button" data-placement="bottom" title="Use 2 points" class="btn btn-success">Submit</button>
                             </div>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="nextQuestion" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="nextTitle" class="modal-title">
+                        Choose the next question!
+                    </div>
+                </div>
+                <div id="nextQuestionBody" class="modal-body">
+                    <div class="container nextQuestionContainer">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <label class="radio-inline">
+                                    <input type="radio" name="difficultyLevel" id="easyDiff" value="easy">Easy
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="difficultyLevel" id="mediumDiff" value="easy">Medium
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="difficultyLevel" id="hardDiff" value="easy">Hard
+                                </label>
+                            </div>
+
+                            <div class="col-md-12">
+                                <select class="form-control">
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3 col-md-offset-5">
+                                <button id="nextQuestionSubmit" type="button" class="btn btn-success">Submit</button>
+                            </div>
                         </div>
                     </div>
                 </div>
