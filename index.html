@@ -68,7 +68,8 @@
             <aside class="panel panel-default col-md-2 col-md-offset-1 row">
                 <div class="panel-heading">Status</div>
                 <p class="col-md-12">Current Turn: <span id="turn" class="label label-default">Player 1</span></p>
-                <p class="col-md-12">Points: <span id="points" class="label label-default">0</span></p>
+                <p class="col-md-12">P1 Points: <span id="playerOnePoints" class="label label-default">0</span></p>
+                <p class="col-md-12">P2 Points: <span id="playerTwoPoints" class="label label-default">0</span></p>
             </aside>
 
             <article class=" col-md-8 row">
@@ -84,9 +85,9 @@
                 </div>
                 <div id="help" class="col-md-12 text-center">
                     <div class="btn-group btn-group-lg" role="group">
-                        <button id="wiki" type="button" class="btn btn-default">Wikipedia</button>
-                        <button id="youtube" type="button" class="btn btn-default">Youtube</button>
-                        <button id="twitter" type="button" class="btn btn-default">Twitter</button>
+                        <button id="wiki" type="button" data-toggle="tooltip" data-placement="left" title="Use 3 points" class="btn btn-default">Wikipedia</button>
+                        <button id="youtube" type="button" data-toggle="tooltip" data-placement="bottom" title="Use 2 points" class="btn btn-default">Youtube</button>
+                        <button id="twitter" type="button" data-toggle="tooltip" data-placement="right" title="Use 1 point" class="btn btn-default">Twitter</button>
                     </div>
                 </div>
             </article>

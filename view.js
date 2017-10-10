@@ -4,6 +4,8 @@ function initializeGame(){
     $(document).on('click', '#wiki', {type:'wiki'}, newGame.hintToggle);
     $(document).on('click', '#youtube', {type:'youtube'}, newGame.hintToggle);
     $(document).on('click', '#twitter', {type:'twitter'}, newGame.hintToggle);
+
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 function Game(){
