@@ -39,7 +39,22 @@
                     </div>
                 </div>
                 <div id="hintBody" class="modal-body">
-                    Testbody
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </span>
+                                    <input type="text" class="form-control" name="searchTerm" id="search" placeholder="Search Term">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button id="searchButton" data-toggle="tooltip" type="button" data-placement="bottom" title="Use 2 points" class="btn btn-success">Submit</button>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,16 +63,38 @@
     <div id="mainScreen" class="container">
         <div class="category">
             <div class="row">
-                <p class="col-md-1 col-md-offset-1 label label-default">General Knowledge</p>
-                <p class="col-md-1 label label-default">Science and Nature</p>
-                <p class="col-md-1 label label-default">History</p>
-                <p class="col-md-1 label label-default">Geography</p>
-                <p class="col-md-1 label label-default">Celebrities</p>
-                <p class="col-md-1 label label-default">Animals</p>
-                <p class="col-md-1 label label-default">Sports</p>
-                <p class="col-md-1 label label-default">Books</p>
-                <p class="col-md-1 label label-default">Music</p>
-                <p class="col-md-1 label label-default">Film</p>
+                <div class="col-md-1 col-md-offset-1">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            General Knowledge <span class="claret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Easy</a></li>
+                            <li><a href="#">Medium</a></li>
+                            <li><a href="#">Hard</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Science & Nature <span class="claret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Easy</a></li>
+                            <li><a href="#">Medium</a></li>
+                            <li><a href="#">Hard</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-1 label label-default">History</div>
+                <div class="col-md-1 label label-default">Geography</div>
+                <div class="col-md-1 label label-default">Celebrities</div>
+                <div class="col-md-1 label label-default">Animals</div>
+                <div class="col-md-1 label label-default">Sports</div>
+                <div class="col-md-1 label label-default">Books</div>
+                <div class="col-md-1 label label-default">Music</div>
+                <div class="col-md-1 label label-default">Film</div>
             </div>
             <!--<div class="row">-->
                 <!--<p class="col-md-1 col-md-offset-1 label label-default">General Knowledge</p>-->

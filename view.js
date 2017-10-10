@@ -79,7 +79,7 @@ function initializeGame(){
     $(document).on('click', '#youtube', {type:'youtube'}, newGame.hintToggle);
     $(document).on('click', '#twitter', {type:'twitter'}, newGame.hintToggle);
 
-    $('.btn').css({'outline': 'none', 'margin-bottom': '10px'});
+    $('.btn').css({'outline': 'none'});
 
     $('[data-toggle="tooltip"]').tooltip();
 }
@@ -104,14 +104,17 @@ function Game(){
 
     this.constructWikiHint = function(){
         $('#hintTitle').text('Wikipedia');
+        $('#searchButton').attr('title', 'Use 3 points');
     };
 
     this.constructYoutubeHint = function(){
         $('#hintTitle').text('Youtube');
+        $('#searchButton').attr('title', 'Use 2 points');
     };
 
     this.constructTwitterHint = function(){
         $('#hintTitle').text('Twitter');
+        $('#searchButton').attr('title', 'Use 1 points');
     };
 }
 

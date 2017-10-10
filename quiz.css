@@ -13,6 +13,14 @@ body{
     background-size: cover;
 }
 
+#answer1, #answer2, #answer3, #answer4{
+    margin-bottom: 10px;
+}
+
+.modal-dialog{
+    width: 75%;
+}
+
 /*#question{*/
     /*text-align: center;*/
 /*}*/
