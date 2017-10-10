@@ -1,4 +1,4 @@
-var questionBank; //variable to hold current question and answer
+var questionBank; //variable to hold current question and answer(s)
 
 /***************************************************************************************************
  * model (MVC)
@@ -25,6 +25,7 @@ function Model(){
                 console.log('success',data);
                 console.log(data.results[0]);
                 questionBank = data.results[0];
+                return questionBank;
             },
             error: function(data){
                 console.log('something went wrong', data)
@@ -83,7 +84,7 @@ function Model(){
             },
             success: function (data) {
                 console.log('Wiki success', data);
-                test = 'https://en.wikipedia.org/?curid='+data.query.search[0].pageid;
+                return 'https://en.wikipedia.org/?curid='+data.query.search[0].pageid;
             },
             error: function (data) {
                 console.log('wiki fail', data)
