@@ -65,10 +65,12 @@ function Controller()
                 alert("you can not this hint anymore");
             }
         }
+    };
 
 
 
-        this.checkTheAnswer = function(playerAnswer,realAnswer)
+
+    this.checkTheAnswer = function(playerAnswer,realAnswer)
     {
         if (playerAnswer === realAnswer)
         {
@@ -92,12 +94,11 @@ function Controller()
         {
             playerOnePoint *= (difficultylevel*10)/2;
         }
-    }
-
-
-
-
     };
+
+
+
+
 
     this.questionSelection = function(viewData)
     {
@@ -107,6 +108,14 @@ function Controller()
         return questionifo;
 
     };
+
+    this.getAndPassPlayersInfo = function()
+    {
+        var playersInfo = [];
+
+
+
+    }
 
 
 
