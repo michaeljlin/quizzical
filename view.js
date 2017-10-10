@@ -19,7 +19,32 @@ function Game(){
 
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
 
+    this.refreshPage = function(nextTurnInfo){
+        self.updateStatus(nextTurnInfo.status);
+        self.updateQuestion(nextTurnInfo.question);
+        self.updateAnswers(nextTurnInfo.answers);
+    };
 
+    this.updateStatus = function(turn, player1Points, player2Points){
+        $('#turn').text(turn);
+        $('#playerOnePoints').text(player1Points);
+        $('#playerTwoPoints').text(player2Points);
+    };
+
+    this.updateQuestion = function(category, question){
+        $('#questionCategory').text(category);
+        $('#question').text(question);
+    };
+
+    this.updateAnswers = function(answerArray){
+        for(var i = 0; i < 4 ; i++){
+            $('#answer'+(i+1)+'Text').text(answerArray[i]);
+        }
+    };
+
+    this.setHintHTML = function(hintHTMLElement){
+        self.hintHTML = hintHTMLElement;
+    };
 
     this.setupNextQuestion = function(){
         for(var i = 0; i < self.categories.length; i++){
