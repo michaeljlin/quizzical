@@ -1,4 +1,5 @@
 var questionBank;
+var test;
 
 function getTriviaQuestion(category, difficultyLevel){
         console.log('this ran');
@@ -13,7 +14,7 @@ function getTriviaQuestion(category, difficultyLevel){
             success: function(data){
                 console.log('success',data);
                console.log(data.results[0]);
-               question = data.results[0];
+               questionBank = data.results[0];
             },
             error: function(data){
                 console.log('something went wrong', data)
@@ -21,11 +22,11 @@ function getTriviaQuestion(category, difficultyLevel){
         });
 }
 
-getTriviaQuestion(1,'easy');
+getTriviaQuestion(11,'easy');
 
 function searchYoutube(string){
     $.ajax({
-        url: 's-apis.learningfuze.com/hackathon/youtube/search.php',
+        url: 'http://s-apis.learningfuze.com/hackathon/youtube/search.php',
         dataType: 'json',
         data:{
             q: string,
@@ -38,23 +39,27 @@ function searchYoutube(string){
             console.log('YT success', data);
         },
         error: function(data){
-            console.log('somthing went wrong with YT',data);
+            console.log('something went wrong with YT',data);
         }
     })
 }
 
-function searchWikipedia() {
+function searchWikipedia(string) {
     $.ajax({
         url: "https://en.wikipedia.org/w/api.php",
         data: {
             format: "json",
-            action: "parse",
-            page: 'Donald',
-            prop: 'text',
-            section: 0,
+            action: "query",
+            // page: string,
+            prop: 'info',
+            list: 'search',
+            srsearch: string,
+            // section: 0,
+            origin: '*',
         },
         success: function (data) {
             console.log('Wiki success', data)
+            test = 'https://en.wikipedia.org/?curid='+data.query.search[0].pageid;
         },
         error: function (data) {
             console.log('wiki fail', data)
