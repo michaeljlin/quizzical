@@ -1,5 +1,7 @@
 var questionBank;
-var test;
+
+var playerOne;
+var playerTwo;
 
 function getTriviaQuestion(category, difficultyLevel){
         console.log('this ran');
@@ -36,7 +38,13 @@ function searchYoutube(string){
         },
         method: 'Post',
         success: function(data){
+            var YTResult = data.data;
+            var YTKeys = Object.keys(YTResult);
+            var videoId = YTResult[YTKeys[0]].id.videoId;
             console.log('YT success', data);
+            console.log('YT first video id', YTResult[YTKeys[0]]);
+            console.log('https://www.youtube.com/watch?v='+videoId);
+            return 'https://www.youtube.com/watch?v='+videoId;
         },
         error: function(data){
             console.log('something went wrong with YT',data);
@@ -58,11 +66,30 @@ function searchWikipedia(string) {
             origin: '*',
         },
         success: function (data) {
-            console.log('Wiki success', data)
+            console.log('Wiki success', data);
             test = 'https://en.wikipedia.org/?curid='+data.query.search[0].pageid;
         },
         error: function (data) {
             console.log('wiki fail', data)
         },
+    })
+}
+
+function searchTwitter(string){
+    $.ajax({
+        url: 'http://s-apis.learningfuze.com/hackathon/twitter/index.php',
+        data: {
+            search_term: string
+        },
+        dataType: 'json',
+        success: function(data){
+            console.log('twitter success', data);
+            console.log(data.tweets.statuses[0].text);
+            return data.tweets.statuses[0].text;
+
+        },
+        error: function(data){
+            console.log('twitter error', data)
+        }
     })
 }
