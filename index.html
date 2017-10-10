@@ -21,28 +21,56 @@
 <body>
 
     <div id="mainScreen" class="container">
-        <div class="category row">
-            <p class="col-md-1"></p>
-            <p class="col-md-1 label label-default">General Knowledge</p>
-            <p class="col-md-1 label label-default">Science and Nature</p>
-            <p class="col-md-1 label label-default">History</p>
-            <p class="col-md-1 label label-default">Geography</p>
-            <p class="col-md-1 label label-default">Celebrities</p>
-            <p class="col-md-1 label label-default">Animals</p>
-            <p class="col-md-1 label label-default">Sports</p>
-            <p class="col-md-1 label label-default">Books</p>
-            <p class="col-md-1 label label-default">Music</p>
-            <p class="col-md-1 label label-default">Film</p>
-            <p class="col-md-1"></p>
+        <div class="category">
+            <div class="row">
+                <p class="col-md-1 col-md-offset-1 label label-default">General Knowledge</p>
+                <p class="col-md-1 label label-default">Science and Nature</p>
+                <p class="col-md-1 label label-default">History</p>
+                <p class="col-md-1 label label-default">Geography</p>
+                <p class="col-md-1 label label-default">Celebrities</p>
+                <p class="col-md-1 label label-default">Animals</p>
+                <p class="col-md-1 label label-default">Sports</p>
+                <p class="col-md-1 label label-default">Books</p>
+                <p class="col-md-1 label label-default">Music</p>
+                <p class="col-md-1 label label-default">Film</p>
+            </div>
+            <!--<div class="row">-->
+                <!--<p class="col-md-1 col-md-offset-1 label label-default">General Knowledge</p>-->
+                <!--<p class="col-md-1 label label-default">Science and Nature</p>-->
+                <!--<p class="col-md-1 label label-default">History</p>-->
+                <!--<p class="col-md-1 label label-default">Geography</p>-->
+                <!--<p class="col-md-1 label label-default">Celebrities</p>-->
+                <!--<p class="col-md-1 label label-default">Animals</p>-->
+                <!--<p class="col-md-1 label label-default">Sports</p>-->
+                <!--<p class="col-md-1 label label-default">Books</p>-->
+                <!--<p class="col-md-1 label label-default">Music</p>-->
+                <!--<p class="col-md-1 label label-default">Film</p>-->
+            <!--</div>-->
         </div>
 
-        <section class="column">
-            <aside class="panel col-md-4">
+        <section class="column col-md-12">
+            <aside class="panel col-md-2 col-md-offset-1 row">
                 <p>asideTest</p>
             </aside>
 
-            <article class="panel col-md-8">
-                <p>articleTest</p>
+            <article class="panel col-md-8 row">
+                <div id="questionBody" class="col-md-10 col-md-offset-1 panel panel-info text-center">
+                    <div id="questionCategory" class="panel-heading">Category Here</div>
+                    <div id="question" class="panel-body">Question Here</div>
+                </div>
+                <div id="answers" class="col-md-12 row">
+                    <div id="answer1" class="col-md-6"><div class="btn btn-default btn-block text-center">answer1</div></div>
+                    <div id="answer2" class="col-md-6"><div class="btn btn-default btn-block text-center">answer2</div></div>
+                    <div id="answer3" class="col-md-6"><div class="btn btn-default btn-block text-center">answer3</div></div>
+                    <div id="answer4" class="col-md-6"><div class="btn btn-default btn-block text-center">answer4</div></div>
+                </div>
+                <div id="help" class="col-md-12 text-center">
+                    <div class="btn-group btn-group-lg" role="group">
+                        <button id="wiki" type="button" class="btn btn-default">Wikipedia</button>
+                        <button id="you" type="button" class="btn btn-default">Youtube</button>
+                        <button type="button" class="btn btn-default">Twitter</button>
+                    </div>
+                </div>
             </article>
         </section>
 

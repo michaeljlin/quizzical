@@ -1,3 +1,15 @@
 #mainScreen{
     width: 100%;
 }
+
+#question{
+    height: 5em;
+}
+
+/*#question{*/
+    /*text-align: center;*/
+/*}*/
+
+/*#answer1, #answer2, #answer3, #answer4{*/
+    /*text-align: center;*/
+/*}*/
