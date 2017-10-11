@@ -9,6 +9,34 @@ function Controller()
     this.playerTurn = null;
     this.helpsArray = [{title:"youtube",quantities:3},{title:"wikipedia",numbers:3},{title:"pass",numbers:3}];
 
+    this.setCurrentQuestionInModel = function(questionObject){
+        if(questionObject === undefined){
+
+            return;
+        }
+        else{
+            model.getTriviaQuestion(questionObject.category, questionObject.difficulty, function(dataBank){
+                model.setCurrentQuestion(dataBank.question);
+                model.setCurrentAnswer(dataBank.correct_answer);
+                model.setCurrentWrongAnswers(dataBank.incorrect_answers);
+                model.setCurrentCategory(dataBank.category);
+
+                view.updateQuestion(model.currentCategory, model.currentQuestion);
+
+                var temp = model.currentWrongAnswers.slice();
+                temp.push(model.currentAnswer);
+
+                for(var i = 0; i < temp.length; i++){
+                    var randomPosition = Math.floor(Math.random()*(temp.length-1));
+                    var hold = temp[i];
+                    temp[i] = temp[randomPosition];
+                    temp[randomPosition] = hold;
+                }
+
+                view.updateAnswers(temp);
+            });
+        }
+    };
 
     this.getPlayerNameImage = function(turn,name,avatar)
     {
@@ -23,6 +51,25 @@ function Controller()
             this.playerTwoName = name;
             this.playerTwoAvatar = avatar;
         }
+    };
+
+    this.getPlayerName = function(avatarAddress)
+    {
+        model.getPlayerName(avatarAddress);
+        this.changeCurrentTurn();
+
+    };
+
+    this.getPlayerAvatar = function(avatarAddress)
+    {
+        model.getPlayerAvatar(avatarAddress);
+        this.changeCurrentTurn();
+
+    };
+
+    this.changeCurrentTurn = function()
+    {
+        model.playersInfo[2] = 1-model.playersInfo[2];
     };
 
     this.updateDomElements = function()
@@ -134,10 +181,3 @@ function Controller()
 
 }
 
-
-
-function View()
-{
-
-
-    };

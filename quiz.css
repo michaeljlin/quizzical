@@ -25,6 +25,18 @@ body{
     width: 100%;
 }
 
+#option1, #option2{
+    box-sizing: border-box;
+}
+
+#option1:hover, #option2:hover{
+    border: 1px solid yellow;
+}
+
+.hint-content{
+    height: 90vh;
+}
+
 /*#question{*/
     /*text-align: center;*/
 /*}*/
