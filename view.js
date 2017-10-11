@@ -264,26 +264,38 @@ function Game(){
         // $('#searchButton').attr('data-original-title', 'Use 2 points');
     };
 
-    this.getUpperCase = function(string){
+    this.randomThree = function(string){
         var newStringArray = [];
         var wordCount = 0;
         var newString = '';
         newStringArray = string.split(' ');
         console.log(newStringArray);
-        for(var i = 0; i<newStringArray.length; i++){
-            for(var j = 0; j<1; j++){
-                if(newStringArray[i][j].toUpperCase() == newStringArray[i][j]) {
-                    newString += newStringArray[i]+"+";
-                    wordCount ++
-                    if(wordCount == 3){
-                        return;
-                    }
-                }
+        // for(var i = 0; i<newStringArray.length; i++){
+        //     for(var j = 0; j<1; j++){
+        //         if(newStringArray[i][j].toUpperCase() == newStringArray[i][j]) {
+        //             newString += newStringArray[i];
+        //             wordCount ++;
+        //             if(wordCount == 3){
+        //                 return newString;
+        //             }
+        //             else{
+        //                 newString += '+';
+        //             }
+        //         }
+        //     }
+        //     console.log(newString);
+        // }
+
+        for(var i = 0; i < 3; i++){
+            newString += newStringArray[Math.floor(Math.random()*(newStringArray.length-1) )];
+
+            if(i !== 2){
+                newString+='+';
             }
-            console.log(newString);
         }
+
         return newString;
-    }
+    };
 
 
     this.constructTwitterHint = function() {
@@ -312,7 +324,7 @@ function Game(){
 
         $('.outerHintContent').append(tempTwitterElement);
 
-        questionText = this.getUpperCase(questionText);
+        questionText = self.randomThree(questionText);
 
 
         model.searchTwitter(questionText, model.getTwitterEmbed, function (result) {
