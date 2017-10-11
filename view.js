@@ -5,6 +5,11 @@ function initializeGame(){
     $(document).on('click', '#youtube', {type:'youtube'}, newGame.hintToggle);
     $(document).on('click', '#twitter', {type:'twitter'}, newGame.hintToggle);
 
+    $('#answer1').click(newGame.pressAnswerButton);
+    $('#answer2').click(newGame.pressAnswerButton);
+    $('#answer3').click(newGame.pressAnswerButton);
+    $('#answer4').click(newGame.pressAnswerButton);
+
     // newGame.setupButtons();
     newGame.setupNextQuestion();
 
@@ -40,6 +45,12 @@ function Game(){
         for(var i = 0; i < 4 ; i++){
             $('#answer'+(i+1)+'Text').text(answerArray[i]);
         }
+    };
+
+    this.pressAnswerButton = function(){
+        var chosenAnswer = $(this)[0].innerText;
+        console.log(chosenAnswer);
+        // controller.getTheAnswer(chosenAnswer);
     };
 
     this.setHintHTML = function(hintHTMLElement){
