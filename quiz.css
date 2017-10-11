@@ -6,6 +6,8 @@
 
 #question{
     height: 5em;
+    font-weight: 500;
+    font-size: 16px;
 }
 
 body{
@@ -40,6 +42,14 @@ body{
 
 .hint-content{
     height: 90vh;
+}
+
+aside {
+    border: 1px solid black;
+    padding: 5px;
+    padding-top: 10px;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,0.5);
 }
 
 /*#question{*/
