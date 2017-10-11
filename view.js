@@ -1,26 +1,26 @@
 $(document).ready(initializeGame);
 
-function initializeGame(){
+function initializeGame() {
 
-    this.getAvatars = function()
+    this.getAvatars = function ()
     {
         return (modal.passAvatars());
     };
-    $(document).on('click', '#wiki', {type:'wiki'}, newGame.hintToggle);
-    $(document).on('click', '#youtube', {type:'youtube'}, newGame.hintToggle);
-    $(document).on('click', '#twitter', {type:'twitter'}, newGame.hintToggle);
-
-    $('#answer1').click(newGame.pressAnswerButton);
-    $('#answer2').click(newGame.pressAnswerButton);
-    $('#answer3').click(newGame.pressAnswerButton);
-    $('#answer4').click(newGame.pressAnswerButton);
-
-    // newGame.setupButtons();
-    newGame.setupNextQuestion();
-
-    $('.btn').css({'outline': 'none'});
-
-    $('[data-toggle="tooltip"]').tooltip();
+    // $(document).on('click', '#wiki', {type:'wiki'}, newGame.hintToggle);
+    // $(document).on('click', '#youtube', {type:'youtube'}, newGame.hintToggle);
+    // $(document).on('click', '#twitter', {type:'twitter'}, newGame.hintToggle);
+    //
+    // $('#answer1').click(newGame.pressAnswerButton);
+    // $('#answer2').click(newGame.pressAnswerButton);
+    // $('#answer3').click(newGame.pressAnswerButton);
+    // $('#answer4').click(newGame.pressAnswerButton);
+    //
+    // // newGame.setupButtons();
+    // newGame.setupNextQuestion();
+    //
+    // $('.btn').css({'outline': 'none'});
+    //
+    // $('[data-toggle="tooltip"]').tooltip();
 }
 
 function Game(){
