@@ -25,12 +25,21 @@ function Controller()
     //     }
     // };
 
+    this.getPlayerName = function()
+    {
+        model.getPlayerN(avatarAddress);
+        model.playersInfo[2] = 1-model.playersInfo[2];
+
+    };
+
     this.getPlayerAvatar = function(avatarAddress)
     {
         model.getPlayerAvatar(avatarAddress);
         model.playersInfo[2] = 1-model.playersInfo[2];
 
     };
+
+
 
     // this.updateDomElements = function()
     // {
