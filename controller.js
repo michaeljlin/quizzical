@@ -255,9 +255,108 @@ function Controller()
         });
     };
 
+    this.constructYoutubeHint = function(){
+        $('#hintTitle').text('Youtube');
+        $('.mainHintContent').toggle('hidden');
+        $('#searchButton').toggle('hidden');
+
+        var questionText = $('#question').text();
+
+        console.log("Question was: "+questionText);
+
+        model.searchYoutube(questionText, function(result){
+            console.log('Searched youtube!');
+            // $('#hintBody').append(result);
+
+            var newIFrame = $('<iframe>').attr({
+                'src':result+'?autoplay=1',
+                // 'width':'560px',
+                // 'height':'315px'
+                'height': '110%',
+                'width': '100%'
+            });
 
 
+            view.displayYoutubeHint(newIFrame);
 
+            // $('#hintBody').css('height', '80%').append(newIFrame);
+        });
+
+        // $('#searchButton').attr('data-original-title', 'Use 2 points');
+    };
+
+    this.randomThree = function(string){
+        var newStringArray = [];
+        var wordCount = 0;
+        var newString = '';
+        newStringArray = string.split(' ');
+        console.log(newStringArray);
+        // for(var i = 0; i<newStringArray.length; i++){
+        //     for(var j = 0; j<1; j++){
+        //         if(newStringArray[i][j].toUpperCase() == newStringArray[i][j]) {
+        //             newString += newStringArray[i];
+        //             wordCount ++;
+        //             if(wordCount == 3){
+        //                 return newString;
+        //             }
+        //             else{
+        //                 newString += '+';
+        //             }
+        //         }
+        //     }
+        //     console.log(newString);
+        // }
+
+        for(var i = 0; i < 3; i++){
+            newString += newStringArray[Math.floor(Math.random()*(newStringArray.length-1) )];
+
+            if(i !== 2){
+                newString+='+';
+            }
+        }
+
+        return newString;
+    };
+
+    this.constructTwitterHint = function() {
+        $('.mainHintContent').toggle('hidden');
+        $('#searchButton').toggle('hidden');
+
+        $('#hintTitle').text('Twitter');
+        $('#search').attr('value', $('#question').text());
+        $('#searchButton').attr('data-original-title', 'Use 1 point');
+
+        var questionText = $('#question').text();
+
+        var answerString = "";
+
+        for (var i = 0; i < model.currentWrongAnswers.length; i++) {
+            answerString += model.currentWrongAnswers[i] + " ";
+        }
+
+        answerString += model.currentAnswer;
+
+        console.log('answer string is: ' + answerString);
+
+        // console.log("Question was: "+questionText);
+
+        var tempTwitterElement = new $('<div>').addClass('tempTwitter col-md-6 col-md-offset-4');
+
+        $('.outerHintContent').append(tempTwitterElement);
+
+        questionText = this.randomThree(questionText);
+
+
+        model.searchTwitter(questionText, model.getTwitterEmbed, function (result) {
+            console.log('raw embed data: ' + result);
+
+
+            view.displayTwitterHint(result);
+
+
+            // $('.tempTwitter').html(result);
+        });
+    }
 
 
 }
