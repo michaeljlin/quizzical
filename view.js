@@ -169,6 +169,8 @@ function Game(){
         // if($('#searchButton').css('display') === 'none'){
         //     $('#searchButton').toggle('hidden');
         // }
+
+        self.removeLoadingIcon();
     };
 
     this.showHint = function(){
@@ -218,6 +220,19 @@ function Game(){
 
     this.displayTwitterHint = function(result){
         $('.tempTwitter').html(result);
+    };
+
+    this.prepareLoadingIcon = function(){
+        var bootstrapElementHolder = $('<div>').addClass('spinHolder col-md-1 col-md-offset-5');
+        var loadingIcon = $('<i>').addClass("fa fa-spinner fa-spin").css('font-size', '200px');
+
+        bootstrapElementHolder.append(loadingIcon);
+
+        $('#hintBody .container .row').append(bootstrapElementHolder);
+    };
+
+    this.removeLoadingIcon = function(){
+        $('.spinHolder').remove();
     };
 
 }

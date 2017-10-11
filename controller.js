@@ -226,8 +226,8 @@ function Controller()
     this.constructWikiHint = function(){
 
         $('#hintTitle').text('Wikipedia');
-        $('#search').attr('value', $('#question').text() );
-        $('#searchButton').attr('data-original-title', 'Use 3 points');
+
+        view.prepareLoadingIcon();
 
         var questionText = $('#question').text();
 
@@ -240,6 +240,7 @@ function Controller()
 
             var wikiElementContainer = $('<div>').addClass('wikiContainer col-md-12');
 
+            view.removeLoadingIcon();
             wikiElementContainer.html( $(convertedHTML).find('p') );
 
             view.displayWikiHint(wikiElementContainer);
@@ -258,6 +259,8 @@ function Controller()
 
         var questionText = $('#question').text();
 
+        view.prepareLoadingIcon();
+
         console.log("Question was: "+questionText);
 
         model.searchYoutube(questionText, function(result){
@@ -272,7 +275,7 @@ function Controller()
                 'width': '100%'
             });
 
-
+            view.removeLoadingIcon();
             view.displayYoutubeHint(newIFrame);
 
             // $('#hintBody').css('height', '80%').append(newIFrame);
@@ -299,8 +302,8 @@ function Controller()
 
     this.constructTwitterHint = function() {
         $('#hintTitle').text('Twitter');
-        $('#search').attr('value', $('#question').text());
-        $('#searchButton').attr('data-original-title', 'Use 1 point');
+
+        view.prepareLoadingIcon();
 
         var questionText = $('#question').text();
 
@@ -326,7 +329,7 @@ function Controller()
         model.searchTwitter(questionText, model.getTwitterEmbed, function (result) {
             console.log('raw embed data: ' + result);
 
-
+            view.removeLoadingIcon();
             view.displayTwitterHint(result);
 
 
