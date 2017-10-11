@@ -104,6 +104,8 @@ function Game(){
 
         $('#hintBody iframe').remove();
 
+        $('.tempTwitter').remove();
+
         if($('.mainHintContent').css('display') === 'none'){
             console.log('Showing mainHintContent!');
             $('.mainHintContent').toggle('hidden');
@@ -232,9 +234,13 @@ function Game(){
 
         console.log("Question was: "+questionText);
 
-        model.searchTwitter('test', model.getTwitterEmbed, function(result){
+        var tempTwitterElement = new $('<div>').addClass('tempTwitter col-md-6 col-md-offset-4');
+
+        $('.outerHintContent').append(tempTwitterElement);
+
+        model.searchTwitter(questionText, model.getTwitterEmbed, function(result){
             console.log('raw embed data: '+result);
-            $('#hintBody').html(result);
+            $('.tempTwitter').html(result);
         });
 
     };
