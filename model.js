@@ -12,7 +12,7 @@ var imageArray = ['images/proff.png','images/super-simple-avatar-icon.jpg'];
  */
 function Model() {
     var imageArray = ['images/proff.png', 'images/super-simple-avatar-icon.jpg'];
-    this.playersInfo = [{}, {}, 0]; // player Object index 2 will be 1/2 for player turn and will alternate
+    this.playersInfo = [{}, {}, 0]; // player Object index 2 will be 0 or 1 for player turn and will alternate
     this.playerStats = [{}, {}];
     this.getTriviaQuestion = function (category, difficultyLevel, callback) {
         console.log('this ran');
@@ -123,9 +123,9 @@ function Model() {
     }
     this.getPlayerAvatar = function (image) {
         if (this.playersInfo[2] == 0) {
-            this.playersInfo[0] = image;
+            this.playersInfo[0].avatar = image;
         } else {
-            this.playersInfo[1] = image;
+            this.playersInfo[1].avatar = image;
         }
     }
 
