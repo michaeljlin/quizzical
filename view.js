@@ -103,7 +103,7 @@ function Game(){
     this.clearModal = function(){
 
         $('#hintBody iframe').remove();
-
+        $('.wikiContainer').remove();
         $('.tempTwitter').remove();
 
         if($('.mainHintContent').css('display') === 'none'){
@@ -206,11 +206,11 @@ function Game(){
 
             // console.log('converted html: '+$(convertedHTML));
 
-            var wikiElementContainer = $('<div>').addClass('wikiContainer');
+            var wikiElementContainer = $('<div>').addClass('wikiContainer col-md-12');
 
             wikiElementContainer.html( $(convertedHTML).find('p') );
 
-            $('.outerHintContent').append(wikiElementContainer);
+            $('#hintBody .row').append(wikiElementContainer);
 
             $('.wikiContainer a').attr(
                 'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
