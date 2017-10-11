@@ -34,6 +34,8 @@ function initializeGame() {
 
     // view.nextQuestion();
 
+    // $('#mainScreen').toggle('hidden');
+
     $('#setPlayers').modal('toggle');
     $('#setPlayers').on('hidden.bs.modal', view.nextQuestion);
 
@@ -75,6 +77,11 @@ function Game(){
     };
 
     this.getNextQuestion = function(){
+
+        if($('#mainScreen').css('display') === 'none'){
+            $('#mainScreen').toggle('hidden');
+        }
+
         console.log("Next question called!");
 
         var raw = $('.categoryOptionList').val();
@@ -173,6 +180,7 @@ function Game(){
     };
 
     this.nextQuestion = function(){
+
         $('#nextQuestion').modal('toggle');
     };
 
@@ -192,6 +200,9 @@ function Game(){
     };
 
     this.constructWikiHint = function(){
+        $('.mainHintContent').toggle('hidden');
+        $('#searchButton').toggle('hidden');
+
         $('#hintTitle').text('Wikipedia');
         $('#search').attr('value', $('#question').text() );
         $('#searchButton').attr('data-original-title', 'Use 3 points');
@@ -254,7 +265,7 @@ function Game(){
         for(var i = 0; i<newStringArray.length; i++){
             for(var j = 0; j<1; j++){
                 if(newStringArray[i][j].toUpperCase() == newStringArray[i][j]) {
-                    newString += newStringArray[i]+"+"
+                    newString += newStringArray[i]+"+";
                     wordCount ++
                     if(wordCount == 3){
                         return;
@@ -268,6 +279,9 @@ function Game(){
 
 
     this.constructTwitterHint = function() {
+        $('.mainHintContent').toggle('hidden');
+        $('#searchButton').toggle('hidden');
+
         $('#hintTitle').text('Twitter');
         $('#search').attr('value', $('#question').text());
         $('#searchButton').attr('data-original-title', 'Use 1 point');
