@@ -104,12 +104,12 @@ function Game(){
 
         $('#hintBody iframe').remove();
 
-        if(!($('.mainHintContent').is(':hidden'))){
+        if($('.mainHintContent').css('display') === 'none'){
             console.log('Showing mainHintContent!');
             $('.mainHintContent').toggle('hidden');
         }
 
-        if(!($('#searchButton').is(':hidden'))){
+        if($('#searchButton').css('display') === 'none'){
             $('#searchButton').toggle('hidden');
         }
     };
