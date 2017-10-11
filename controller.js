@@ -72,15 +72,13 @@ function Controller()
 
     this.checkTheAnswer = function(playerAnswer,realAnswer)
     {
-        if (playerAnswer === realAnswer)
+        if (playerAnswer !== realAnswer)
         {
             return true;
         }
 
-        else
-        {
-            return false;
-        }
+        return false;
+
     };
 
     this.pointing = function(turn,difficultylevel,help)
@@ -115,13 +113,28 @@ function Controller()
 
 
 
+    };
+
+    this.printQuestionAndAnswers = function()
+    {
+        var tempObj = modal.getTriviaQuestion();
+        $("#question").text(tempObj.question);
+        $("#answer1").text();
+        $("#answer2").text();
+        $("#answer3").text();
+        $("#answer4").text();
+
     }
 
 
-
-
+    this.getTheAnswer = function ()
+    {
+        this.checktheAnswer();
+    }
 
 }
+
+
 
 function View()
 {
