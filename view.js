@@ -1,6 +1,11 @@
 $(document).ready(initializeGame);
 
 function initializeGame(){
+
+    this.getAvatars = function()
+    {
+        return (modal.passAvatars());
+    };
     $(document).on('click', '#wiki', {type:'wiki'}, newGame.hintToggle);
     $(document).on('click', '#youtube', {type:'youtube'}, newGame.hintToggle);
     $(document).on('click', '#twitter', {type:'twitter'}, newGame.hintToggle);
