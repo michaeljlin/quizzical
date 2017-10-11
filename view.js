@@ -18,6 +18,10 @@ function initializeGame() {
 
     $('.btn').css({'outline': 'none'});
 
+    $("#wiki").tooltip({title:'Search Wikipedia for help', placement: 'bottom'});
+    $("#youtube").tooltip({title:'Ask Youtube for help', placement: 'bottom'});
+    $("#twitter").tooltip({title:'Ask Twitter for help', placement: 'bottom'});
+
     $('[data-toggle="tooltip"]').tooltip();
 
     $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
