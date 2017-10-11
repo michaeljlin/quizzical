@@ -253,22 +253,44 @@ function Game(){
         // $('#searchButton').attr('data-original-title', 'Use 2 points');
     };
 
-    this.constructTwitterHint = function(){
+    this.getUpperCase = function(string){
+        var newStringArray = [];
+        var wordCount = 0;
+        var newString = '';
+        newStringArray = string.split(' ');
+        console.log(newStringArray);
+        for(var i = 0; i<newStringArray.length; i++){
+            for(var j = 0; j<1; j++){
+                if(newStringArray[i][j].toUpperCase() == newStringArray[i][j]) {
+                    newString += newStringArray[i]+"+"
+                    wordCount ++
+                    if(wordCount == 3){
+                        return;
+                    }
+                }
+            }
+            console.log(newString);
+        }
+        return newString;
+    }
+
+
+    this.constructTwitterHint = function() {
         $('#hintTitle').text('Twitter');
-        $('#search').attr('value', $('#question').text() );
+        $('#search').attr('value', $('#question').text());
         $('#searchButton').attr('data-original-title', 'Use 1 point');
 
-        // var questionText = $('#question').text();
+        var questionText = $('#question').text();
 
         var answerString = "";
 
-        for(var i = 0; i < model.currentWrongAnswers.length; i++){
+        for (var i = 0; i < model.currentWrongAnswers.length; i++) {
             answerString += model.currentWrongAnswers[i] + " ";
         }
 
         answerString += model.currentAnswer;
 
-        console.log('answer string is: '+answerString);
+        console.log('answer string is: ' + answerString);
 
         // console.log("Question was: "+questionText);
 
@@ -276,12 +298,15 @@ function Game(){
 
         $('.outerHintContent').append(tempTwitterElement);
 
-        model.searchTwitter(answerString, model.getTwitterEmbed, function(result){
-            console.log('raw embed data: '+result);
+        questionText = this.getUpperCase(questionText);
+
+
+        model.searchTwitter(questionText, model.getTwitterEmbed, function (result) {
+            console.log('raw embed data: ' + result);
             $('.tempTwitter').html(result);
         });
+    }
 
-    };
 }
 
 var view = new Game();

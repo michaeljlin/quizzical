@@ -107,6 +107,7 @@ function Model() {
      * searches Wikipedia for relevent article and returns url of article
      */
     this.searchWikipedia = function (string, callback, secondCallback) { //Modified to have a second callback function
+
         $.ajax({
             url: "https://en.wikipedia.org/w/api.php",
             data: {
@@ -163,6 +164,7 @@ function Model() {
      * searches twitter for keywords and returns text of top tweet
      */
     this.searchTwitter = function (string, callback, secondCallback) { //Modified to have a second callback function
+
         $.ajax({
             url: 'http://s-apis.learningfuze.com/hackathon/twitter/index.php',
             data: {
