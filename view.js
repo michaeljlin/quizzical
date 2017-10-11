@@ -28,6 +28,8 @@ function initializeGame() {
 
     $('#hint').on('hidden.bs.modal', view.clearModal);
 
+    view.nextQuestion();
+
     // $('.btn').css({'outline': 'none'});
     //
     // $('[data-toggle="tooltip"]').tooltip();
