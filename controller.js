@@ -9,6 +9,19 @@ function Controller()
     this.playerTurn = null;
     this.helpsArray = [{title:"youtube",quantities:3},{title:"wikipedia",numbers:3},{title:"pass",numbers:3}];
 
+    this.setCurrentQuestionInModel = function(questionObject){
+        if(questionObject === undefined){
+
+            return;
+        }
+        else{
+            model.getTriviaQuestion(questionObject.category, questionObject.difficulty, function(dataBank){
+                model.setCurrentQuestion(dataBank.question);
+                model.setCurrentAnswer(dataBank.correct_answer);
+                model.setCurrentWrongAnswers(dataBank.incorrect_answers);
+            });
+        }
+    };
 
     this.getPlayerNameImage = function(turn,name,avatar)
     {

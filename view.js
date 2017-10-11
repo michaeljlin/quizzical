@@ -60,11 +60,18 @@ function Game(){
 
         var diff = $("input[name=difficultyLevel]:checked").val();
 
+        var questionObject = {category:catNum, difficulty: diff};
+
         console.log("raw value: "+raw);
         console.log("index value: "+number);
         console.log("category number: "+catNum);
         console.log("difficulty: "+diff);
 
+        // console.log('question object: '+$(questionObject));
+
+        controller.setCurrentQuestionInModel(questionObject);
+
+        $('#nextQuestion').modal('toggle');
     };
 
     this.refreshPage = function(nextTurnInfo){

@@ -14,6 +14,26 @@ function Model() {
     var imageArray = ['images/proff.png', 'images/super-simple-avatar-icon.jpg'];
     this.playersInfo = [{}, {}, 0]; // player Object index 2 will be 1/2 for player turn and will alternate
     this.playerStats = [{}, {}];
+
+    this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
+    this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
+
+    this.currentQuestion = null;
+    this.currentAnswer = null;
+    this.currentWrongAnswers = null;
+
+    this.setCurrentQuestion = function(questionString){
+        this.currentQuestion = questionString;
+    };
+
+    this.setCurrentAnswer = function(correctAnswerString){
+        this.currentAnswer = correctAnswerString;
+    };
+
+    this.setCurrentWrongAnswers = function(answerArray){
+        this.currentWrongAnswers = answerArray;
+    };
+
     this.getTriviaQuestion = function (category, difficultyLevel, callback) {
         console.log('this ran');
         $.ajax({
