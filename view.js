@@ -46,6 +46,10 @@ function Game(){
         self.hintHTML = hintHTMLElement;
     };
 
+    this.showHint = function(){
+
+    };
+
     this.setupNextQuestion = function(){
         for(var i = 0; i < self.categories.length; i++){
             var newOptionElement = new $('<option>').text(self.categories[i]);
@@ -113,6 +117,7 @@ function Game(){
 
     this.constructWikiHint = function(){
         $('#hintTitle').text('Wikipedia');
+        $('#search').attr('value', $('#question').text() );
         $('#searchButton').attr('data-original-title', 'Use 3 points');
     };
 
@@ -123,6 +128,7 @@ function Game(){
 
     this.constructTwitterHint = function(){
         $('#hintTitle').text('Twitter');
+        $('#search').attr('value', $('#question').text() );
         $('#searchButton').attr('data-original-title', 'Use 1 point');
     };
 }
