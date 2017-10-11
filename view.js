@@ -8,7 +8,7 @@ function initializeGame() {
     $('#answer3').click(view.pressAnswerButton);
     $('#answer4').click(view.pressAnswerButton);
 
-    $('#submitName').click(view.setPlayerOneName);
+    // $('#submitName').click(view.setPlayerOneName);
 
     $('#option1').click(view.setAvatars);
     $('#option2').click(view.setAvatars);
@@ -33,6 +33,8 @@ function initializeGame() {
     $('#setPlayers').modal('toggle');
     $('#setPlayers').on('hidden.bs.modal', view.nextQuestion);
 
+    $('#setPlayerInfo').click(view.setPlayerInfo);
+
     // $('.btn').css({'outline': 'none'});
     //
     // $('[data-toggle="tooltip"]').tooltip();
@@ -44,6 +46,20 @@ function Game(){
 
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
+
+    this.setPlayerInfo = function(){
+        var name1 = $('#username1').val();
+        var name2 = $('#username2').val();
+
+        var playerObject = [{
+            name: name1
+        },{
+            name: name2
+        }];
+
+        controller.setPlayerInfo(playerObject);
+
+    };
 
     this.setAvatars = function(){
         var avatarSrc = $(this)[0].currentSrc;
@@ -83,6 +99,12 @@ function Game(){
         self.updateStatus(nextTurnInfo.status);
         self.updateQuestion(nextTurnInfo.question);
         self.updateAnswers(nextTurnInfo.answers);
+    };
+
+    this.displayPlayerNameAndAvatars = function(player1Name, player2Name){
+        $('#playerOneName').text(player1Name);
+        $('#playerTwoName').text(player2Name);
+        $('#setPlayers').modal('toggle');
     };
 
     this.updateStatus = function(turn, player1Points, player2Points){
@@ -128,12 +150,12 @@ function Game(){
         }
     };
 
-    this.setPlayerOneName = function(){
-        var name = $('#setName').val();
-
-        controller.getPlayerName(name);
-        console.log(name);
-    };
+    // this.setPlayerOneName = function(){
+    //     var name = $('#setName').val();
+    //
+    //     controller.getPlayerName(name);
+    //     console.log(name);
+    // };
 
     this.showHint = function(){
 

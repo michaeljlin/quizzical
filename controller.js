@@ -9,6 +9,13 @@ function Controller()
     this.playerTurn = null;
     this.helpsArray = [{title:"youtube",quantities:3},{title:"wikipedia",numbers:3},{title:"pass",numbers:3}];
 
+    this.setPlayerInfo = function(playerInfoArray){
+        model.playersInfo[0].name = playerInfoArray[0].name;
+        model.playersInfo[1].name = playerInfoArray[1].name;
+
+        view.displayPlayerNameAndAvatars(model.playersInfo[0].name, model.playersInfo[1].name);
+    };
+
     this.answerButtonPressed = function(chosenAnswerText){
         var currentTurn = model.playersInfo[2];
 
