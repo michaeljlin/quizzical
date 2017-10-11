@@ -32,7 +32,7 @@
 
     <div class="modal fade" id="hint" tabindex="-1" role="dialog">
         <div class="modal-dialog hintStyle" role="document">
-            <div class="modal-content">
+            <div class="hint-content modal-content">
                 <div class="modal-header">
                     <div id="hintTitle" class="modal-title">
                         Test
@@ -41,8 +41,8 @@
                 <div id="hintBody" class="modal-body">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-10">
-                                <div class="input-group form-group">
+                            <div class="outerHintContent col-md-10">
+                                <div class="mainHintContent input-group form-group">
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-search"></span>
                                     </span>
@@ -71,15 +71,15 @@
                     <div class="container nextQuestionContainer">
                         <div class="row">
 
-                            <div class="col-md-12">
+                            <div id="diff" class="col-md-12">
                                 <label class="radio-inline">
                                     <input type="radio" name="difficultyLevel" id="easyDiff" value="easy">Easy
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="difficultyLevel" id="mediumDiff" value="easy">Medium
+                                    <input type="radio" name="difficultyLevel" id="mediumDiff" value="medium">Medium
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="difficultyLevel" id="hardDiff" value="easy">Hard
+                                    <input type="radio" name="difficultyLevel" id="hardDiff" value="hard">Hard
                                 </label>
                             </div>
 
