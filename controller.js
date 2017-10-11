@@ -223,5 +223,12 @@ function Controller()
         this.checktheAnswer();
     }
 
+
+
+
+
+
+
+
 }
 

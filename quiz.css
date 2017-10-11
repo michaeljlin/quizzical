@@ -11,7 +11,7 @@
 body{
     background-image: url("images/general-back.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
 }
 
 #answer1, #answer2, #answer3, #answer4{
