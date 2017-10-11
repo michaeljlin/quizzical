@@ -1,9 +1,7 @@
 $(document).ready(initializeGame);
 
-function initializeGame(){
-    $(document).on('click', '#wiki', {type:'wiki'}, newGame.hintToggle);
-    $(document).on('click', '#youtube', {type:'youtube'}, newGame.hintToggle);
-    $(document).on('click', '#twitter', {type:'twitter'}, newGame.hintToggle);
+function initializeGame() {
+
 
     $('#answer1').click(newGame.pressAnswerButton);
     $('#answer2').click(newGame.pressAnswerButton);
@@ -21,6 +19,29 @@ function initializeGame(){
     $('.btn').css({'outline': 'none'});
 
     $('[data-toggle="tooltip"]').tooltip();
+
+// =======
+//     this.getAvatars = function ()
+//     {
+//         return (modal.passAvatars());
+//     };
+
+    $(document).on('click', '#wiki', {type:'wiki'}, newGame.hintToggle);
+    $(document).on('click', '#youtube', {type:'youtube'}, newGame.hintToggle);
+    $(document).on('click', '#twitter', {type:'twitter'}, newGame.hintToggle);
+    //
+    // $('#answer1').click(newGame.pressAnswerButton);
+    // $('#answer2').click(newGame.pressAnswerButton);
+    // $('#answer3').click(newGame.pressAnswerButton);
+    // $('#answer4').click(newGame.pressAnswerButton);
+    //
+    // // newGame.setupButtons();
+    // newGame.setupNextQuestion();
+    //
+    // $('.btn').css({'outline': 'none'});
+    //
+    // $('[data-toggle="tooltip"]').tooltip();
+// >>>>>>> 049dc3d060fa150ff536ce56f815e2df37e521fb
 }
 
 function Game(){
@@ -32,7 +53,7 @@ function Game(){
     this.setAvatars = function(){
         var avatarSrc = $(this)[0].currentSrc;
 
-        // controller.
+        controller.getPlayerAvatar(avatarSrc);
         console.log(avatarSrc);
 
         // return $(this);
