@@ -11,7 +11,7 @@ var questionBank; //variable to hold current question and answer(s)
  */
 function Model(){
     this.playersInfo =[{},{}]; // player Object
-    this.getTriviaQuestion = function(category, difficultyLevel){
+    this.getTriviaQuestion = function(category, difficultyLevel, callback){
         console.log('this ran');
         $.ajax({
             url: 'https://opentdb.com/api.php?amount=1&type=multiple',
@@ -25,7 +25,7 @@ function Model(){
                 console.log('success',data);
                 console.log(data.results[0]);
                 questionBank = data.results[0];
-                return questionBank;
+                callback(questionBank);
             },
             error: function(data){
                 console.log('something went wrong', data)
@@ -38,7 +38,7 @@ function Model(){
  * @returns: {URL} Youtube url with relevent material
  * creates a search on youtube from string and returns top video url
  */
-    this.searchYoutube = function(string){
+    this.searchYoutube = function(string,callback){
         $.ajax({
             url: 'http://s-apis.learningfuze.com/hackathon/youtube/search.php',
             dataType: 'json',
@@ -56,7 +56,7 @@ function Model(){
                 console.log('YT success', data);
                 console.log('YT first video id', YTResult[YTKeys[0]]);
                 console.log('https://www.youtube.com/watch?v='+videoId);
-                return 'https://www.youtube.com/watch?v='+videoId;
+                callback('https://www.youtube.com/watch?v='+videoId);
             },
             error: function(data){
                 console.log('something went wrong with YT',data);
@@ -69,7 +69,7 @@ function Model(){
  * @returns: {URL} return wikipedia url
  * searches Wikipedia for relevent article and returns url of article
  */
-    this.searchWikipedia = function(string) {
+    this.searchWikipedia = function(string,callback) {
         $.ajax({
             url: "https://en.wikipedia.org/w/api.php",
             data: {
@@ -80,11 +80,11 @@ function Model(){
                 list: 'search',
                 srsearch: string,
                 // section: 0,
-                origin: '*',
+                origin: '*'
             },
             success: function (data) {
                 console.log('Wiki success', data);
-                return 'https://en.wikipedia.org/?curid='+data.query.search[0].pageid;
+                callback('https://en.wikipedia.org/?curid='+data.query.search[0].pageid);
             },
             error: function (data) {
                 console.log('wiki fail', data)
@@ -97,7 +97,7 @@ function Model(){
  * @returns: {text} return text of most recent tweet
  * searches twitter for keywords and returns text of top tweet
  */
-    this.searchTwitter = function(string){
+    this.searchTwitter = function(string,callback){
         $.ajax({
             url: 'http://s-apis.learningfuze.com/hackathon/twitter/index.php',
             data: {
@@ -107,7 +107,7 @@ function Model(){
             success: function(data){
                 console.log('twitter success', data);
                 console.log(data.tweets.statuses[0].text);
-                return data.tweets.statuses[0].text;
+                callback(data.tweets.statuses[0].text);
 
             },
             error: function(data){
