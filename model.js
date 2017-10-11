@@ -1,5 +1,5 @@
 var questionBank; //variable to hold current question and answer(s)
-var imageArray = [images/proff.png,images/super-simple-avatar-icon.jpg];
+
 
 /***************************************************************************************************
  * model (MVC)
@@ -11,7 +11,8 @@ var imageArray = [images/proff.png,images/super-simple-avatar-icon.jpg];
  * creates object with question, answer, and guesses
  */
 function Model(){
-    this.playersInfo =[{},{}]; // player Object
+    var imageArray = ['images/proff.png','images/super-simple-avatar-icon.jpg'];
+    this.playersInfo =[{},{},0]; // player Object index 2 will be 1/2 for player turn and will alternate
     this.playerStats = [{},{}];
     this.getTriviaQuestion = function(category, difficultyLevel, callback){
         console.log('this ran');
@@ -116,6 +117,16 @@ function Model(){
                 console.log('twitter error', data)
             }
         })
+    }
+    this.returnAvatars = function(){
+        return imageArray;
+    }
+    this.getPlayerAvatar = function(image){
+        if(this.playersInfo[2] == 0){
+            this.playersInfo[0] = image;
+        }else{
+            this.playersInfo[1] = image;
+        }
     }
 }
 
