@@ -195,7 +195,7 @@ function Game(){
     this.hintToggle = function(hint){
         switch(hint.data.type){
             case 'wiki':
-                self.constructWikiHint();
+                controller.constructWikiHint();
                 break;
             case 'youtube':
                 self.constructYoutubeHint();
@@ -207,34 +207,49 @@ function Game(){
         $('#hint').modal('toggle');
     };
 
-    this.constructWikiHint = function(){
-        $('.mainHintContent').toggle('hidden');
-        $('#searchButton').toggle('hidden');
+    this.displayWikiHint = function(wikiElementContainer){
+        $('#hintBody .row').append(wikiElementContainer);
 
-        $('#hintTitle').text('Wikipedia');
-        $('#search').attr('value', $('#question').text() );
-        $('#searchButton').attr('data-original-title', 'Use 3 points');
+        $('.wikiContainer a').attr(
+            'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
+            'target', '_blank'
+        );
+    };
 
-        var questionText = $('#question').text();
+    // this.constructWikiHint = function(){
+    //     $('.mainHintContent').toggle('hidden');
+    //     $('#searchButton').toggle('hidden');
+    //
+    //     $('#hintTitle').text('Wikipedia');
+    //     $('#search').attr('value', $('#question').text() );
+    //     $('#searchButton').attr('data-original-title', 'Use 3 points');
+    //
+    //     var questionText = $('#question').text();
+    //
+    //     model.searchWikipedia(questionText, model.getWikipediaText, function(result){
+    //         // console.log('raw result data: '+result);
+    //
+    //         var convertedHTML = new $('<div>').html(result);
+    //
+    //         // console.log('converted html: '+$(convertedHTML));
+    //
+    //         var wikiElementContainer = $('<div>').addClass('wikiContainer col-md-12');
+    //
+    //         wikiElementContainer.html( $(convertedHTML).find('p') );
+    //
+    //         // view.displayWikiHint(wikiElementContainer);
+    //
+    //         $('#hintBody .row').append(wikiElementContainer);
+    //
+    //         $('.wikiContainer a').attr(
+    //             'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
+    //                 'target', '_blank'
+    //         );
+    //     });
+    // };
 
-        model.searchWikipedia(questionText, model.getWikipediaText, function(result){
-            // console.log('raw result data: '+result);
-
-            var convertedHTML = new $('<div>').html(result);
-
-            // console.log('converted html: '+$(convertedHTML));
-
-            var wikiElementContainer = $('<div>').addClass('wikiContainer col-md-12');
-
-            wikiElementContainer.html( $(convertedHTML).find('p') );
-
-            $('#hintBody .row').append(wikiElementContainer);
-
-            $('.wikiContainer a').attr(
-                'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
-                    'target', '_blank'
-            );
-        });
+    this.displayYoutubeHint = function(newIFrame){
+        $('#hintBody').css('height', '80%').append(newIFrame);
     };
 
     this.constructYoutubeHint = function(){
@@ -258,10 +273,17 @@ function Game(){
                 'width': '100%'
             });
 
+
+            //view.displayYoutubeHint(newIFrame);
+
             $('#hintBody').css('height', '80%').append(newIFrame);
         });
 
         // $('#searchButton').attr('data-original-title', 'Use 2 points');
+    };
+
+    this.displayTwitterHint = function(result){
+        $('.tempTwitter').html(result);
     };
 
     this.randomThree = function(string){
@@ -329,6 +351,11 @@ function Game(){
 
         model.searchTwitter(questionText, model.getTwitterEmbed, function (result) {
             console.log('raw embed data: ' + result);
+
+
+            //view.displayTwitterHint(result);
+
+
             $('.tempTwitter').html(result);
         });
     }
