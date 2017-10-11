@@ -10,69 +10,69 @@ var imageArray = ['images/proff.png','images/super-simple-avatar-icon.jpg'];
  * @returns: {Object} return question object with answers
  * creates object with question, answer, and guesses
  */
-function Model(){
-    var imageArray = ['images/proff.png','images/super-simple-avatar-icon.jpg'];
-    this.playersInfo =[{},{},0]; // player Object index 2 will be 1/2 for player turn and will alternate
-    this.playerStats = [{},{}];
-    this.getTriviaQuestion = function(category, difficultyLevel, callback){
+function Model() {
+    var imageArray = ['images/proff.png', 'images/super-simple-avatar-icon.jpg'];
+    this.playersInfo = [{}, {}, 0]; // player Object index 2 will be 1/2 for player turn and will alternate
+    this.playerStats = [{}, {}];
+    this.getTriviaQuestion = function (category, difficultyLevel, callback) {
         console.log('this ran');
         $.ajax({
             url: 'https://opentdb.com/api.php?amount=1&type=multiple',
-            data:{
+            data: {
                 category: category,
                 difficulty: difficultyLevel
             },
             dataType: 'json',
             method: 'Post',
-            success: function(data){
-                console.log('success',data);
+            success: function (data) {
+                console.log('success', data);
                 console.log(data.results[0]);
                 questionBank = data.results[0];
                 callback(questionBank);
             },
-            error: function(data){
+            error: function (data) {
                 console.log('something went wrong', data)
             }
         });
     }
-/***************************************************************************************************
- * searchYoutube
- * @params {string} string is question from question list
- * @returns: {URL} Youtube url with relevent material
- * creates a search on youtube from string and returns top video url
- */
-    this.searchYoutube = function(string,callback){
+    /***************************************************************************************************
+     * searchYoutube
+     * @params {string} string is question from question list
+     * @returns: {URL} Youtube url with relevent material
+     * creates a search on youtube from string and returns top video url
+     */
+    this.searchYoutube = function (string, callback) {
         $.ajax({
             url: 'http://s-apis.learningfuze.com/hackathon/youtube/search.php',
             dataType: 'json',
-            data:{
+            data: {
                 q: string,
                 maxResults: 5,
                 type: 'video',
                 detailLevel: 'verbose'
             },
             method: 'Post',
-            success: function(data){
+            success: function (data) {
                 var YTResult = data.data;
                 var YTKeys = Object.keys(YTResult);
                 var videoId = YTResult[YTKeys[0]].id.videoId;
                 console.log('YT success', data);
                 console.log('YT first video id', YTResult[YTKeys[0]]);
-                console.log('https://www.youtube.com/watch?v='+videoId);
-                callback('https://www.youtube.com/watch?v='+videoId);
+                console.log('https://www.youtube.com/watch?v=' + videoId);
+                callback('https://www.youtube.com/watch?v=' + videoId);
             },
-            error: function(data){
-                console.log('something went wrong with YT',data);
+            error: function (data) {
+                console.log('something went wrong with YT', data);
             }
         })
     }
-/***************************************************************************************************
- * searchWikipedia
- * @params {string} string; either current question or possible answer
- * @returns: {URL} return wikipedia url
- * searches Wikipedia for relevent article and returns url of article
- */
-    this.searchWikipedia = function(string,callback) {
+    /***************************************************************************************************
+     * searchWikipedia
+     * @params {string} string; either current question or possible answer
+     * @returns: {URL} return wikipedia url
+     * searches Wikipedia for relevent article and returns url of article
+     */
+    this.searchWikipedia = function (string, callback) {
         $.ajax({
             url: "https://en.wikipedia.org/w/api.php",
             data: {
@@ -87,46 +87,56 @@ function Model(){
             },
             success: function (data) {
                 console.log('Wiki success', data);
-                callback('https://en.wikipedia.org/?curid='+data.query.search[0].pageid);
+                callback('https://en.wikipedia.org/?curid=' + data.query.search[0].pageid);
             },
             error: function (data) {
                 console.log('wiki fail', data)
             }
         })
     }
-/***************************************************************************************************
- * searchTwitter
- * @params {string}
- * @returns: {text} return text of most recent tweet
- * searches twitter for keywords and returns text of top tweet
- */
-    this.searchTwitter = function(string,callback){
+    /***************************************************************************************************
+     * searchTwitter
+     * @params {string}
+     * @returns: {text} return text of most recent tweet
+     * searches twitter for keywords and returns text of top tweet
+     */
+    this.searchTwitter = function (string, callback) {
         $.ajax({
             url: 'http://s-apis.learningfuze.com/hackathon/twitter/index.php',
             data: {
                 search_term: string
             },
             dataType: 'json',
-            success: function(data){
+            success: function (data) {
                 console.log('twitter success', data);
                 console.log(data.tweets.statuses[0].text);
                 callback(data.tweets.statuses[0].text);
 
             },
-            error: function(data){
+            error: function (data) {
                 console.log('twitter error', data)
             }
         })
     }
-    this.returnAvatars = function(){
+    this.returnAvatars = function () {
         return imageArray;
     }
-    this.getPlayerAvatar = function(image){
-        if(this.playersInfo[2] == 0){
+    this.getPlayerAvatar = function (image) {
+        if (this.playersInfo[2] == 0) {
             this.playersInfo[0] = image;
-        }else{
+        } else {
             this.playersInfo[1] = image;
         }
     }
+
+    this.getPlayerName = function(string){
+        if (this.playersInfo[2] == 0) {
+            this.playersInfo[0].name = string;
+        }else{
+            this.playersInfo[1].name = string;
+        }
+    }
+
+
 }
 
