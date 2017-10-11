@@ -9,6 +9,33 @@ function Controller()
     this.playerTurn = null;
     this.helpsArray = [{title:"youtube",quantities:3},{title:"wikipedia",numbers:3},{title:"pass",numbers:3}];
 
+    this.setPlayerInfo = function(playerInfoArray){
+        model.playersInfo[0].name = playerInfoArray[0].name;
+        model.playersInfo[1].name = playerInfoArray[1].name;
+
+        view.displayPlayerNameAndAvatars(model.playersInfo[0].name, model.playersInfo[1].name);
+    };
+
+    this.answerButtonPressed = function(chosenAnswerText){
+        var currentTurn = model.playersInfo[2];
+
+        if(chosenAnswerText === model.currentAnswer){
+            model.correctAudioObject.play();
+            console.log('Player '+ (currentTurn+1) + ' got the question correct! Toggling next question modal!');
+            model.playersInfo[currentTurn].points+=1;
+            this.changeCurrentTurn();
+            view.updateStatus(model.playersInfo[2] + 1, model.playersInfo[0].points, model.playersInfo[1].points);
+            view.nextQuestion();
+        }
+        else{
+            model.wrongAudioObject.play();
+            console.log('Player '+ (currentTurn+1) + ' got the question wrong! Toggling next question modal!');
+            this.changeCurrentTurn();
+            view.updateStatus(model.playersInfo[2] + 1, model.playersInfo[0].points, model.playersInfo[1].points);
+            view.nextQuestion();
+        }
+    };
+
     this.setCurrentQuestionInModel = function(questionObject){
         if(questionObject === undefined){
 
@@ -20,9 +47,15 @@ function Controller()
                 var quoteFix = questionBank.question.replace(/&quot;/g,'\"');
                 var apostFix = quoteFix.replace(/&#039;/g,'\"');
 
-                model.setCurrentQuestion(apostFix);
-                model.setCurrentAnswer(dataBank.correct_answer);
-                model.setCurrentWrongAnswers(dataBank.incorrect_answers);
+                var fixedIncorrectAnswers = [];
+
+                for(var i = 0; i < dataBank.incorrect_answers.length; i++){
+                    fixedIncorrectAnswers.push(controller.sanitizeText(dataBank.incorrect_answers[i]));
+                }
+
+                model.setCurrentQuestion(controller.sanitizeText(questionBank.question));
+                model.setCurrentAnswer(controller.sanitizeText(dataBank.correct_answer));
+                model.setCurrentWrongAnswers(fixedIncorrectAnswers);
                 model.setCurrentCategory(dataBank.category);
 
                 view.updateQuestion(model.currentCategory, model.currentQuestion);
@@ -40,6 +73,13 @@ function Controller()
                 view.updateAnswers(temp);
             });
         }
+    };
+
+    this.sanitizeText = function(rawString){
+        var quoteFix = rawString.replace(/&quot;/g,'\"');
+        var apostFix = quoteFix.replace(/&#039;/g,'\"');
+
+        return apostFix;
     };
 
     this.getPlayerNameImage = function(turn,name,avatar)

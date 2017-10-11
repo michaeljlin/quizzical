@@ -8,7 +8,7 @@ function initializeGame() {
     $('#answer3').click(view.pressAnswerButton);
     $('#answer4').click(view.pressAnswerButton);
 
-    $('#submitName').click(view.setPlayerOneName);
+    // $('#submitName').click(view.setPlayerOneName);
 
     $('#option1').click(view.setAvatars);
     $('#option2').click(view.setAvatars);
@@ -17,6 +17,10 @@ function initializeGame() {
     view.setupNextQuestion();
 
     $('.btn').css({'outline': 'none'});
+
+    $("#wiki").tooltip({title:'Search Wikipedia for help', placement: 'bottom'});
+    $("#youtube").tooltip({title:'Ask Youtube for help', placement: 'bottom'});
+    $("#twitter").tooltip({title:'Ask Twitter for help', placement: 'bottom'});
 
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -27,6 +31,15 @@ function initializeGame() {
     $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
 
     $('#hint').on('hidden.bs.modal', view.clearModal);
+
+    // view.nextQuestion();
+
+    // $('#mainScreen').toggle('hidden');
+
+    $('#setPlayers').modal('toggle');
+    $('#setPlayers').on('hidden.bs.modal', view.nextQuestion);
+
+    $('#setPlayerInfo').click(view.setPlayerInfo);
 
     // $('.btn').css({'outline': 'none'});
     //
@@ -40,6 +53,28 @@ function Game(){
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
 
+    this.setPlayerInfo = function(){
+        var name1 = $('#username1').val();
+        var name2 = $('#username2').val();
+
+        if(name1 === ""){
+            name1 = 'Player 1'
+        }
+
+        if(name2 === ""){
+            name2 = 'Player 2'
+        }
+
+        var playerObject = [{
+            name: name1
+        },{
+            name: name2
+        }];
+
+        controller.setPlayerInfo(playerObject);
+
+    };
+
     this.setAvatars = function(){
         var avatarSrc = $(this)[0].currentSrc;
 
@@ -50,6 +85,11 @@ function Game(){
     };
 
     this.getNextQuestion = function(){
+
+        if($('#mainScreen').css('display') === 'none'){
+            $('#mainScreen').toggle('hidden');
+        }
+
         console.log("Next question called!");
 
         var raw = $('.categoryOptionList').val();
@@ -80,8 +120,14 @@ function Game(){
         self.updateAnswers(nextTurnInfo.answers);
     };
 
+    this.displayPlayerNameAndAvatars = function(player1Name, player2Name){
+        $('#playerOneName').text(player1Name);
+        $('#playerTwoName').text(player2Name);
+        $('#setPlayers').modal('toggle');
+    };
+
     this.updateStatus = function(turn, player1Points, player2Points){
-        $('#turn').text(turn);
+        $('#turn').text('Player '+turn);
         $('#playerOnePoints').text(player1Points);
         $('#playerTwoPoints').text(player2Points);
     };
@@ -98,9 +144,9 @@ function Game(){
     };
 
     this.pressAnswerButton = function(){
-        var chosenAnswer = $(this)[0].innerText;
+        var chosenAnswer = $(this)[0].innerText.substr(0, $(this)[0].innerText.length-1);
         console.log(chosenAnswer);
-        // controller.getTheAnswer(chosenAnswer);
+        controller.answerButtonPressed(chosenAnswer);
     };
 
     this.setHintHTML = function(hintHTMLElement){
@@ -123,12 +169,12 @@ function Game(){
         }
     };
 
-    this.setPlayerOneName = function(){
-        var name = $('#setName').val();
-
-        controller.getPlayerName(name);
-        console.log(name);
-    };
+    // this.setPlayerOneName = function(){
+    //     var name = $('#setName').val();
+    //
+    //     controller.getPlayerName(name);
+    //     console.log(name);
+    // };
 
     this.showHint = function(){
 
@@ -141,46 +187,8 @@ function Game(){
         }
     };
 
-    // this.setupButtons = function(){
-    //     for (var i = 0; i < self.categories.length; i++){
-    //         console.log("Running for: "+i);
-    //             var newCategoryHolder = new $('<div>').addClass('col-md-1');
-    //             var newButtonGroup = new $('<div>').addClass('btn-group');
-    //             var newButton = new $('<button>').addClass('btn btn-default btn-block dropdown-toggle').attr({
-    //                 "data-toggle":"dropdown",
-    //                 "aria-haspopup": true,
-    //                 "aria-expanded": false
-    //             }).css("outline", "none").text(self.categories[i]+" ");
-    //
-    //             // console.log(newButton);
-    //
-    //             var newCaretElement = new $('<span>').addClass('caret');
-    //             newButton.append(newCaretElement);
-    //             newButtonGroup.append(newButton);
-    //
-    //             var newUlElement = new $('<ul>').addClass('dropdown-menu');
-    //             var newEasyElement = new $('<li>').html('<a href="#">Easy</a>');
-    //             var newMediumElement = new $('<li>').html('<a href="#">Medium</a>');
-    //             var newHardElement = new $('<li>').html('<a href="#">Hard</a>');
-    //
-    //             newUlElement.append(newEasyElement, newMediumElement, newHardElement);
-    //
-    //             newButtonGroup.append(newUlElement);
-    //
-    //             if(i === 0){
-    //                 newCategoryHolder.addClass('col-md-offset-1');
-    //             }
-    //
-    //             newCategoryHolder.append(newButtonGroup);
-    //
-    //             console.log(newCategoryHolder);
-    //
-    //             $('#catButtons').append(newCategoryHolder);
-    //
-    //     }
-    // };
-
     this.nextQuestion = function(){
+
         $('#nextQuestion').modal('toggle');
     };
 
@@ -200,6 +208,9 @@ function Game(){
     };
 
     this.constructWikiHint = function(){
+        $('.mainHintContent').toggle('hidden');
+        $('#searchButton').toggle('hidden');
+
         $('#hintTitle').text('Wikipedia');
         $('#search').attr('value', $('#question').text() );
         $('#searchButton').attr('data-original-title', 'Use 3 points');
@@ -253,22 +264,59 @@ function Game(){
         // $('#searchButton').attr('data-original-title', 'Use 2 points');
     };
 
-    this.constructTwitterHint = function(){
+    this.randomThree = function(string){
+        var newStringArray = [];
+        var wordCount = 0;
+        var newString = '';
+        newStringArray = string.split(' ');
+        console.log(newStringArray);
+        // for(var i = 0; i<newStringArray.length; i++){
+        //     for(var j = 0; j<1; j++){
+        //         if(newStringArray[i][j].toUpperCase() == newStringArray[i][j]) {
+        //             newString += newStringArray[i];
+        //             wordCount ++;
+        //             if(wordCount == 3){
+        //                 return newString;
+        //             }
+        //             else{
+        //                 newString += '+';
+        //             }
+        //         }
+        //     }
+        //     console.log(newString);
+        // }
+
+        for(var i = 0; i < 3; i++){
+            newString += newStringArray[Math.floor(Math.random()*(newStringArray.length-1) )];
+
+            if(i !== 2){
+                newString+='+';
+            }
+        }
+
+        return newString;
+    };
+
+
+    this.constructTwitterHint = function() {
+        $('.mainHintContent').toggle('hidden');
+        $('#searchButton').toggle('hidden');
+
         $('#hintTitle').text('Twitter');
-        $('#search').attr('value', $('#question').text() );
+        $('#search').attr('value', $('#question').text());
         $('#searchButton').attr('data-original-title', 'Use 1 point');
 
-        // var questionText = $('#question').text();
+        var questionText = $('#question').text();
 
         var answerString = "";
 
-        for(var i = 0; i < model.currentWrongAnswers.length; i++){
+        for (var i = 0; i < model.currentWrongAnswers.length; i++) {
             answerString += model.currentWrongAnswers[i] + " ";
         }
 
         answerString += model.currentAnswer;
 
-        console.log('answer string is: '+answerString);
+        console.log('answer string is: ' + answerString);
 
         // console.log("Question was: "+questionText);
 
@@ -276,12 +324,15 @@ function Game(){
 
         $('.outerHintContent').append(tempTwitterElement);
 
-        model.searchTwitter(answerString, model.getTwitterEmbed, function(result){
-            console.log('raw embed data: '+result);
+        questionText = self.randomThree(questionText);
+
+
+        model.searchTwitter(questionText, model.getTwitterEmbed, function (result) {
+            console.log('raw embed data: ' + result);
             $('.tempTwitter').html(result);
         });
+    }
 
-    };
 }
 
 var view = new Game();

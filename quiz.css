@@ -1,6 +1,7 @@
 #mainScreen{
     width: 100%;
     margin-top: 20vh;
+    display: none;
 }
 
 #question{
@@ -31,6 +32,10 @@ body{
 
 #option1:hover, #option2:hover{
     border: 1px solid yellow;
+}
+
+.modal-title{
+    text-align: center;
 }
 
 .hint-content{

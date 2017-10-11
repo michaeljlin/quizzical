@@ -59,8 +59,7 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="nextQuestion" tabindex="-1" role="dialog">
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="nextQuestion" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -100,12 +99,48 @@
         </div>
     </div>
 
-    <div class="col-md-5 col-md-offset-4">
-        <img id="option1" src="images/proff.png" style="height: 100px">
-        <img id="option2" src="images/super-simple-avatar-icon.jpg" style="height: 100px">
-        <input type="text" class="form-control" name="setName" id="setName" placeholder="Player One Name">
-        <button id="submitName" type="button" class="btn btn-success">Submit</button>
+    <div class="modal fade" id="setPlayers" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="setupTitle" class="modal-title">
+                        Enter Names & Choose Avatar
+                    </div>
+                </div>
+                <div id="setupBody" class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="outerSetupContent col-md-6">
+                                <div class="mainSetupContent input-group form-group">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </span>
+                                    <input type="text" class="form-control" name="username" id="username1" placeholder="Enter Name Here">
+                                </div>
+                                <div class="mainSetupContent input-group form-group">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </span>
+                                    <input type="text" class="form-control" name="username" id="username2" placeholder="Enter Name Here">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button id="setPlayerInfo" class="btn btn-success">Submit</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!--<div class="col-md-5 col-md-offset-4">-->
+        <!--<img id="option1" src="images/proff.png" style="height: 100px">-->
+        <!--<img id="option2" src="images/super-simple-avatar-icon.jpg" style="height: 100px">-->
+        <!--<input type="text" class="form-control" name="setName" id="setName" placeholder="Player One Name">-->
+        <!--<button id="submitName" type="button" class="btn btn-success">Submit</button>-->
+    <!--</div>-->
 
     <div id="mainScreen" class="container">
         <div class="category">
@@ -116,12 +151,31 @@
         <section class="column col-md-12">
             <aside class="col-md-2 col-md-offset-1">
 
-                <div class="panel panel-default row">
-                    <div class="panel-heading">Status</div>
-                    <p class="col-md-12">Current Turn: <span id="turn" class="label label-default">Player 1</span></p>
-                    <p class="col-md-12"><span id="playerOneName">P1</span> Points: <span id="playerOnePoints" class="label label-default">0</span></p>
-                    <p class="col-md-12"><span id="playerTwoName">P2</span> Points: <span id="playerTwoPoints" class="label label-default">0</span></p>
+                <!--<div class="panel panel-default row">-->
+                    <!--<div class="panel-heading">Status</div>-->
+                    <!--<p class="col-md-12">Current Turn: <span id="turn" class="label label-default">Player 1</span></p>-->
+                    <!--<p class="col-md-12"><span id="playerOneName">P1</span> Points: <span id="playerOnePoints" class="label label-default">0</span></p>-->
+                    <!--<p class="col-md-12"><span id="playerTwoName">P2</span> Points: <span id="playerTwoPoints" class="label label-default">0</span></p>-->
+                <!--</div>-->
+
+
+                <div class="column">
+                    <p class="col-md-12 panel panel-default">Current Turn: <span id="turn" class="label label-default">Player 1</span></p>
+                    <div class="col-md-5">
+                        <div class="panel panel-primary row">
+                            <div class="panel-heading">Status</div>
+                            <p class="col-md-12"><span id="playerOneName">P1</span> Points: <span id="playerOnePoints" class="label label-default">0</span></p>
+                        </div>
+
+                    </div>
+                    <div class="col-md-5 col-md-offset-2">
+                        <div class="panel panel-primary row">
+                            <div class="panel-heading">Status</div>
+                            <p class="col-md-12"><span id="playerTwoName">P2</span> Points: <span id="playerTwoPoints" class="label label-default">0</span></p>
+                        </div>
+                    </div>
                 </div>
+
             </aside>
 
             <article class=" col-md-7 col-md-offset-1 row">
@@ -137,8 +191,8 @@
                     <div id="answer3" class="col-md-6"><div class="btn btn-default btn-block text-center"><span id="answer3Text">answer3</span></div></div>
                     <div id="answer4" class="col-md-6"><div class="btn btn-default btn-block text-center"><span id="answer4Text">answer4</span></div></div>
                 </div>
-                <div id="help" class="col-md-6 col-md-offset-3 text-center">
-                    <p>Available hints:</p>
+                <div id="help" class="col-md-6 col-md-offset-3 text-center row">
+                    <p class="label label-success col-md-12">Available hints:</p>
                     <div class="btn-group btn-group-lg" role="group">
                         <button id="wiki" type="button" class="btn btn-default">Wikipedia</button>
                         <button id="youtube" type="button" class="btn btn-default">Youtube</button>
@@ -147,10 +201,6 @@
                 </div>
             </article>
         </section>
-
-        <footer>
-            <p>footerTest</p>
-        </footer>
     </div>
 </body>
 </html>
