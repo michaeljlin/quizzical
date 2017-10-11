@@ -227,6 +227,16 @@ function Game(){
         $('#hintTitle').text('Twitter');
         $('#search').attr('value', $('#question').text() );
         $('#searchButton').attr('data-original-title', 'Use 1 point');
+
+        var questionText = $('#question').text();
+
+        console.log("Question was: "+questionText);
+
+        model.searchTwitter('test', model.getTwitterEmbed, function(result){
+            console.log('raw embed data: '+result);
+            $('#hintBody').html(result);
+        });
+
     };
 }
 

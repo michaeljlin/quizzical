@@ -102,7 +102,7 @@ function Model() {
      * @returns: {text} return text of most recent tweet
      * searches twitter for keywords and returns text of top tweet
      */
-    this.searchTwitter = function (string, callback) {
+    this.searchTwitter = function (string, callback, secondCallback) {
         $.ajax({
             url: 'http://s-apis.learningfuze.com/hackathon/twitter/index.php',
             data: {
@@ -110,16 +110,37 @@ function Model() {
             },
             dataType: 'json',
             success: function (data) {
+                var tweetData = data.tweets.statuses[0];
+                var assembledTweet = 'https://twitter.com/'+tweetData.user.screen_name+'/status/'+tweetData.id_str;
+
+                console.log('embedded tweet url: '+assembledTweet);
                 console.log('twitter success', data);
                 console.log(data.tweets.statuses[0].text);
-                callback(data.tweets.statuses[0].text);
-
+                // callback(data.tweets.statuses[0].text);
+                callback(assembledTweet, secondCallback);
             },
             error: function (data) {
                 console.log('twitter error', data)
             }
         })
-    }
+    };
+
+    this.getTwitterEmbed = function(string, callback){
+        $.ajax({
+            url: 'https://publish.twitter.com/oembed?url='+string,
+            dataType: 'jsonp', // Ask about 'No 'Access-Control-Allow-Origin' header is present on the requested resource.'
+            success: function(data){
+                console.log('successfully started embed request!', data);
+                var embeddedHTMLCode = data.html;
+
+                callback(embeddedHTMLCode);
+            },
+            error: function(data){
+                console.log('twitter embed request error', data);
+            }
+        })
+    };
+
     this.returnAvatars = function () {
         return imageArray;
     }
