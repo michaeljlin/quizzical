@@ -25,9 +25,9 @@ function Controller()
         }
     };
 
-    this.getPlayerName = function()
+    this.getPlayerName = function(avatarAddress)
     {
-        model.getPlayerN(avatarAddress);
+        model.getPlayerName(avatarAddress);
         model.playersInfo[2] = 1-model.playersInfo[2];
 
     };

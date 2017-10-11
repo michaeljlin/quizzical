@@ -123,9 +123,9 @@ function Model() {
     }
     this.getPlayerAvatar = function (image) {
         if (this.playersInfo[2] == 0) {
-            this.playersInfo[0] = image;
+            this.playersInfo[0].avatar = image;
         } else {
-            this.playersInfo[1] = image;
+            this.playersInfo[1].avatar = image;
         }
     }
 

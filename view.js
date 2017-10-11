@@ -3,26 +3,28 @@ $(document).ready(initializeGame);
 function initializeGame() {
 
 
-    $('#answer1').click(newGame.pressAnswerButton);
-    $('#answer2').click(newGame.pressAnswerButton);
-    $('#answer3').click(newGame.pressAnswerButton);
-    $('#answer4').click(newGame.pressAnswerButton);
+    $('#answer1').click(view.pressAnswerButton);
+    $('#answer2').click(view.pressAnswerButton);
+    $('#answer3').click(view.pressAnswerButton);
+    $('#answer4').click(view.pressAnswerButton);
 
-    $('#submitName').click(newGame.setPlayerOneName);
+    $('#submitName').click(view.setPlayerOneName);
 
-    $('#option1').click(newGame.setAvatars);
-    $('#option2').click(newGame.setAvatars);
+    $('#option1').click(view.setAvatars);
+    $('#option2').click(view.setAvatars);
 
-    // newGame.setupButtons();
-    newGame.setupNextQuestion();
+    // view.setupButtons();
+    view.setupNextQuestion();
 
     $('.btn').css({'outline': 'none'});
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    $(document).on('click', '#wiki', {type:'wiki'}, newGame.hintToggle);
-    $(document).on('click', '#youtube', {type:'youtube'}, newGame.hintToggle);
-    $(document).on('click', '#twitter', {type:'twitter'}, newGame.hintToggle);
+    $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
+    $(document).on('click', '#youtube', {type:'youtube'}, view.hintToggle);
+    $(document).on('click', '#twitter', {type:'twitter'}, view.hintToggle);
+
+    $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
 
     // $('.btn').css({'outline': 'none'});
     //
@@ -34,6 +36,7 @@ function Game(){
     this.hintHTML = null;
 
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
+    this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
 
     this.setAvatars = function(){
         var avatarSrc = $(this)[0].currentSrc;
@@ -42,6 +45,24 @@ function Game(){
         console.log(avatarSrc);
 
         // return $(this);
+    };
+
+    this.getNextQuestion = function(){
+        console.log("Next question called!");
+
+        var raw = $('.categoryOptionList').val();
+
+        var number = self.categories.indexOf(raw);
+
+        var catNum = self.categoryNum[number];
+
+        var diff = $("input[name=difficultyLevel]:checked").val();
+
+        console.log("raw value: "+raw);
+        console.log("index value: "+number);
+        console.log("category number: "+catNum);
+        console.log("difficulty: "+diff);
+
     };
 
     this.refreshPage = function(nextTurnInfo){
@@ -90,7 +111,7 @@ function Game(){
 
     this.setupNextQuestion = function(){
         for(var i = 0; i < self.categories.length; i++){
-            var newOptionElement = new $('<option>').text(self.categories[i]);
+            var newOptionElement = new $('<option>').attr('data-category', self.categoryNum[i]).text(self.categories[i]);
             $('.categoryOptionList').append(newOptionElement);
         }
     };
@@ -171,7 +192,7 @@ function Game(){
     };
 }
 
-var newGame = new Game();
+var view = new Game();
 
 var controller = new Controller();
 
