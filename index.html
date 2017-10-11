@@ -39,7 +39,22 @@
                     </div>
                 </div>
                 <div id="hintBody" class="modal-body">
-                    Testbody
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </span>
+                                    <input type="text" class="form-control" name="searchTerm" id="search" placeholder="Search Term">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button id="searchButton" data-toggle="tooltip" type="button" data-placement="bottom" title="Use 2 points" class="btn btn-success">Submit</button>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,16 +63,38 @@
     <div id="mainScreen" class="container">
         <div class="category">
             <div class="row">
-                <p class="col-md-1 col-md-offset-1 label label-default">General Knowledge</p>
-                <p class="col-md-1 label label-default">Science and Nature</p>
-                <p class="col-md-1 label label-default">History</p>
-                <p class="col-md-1 label label-default">Geography</p>
-                <p class="col-md-1 label label-default">Celebrities</p>
-                <p class="col-md-1 label label-default">Animals</p>
-                <p class="col-md-1 label label-default">Sports</p>
-                <p class="col-md-1 label label-default">Books</p>
-                <p class="col-md-1 label label-default">Music</p>
-                <p class="col-md-1 label label-default">Film</p>
+                <div class="col-md-1 col-md-offset-1">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            General Knowledge <span class="claret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Easy</a></li>
+                            <li><a href="#">Medium</a></li>
+                            <li><a href="#">Hard</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Science & Nature <span class="claret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Easy</a></li>
+                            <li><a href="#">Medium</a></li>
+                            <li><a href="#">Hard</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-1 label label-default">History</div>
+                <div class="col-md-1 label label-default">Geography</div>
+                <div class="col-md-1 label label-default">Celebrities</div>
+                <div class="col-md-1 label label-default">Animals</div>
+                <div class="col-md-1 label label-default">Sports</div>
+                <div class="col-md-1 label label-default">Books</div>
+                <div class="col-md-1 label label-default">Music</div>
+                <div class="col-md-1 label label-default">Film</div>
             </div>
             <!--<div class="row">-->
                 <!--<p class="col-md-1 col-md-offset-1 label label-default">General Knowledge</p>-->
@@ -81,18 +118,19 @@
                 <p class="col-md-12">P2 Points: <span id="playerTwoPoints" class="label label-default">0</span></p>
             </aside>
 
-            <article class=" col-md-8 row">
+            <article class=" col-md-7 col-md-offset-1 row">
                 <div id="questionBody" class="col-md-10 col-md-offset-1 panel panel-info text-center">
                     <div id="questionCategory" class="panel-heading">Category Here</div>
                     <div id="question" class="panel-body">Question Here</div>
                 </div>
                 <div id="answers" class="col-md-12 row">
-                    <div id="answer1" class="col-md-6"><div class="btn btn-default btn-block text-center">answer1</div></div>
-                    <div id="answer2" class="col-md-6"><div class="btn btn-default btn-block text-center">answer2</div></div>
-                    <div id="answer3" class="col-md-6"><div class="btn btn-default btn-block text-center">answer3</div></div>
-                    <div id="answer4" class="col-md-6"><div class="btn btn-default btn-block text-center">answer4</div></div>
+                    <div id="answer1" class="col-md-6"><div class="btn btn-default btn-block text-center"><span id="answer1Text">answer1</span></div></div>
+                    <div id="answer2" class="col-md-6"><div class="btn btn-default btn-block text-center"><span id="answer2Text">answer2</span></div></div>
+                    <div id="answer3" class="col-md-6"><div class="btn btn-default btn-block text-center"><span id="answer3Text">answer3</span></div></div>
+                    <div id="answer4" class="col-md-6"><div class="btn btn-default btn-block text-center"><span id="answer4Text">answer4</span></div></div>
                 </div>
-                <div id="help" class="col-md-12 text-center">
+                <div id="help" class="col-md-6 col-md-offset-3 text-center">
+                    <p>Available hints:</p>
                     <div class="btn-group btn-group-lg" role="group">
                         <button id="wiki" type="button" data-toggle="tooltip" data-placement="left" title="Use 3 points" class="btn btn-default">Wikipedia</button>
                         <button id="youtube" type="button" data-toggle="tooltip" data-placement="bottom" title="Use 2 points" class="btn btn-default">Youtube</button>
