@@ -38,7 +38,7 @@ function Controller()
                 var quoteFix = questionBank.question.replace(/&quot;/g,'\"');
                 var apostFix = quoteFix.replace(/&#039;/g,'\"');
 
-                model.setCurrentQuestion(apostFix);
+                model.setCurrentQuestion(controller.sanitizeText(questionBank.question));
                 model.setCurrentAnswer(dataBank.correct_answer);
                 model.setCurrentWrongAnswers(dataBank.incorrect_answers);
                 model.setCurrentCategory(dataBank.category);
@@ -58,6 +58,13 @@ function Controller()
                 view.updateAnswers(temp);
             });
         }
+    };
+
+    this.sanitizeText = function(rawString){
+        var quoteFix = rawString.replace(/&quot;/g,'\"');
+        var apostFix = quoteFix.replace(/&#039;/g,'\"');
+
+        return apostFix;
     };
 
     this.getPlayerNameImage = function(turn,name,avatar)
