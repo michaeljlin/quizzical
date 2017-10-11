@@ -1,4 +1,5 @@
 var questionBank; //variable to hold current question and answer(s)
+var imageArray = [images/proff.png,images/super-simple-avatar-icon.jpg];
 
 /***************************************************************************************************
  * model (MVC)
@@ -11,6 +12,7 @@ var questionBank; //variable to hold current question and answer(s)
  */
 function Model(){
     this.playersInfo =[{},{}]; // player Object
+    this.playerStats = [{},{}];
     this.getTriviaQuestion = function(category, difficultyLevel, callback){
         console.log('this ran');
         $.ajax({
