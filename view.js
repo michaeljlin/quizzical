@@ -196,6 +196,27 @@ function Game(){
         $('#hintTitle').text('Wikipedia');
         $('#search').attr('value', $('#question').text() );
         $('#searchButton').attr('data-original-title', 'Use 3 points');
+
+        var questionText = $('#question').text();
+
+        model.searchWikipedia(questionText, model.getWikipediaText, function(result){
+            // console.log('raw result data: '+result);
+
+            var convertedHTML = new $('<div>').html(result);
+
+            // console.log('converted html: '+$(convertedHTML));
+
+            var wikiElementContainer = $('<div>').addClass('wikiContainer');
+
+            wikiElementContainer.html( $(convertedHTML).find('p') );
+
+            $('.outerHintContent').append(wikiElementContainer);
+
+            $('.wikiContainer a').attr(
+                'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
+                    'target', '_blank'
+            );
+        });
     };
 
     this.constructYoutubeHint = function(){

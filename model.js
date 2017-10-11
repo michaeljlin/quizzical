@@ -74,7 +74,7 @@ function Model() {
      * @returns: {URL} return wikipedia url
      * searches Wikipedia for relevent article and returns url of article
      */
-    this.searchWikipedia = function (string, callback) {
+    this.searchWikipedia = function (string, callback, secondCallback) { //Modified to have a second callback function
         $.ajax({
             url: "https://en.wikipedia.org/w/api.php",
             data: {
@@ -89,20 +89,48 @@ function Model() {
             },
             success: function (data) {
                 console.log('Wiki success', data);
-                callback('https://en.wikipedia.org/?curid=' + data.query.search[0].pageid);
+                // callback('https://en.wikipedia.org/?curid=' + data.query.search[0].pageid);
+                callback(data.query.search[0].title, secondCallback);
             },
             error: function (data) {
                 console.log('wiki fail', data)
             }
         })
-    }
+    };
+
+    this.getWikipediaText = function (string, callback) {
+        $.ajax({
+            url: "https://en.wikipedia.org/w/api.php?&section=0",
+            data: {
+                format: "json",
+                action: "parse",
+                page: string,
+                prop: 'text',
+                // list: 'search',
+                // srsearch: string,
+                // section: 0,
+                origin: '*'
+            },
+            success: function (data) {
+                console.log('Wiki text success', data);
+
+                var test = data.parse.text['*'];
+
+                callback(test);
+            },
+            error: function (data) {
+                console.log('wiki fail', data)
+            }
+        })
+    };
+
     /***************************************************************************************************
      * searchTwitter
      * @params {string}
      * @returns: {text} return text of most recent tweet
      * searches twitter for keywords and returns text of top tweet
      */
-    this.searchTwitter = function (string, callback, secondCallback) {
+    this.searchTwitter = function (string, callback, secondCallback) { //Modified to have a second callback function
         $.ajax({
             url: 'http://s-apis.learningfuze.com/hackathon/twitter/index.php',
             data: {
@@ -125,6 +153,8 @@ function Model() {
         })
     };
 
+    // Must be first callback function of the searchTwitter function.
+    // Is used to turn twitter url into embedded html string
     this.getTwitterEmbed = function(string, callback){
         $.ajax({
             url: 'https://publish.twitter.com/oembed?url='+string,
