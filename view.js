@@ -251,7 +251,7 @@ function Game(){
             // $('#hintBody').append(result);
 
             var newIFrame = $('<iframe>').attr({
-                'src':result,
+                'src':result+'?autoplay=1',
                 // 'width':'560px',
                 // 'height':'315px'
                 'height': '110%',
