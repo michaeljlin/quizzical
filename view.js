@@ -84,7 +84,6 @@ function Game(){
         controller.getPlayerAvatar(avatarSrc);
         console.log(avatarSrc);
 
-        // return $(this);
     };
 
     this.getNextQuestion = function(){
@@ -172,13 +171,6 @@ function Game(){
         // }
     };
 
-    // this.setPlayerOneName = function(){
-    //     var name = $('#setName').val();
-    //
-    //     controller.getPlayerName(name);
-    //     console.log(name);
-    // };
-
     this.showHint = function(){
 
     };
@@ -219,134 +211,14 @@ function Game(){
         );
     };
 
-    // this.constructWikiHint = function(){
-    //     $('.mainHintContent').toggle('hidden');
-    //     $('#searchButton').toggle('hidden');
-    //
-    //     $('#hintTitle').text('Wikipedia');
-    //     $('#search').attr('value', $('#question').text() );
-    //     $('#searchButton').attr('data-original-title', 'Use 3 points');
-    //
-    //     var questionText = $('#question').text();
-    //
-    //     model.searchWikipedia(questionText, model.getWikipediaText, function(result){
-    //         // console.log('raw result data: '+result);
-    //
-    //         var convertedHTML = new $('<div>').html(result);
-    //
-    //         // console.log('converted html: '+$(convertedHTML));
-    //
-    //         var wikiElementContainer = $('<div>').addClass('wikiContainer col-md-12');
-    //
-    //         wikiElementContainer.html( $(convertedHTML).find('p') );
-    //
-    //         // view.displayWikiHint(wikiElementContainer);
-    //
-    //         $('#hintBody .row').append(wikiElementContainer);
-    //
-    //         $('.wikiContainer a').attr(
-    //             'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
-    //                 'target', '_blank'
-    //         );
-    //     });
-    // };
-
     this.displayYoutubeHint = function(newIFrame){
         $('#hintBody').css('height', '80%').append(newIFrame);
     };
 
-    // this.constructYoutubeHint = function(){
-    //     $('#hintTitle').text('Youtube');
-    //     $('.mainHintContent').toggle('hidden');
-    //     $('#searchButton').toggle('hidden');
-    //
-    //     var questionText = $('#question').text();
-    //
-    //     console.log("Question was: "+questionText);
-    //
-    //     model.searchYoutube(questionText, function(result){
-    //         console.log('Searched youtube!');
-    //         // $('#hintBody').append(result);
-    //
-    //         var newIFrame = $('<iframe>').attr({
-    //             'src':result+'?autoplay=1',
-    //             // 'width':'560px',
-    //             // 'height':'315px'
-    //             'height': '110%',
-    //             'width': '100%'
-    //         });
-    //
-    //
-    //         //view.displayYoutubeHint(newIFrame);
-    //
-    //         $('#hintBody').css('height', '80%').append(newIFrame);
-    //     });
-    //
-    //     // $('#searchButton').attr('data-original-title', 'Use 2 points');
-    // };
 
     this.displayTwitterHint = function(result){
         $('.tempTwitter').html(result);
     };
-
-    // this.randomThree = function(string){
-    //     var newStringArray = [];
-    //     var wordCount = 0;
-    //     var newString = '';
-    //     newStringArray = string.split(' ');
-    //     console.log(newStringArray);
-    //
-    //     for(var i = 0; i < 3; i++){
-    //         newString += newStringArray[Math.floor(Math.random()*(newStringArray.length-1) )];
-    //
-    //         if(i !== 2){
-    //             newString+='+';
-    //         }
-    //     }
-    //
-    //     return newString;
-    // };
-    //
-    //
-    // this.constructTwitterHint = function() {
-    //     $('.mainHintContent').toggle('hidden');
-    //     $('#searchButton').toggle('hidden');
-    //
-    //     $('#hintTitle').text('Twitter');
-    //     $('#search').attr('value', $('#question').text());
-    //     $('#searchButton').attr('data-original-title', 'Use 1 point');
-    //
-    //     var questionText = $('#question').text();
-    //
-    //     var answerString = "";
-    //
-    //     for (var i = 0; i < model.currentWrongAnswers.length; i++) {
-    //         answerString += model.currentWrongAnswers[i] + " ";
-    //     }
-    //
-    //     answerString += model.currentAnswer;
-    //
-    //     console.log('answer string is: ' + answerString);
-    //
-    //     // console.log("Question was: "+questionText);
-    //
-    //     var tempTwitterElement = new $('<div>').addClass('tempTwitter col-md-6 col-md-offset-4');
-    //
-    //     $('.outerHintContent').append(tempTwitterElement);
-    //
-    //     questionText = self.randomThree(questionText);
-    //
-    //
-    //     model.searchTwitter(questionText, model.getTwitterEmbed, function (result) {
-    //         console.log('raw embed data: ' + result);
-    //
-    //
-    //         //view.displayTwitterHint(result);
-    //
-    //
-    //         $('.tempTwitter').html(result);
-    //     });
-    // }
 
 }
 
