@@ -28,7 +28,10 @@ function initializeGame() {
 
     $('#hint').on('hidden.bs.modal', view.clearModal);
 
-    view.nextQuestion();
+    // view.nextQuestion();
+
+    $('#setPlayers').modal('toggle');
+    $('#setPlayers').on('hidden.bs.modal', view.nextQuestion);
 
     // $('.btn').css({'outline': 'none'});
     //
