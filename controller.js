@@ -28,15 +28,20 @@ function Controller()
     this.getPlayerName = function(avatarAddress)
     {
         model.getPlayerName(avatarAddress);
-        model.playersInfo[2] = 1-model.playersInfo[2];
+        this.changeCurrentTurn();
 
     };
 
     this.getPlayerAvatar = function(avatarAddress)
     {
         model.getPlayerAvatar(avatarAddress);
-        model.playersInfo[2] = 1-model.playersInfo[2];
+        this.changeCurrentTurn();
 
+    };
+
+    this.changeCurrentTurn = function()
+    {
+        model.playersInfo[2] = 1-model.playersInfo[2];
     };
 
     this.updateDomElements = function()
