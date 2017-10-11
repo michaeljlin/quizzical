@@ -21,6 +21,7 @@ function Model() {
     this.currentQuestion = null;
     this.currentAnswer = null;
     this.currentWrongAnswers = null;
+    this.currentCategory = null;
 
     this.setCurrentQuestion = function(questionString){
         this.currentQuestion = questionString;
@@ -32,6 +33,10 @@ function Model() {
 
     this.setCurrentWrongAnswers = function(answerArray){
         this.currentWrongAnswers = answerArray;
+    };
+
+    this.setCurrentCategory = function(categoryString){
+        this.currentCategory = categoryString;
     };
 
     this.getTriviaQuestion = function (category, difficultyLevel, callback) {

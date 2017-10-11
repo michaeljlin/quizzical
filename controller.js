@@ -19,6 +19,21 @@ function Controller()
                 model.setCurrentQuestion(dataBank.question);
                 model.setCurrentAnswer(dataBank.correct_answer);
                 model.setCurrentWrongAnswers(dataBank.incorrect_answers);
+                model.setCurrentCategory(dataBank.category);
+
+                view.updateQuestion(model.currentCategory, model.currentQuestion);
+
+                var temp = model.currentWrongAnswers.slice();
+                temp.push(model.currentAnswer);
+
+                for(var i = 0; i < temp.length; i++){
+                    var randomPosition = Math.floor(Math.random()*(temp.length-1));
+                    var hold = temp[i];
+                    temp[i] = temp[randomPosition];
+                    temp[randomPosition] = hold;
+                }
+
+                view.updateAnswers(temp);
             });
         }
     };
