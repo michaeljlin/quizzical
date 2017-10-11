@@ -47,9 +47,15 @@ function Controller()
                 var quoteFix = questionBank.question.replace(/&quot;/g,'\"');
                 var apostFix = quoteFix.replace(/&#039;/g,'\"');
 
+                var fixedIncorrectAnswers = [];
+
+                for(var i = 0; i < dataBank.incorrect_answers.length; i++){
+                    fixedIncorrectAnswers.push(controller.sanitizeText(dataBank.incorrect_answers[i]));
+                }
+
                 model.setCurrentQuestion(controller.sanitizeText(questionBank.question));
-                model.setCurrentAnswer(dataBank.correct_answer);
-                model.setCurrentWrongAnswers(dataBank.incorrect_answers);
+                model.setCurrentAnswer(controller.sanitizeText(dataBank.correct_answer));
+                model.setCurrentWrongAnswers(fixedIncorrectAnswers);
                 model.setCurrentCategory(dataBank.category);
 
                 view.updateQuestion(model.currentCategory, model.currentQuestion);
