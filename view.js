@@ -141,44 +141,44 @@ function Game(){
         }
     };
 
-    this.setupButtons = function(){
-        for (var i = 0; i < self.categories.length; i++){
-            console.log("Running for: "+i);
-                var newCategoryHolder = new $('<div>').addClass('col-md-1');
-                var newButtonGroup = new $('<div>').addClass('btn-group');
-                var newButton = new $('<button>').addClass('btn btn-default btn-block dropdown-toggle').attr({
-                    "data-toggle":"dropdown",
-                    "aria-haspopup": true,
-                    "aria-expanded": false
-                }).css("outline", "none").text(self.categories[i]+" ");
-
-                // console.log(newButton);
-
-                var newCaretElement = new $('<span>').addClass('caret');
-                newButton.append(newCaretElement);
-                newButtonGroup.append(newButton);
-
-                var newUlElement = new $('<ul>').addClass('dropdown-menu');
-                var newEasyElement = new $('<li>').html('<a href="#">Easy</a>');
-                var newMediumElement = new $('<li>').html('<a href="#">Medium</a>');
-                var newHardElement = new $('<li>').html('<a href="#">Hard</a>');
-
-                newUlElement.append(newEasyElement, newMediumElement, newHardElement);
-
-                newButtonGroup.append(newUlElement);
-
-                if(i === 0){
-                    newCategoryHolder.addClass('col-md-offset-1');
-                }
-
-                newCategoryHolder.append(newButtonGroup);
-
-                console.log(newCategoryHolder);
-
-                $('#catButtons').append(newCategoryHolder);
-
-        }
-    };
+    // this.setupButtons = function(){
+    //     for (var i = 0; i < self.categories.length; i++){
+    //         console.log("Running for: "+i);
+    //             var newCategoryHolder = new $('<div>').addClass('col-md-1');
+    //             var newButtonGroup = new $('<div>').addClass('btn-group');
+    //             var newButton = new $('<button>').addClass('btn btn-default btn-block dropdown-toggle').attr({
+    //                 "data-toggle":"dropdown",
+    //                 "aria-haspopup": true,
+    //                 "aria-expanded": false
+    //             }).css("outline", "none").text(self.categories[i]+" ");
+    //
+    //             // console.log(newButton);
+    //
+    //             var newCaretElement = new $('<span>').addClass('caret');
+    //             newButton.append(newCaretElement);
+    //             newButtonGroup.append(newButton);
+    //
+    //             var newUlElement = new $('<ul>').addClass('dropdown-menu');
+    //             var newEasyElement = new $('<li>').html('<a href="#">Easy</a>');
+    //             var newMediumElement = new $('<li>').html('<a href="#">Medium</a>');
+    //             var newHardElement = new $('<li>').html('<a href="#">Hard</a>');
+    //
+    //             newUlElement.append(newEasyElement, newMediumElement, newHardElement);
+    //
+    //             newButtonGroup.append(newUlElement);
+    //
+    //             if(i === 0){
+    //                 newCategoryHolder.addClass('col-md-offset-1');
+    //             }
+    //
+    //             newCategoryHolder.append(newButtonGroup);
+    //
+    //             console.log(newCategoryHolder);
+    //
+    //             $('#catButtons').append(newCategoryHolder);
+    //
+    //     }
+    // };
 
     this.nextQuestion = function(){
         $('#nextQuestion').modal('toggle');
@@ -258,15 +258,25 @@ function Game(){
         $('#search').attr('value', $('#question').text() );
         $('#searchButton').attr('data-original-title', 'Use 1 point');
 
-        var questionText = $('#question').text();
+        // var questionText = $('#question').text();
 
-        console.log("Question was: "+questionText);
+        var answerString = "";
+
+        for(var i = 0; i < model.currentWrongAnswers.length; i++){
+            answerString += model.currentWrongAnswers[i] + " ";
+        }
+
+        answerString += model.currentAnswer;
+
+        console.log('answer string is: '+answerString);
+
+        // console.log("Question was: "+questionText);
 
         var tempTwitterElement = new $('<div>').addClass('tempTwitter col-md-6 col-md-offset-4');
 
         $('.outerHintContent').append(tempTwitterElement);
 
-        model.searchTwitter(questionText, model.getTwitterEmbed, function(result){
+        model.searchTwitter(answerString, model.getTwitterEmbed, function(result){
             console.log('raw embed data: '+result);
             $('.tempTwitter').html(result);
         });
