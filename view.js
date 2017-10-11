@@ -57,6 +57,14 @@ function Game(){
         var name1 = $('#username1').val();
         var name2 = $('#username2').val();
 
+        if(name1 === ""){
+            name1 = 'Player 1'
+        }
+
+        if(name2 === ""){
+            name2 = 'Player 2'
+        }
+
         var playerObject = [{
             name: name1
         },{
@@ -119,7 +127,7 @@ function Game(){
     };
 
     this.updateStatus = function(turn, player1Points, player2Points){
-        $('#turn').text(turn);
+        $('#turn').text('Player '+turn);
         $('#playerOnePoints').text(player1Points);
         $('#playerTwoPoints').text(player2Points);
     };
