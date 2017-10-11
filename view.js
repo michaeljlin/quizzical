@@ -26,6 +26,8 @@ function initializeGame() {
 
     $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
 
+    $('#hint').on('hidden.bs.modal', view.clearModal);
+
     // $('.btn').css({'outline': 'none'});
     //
     // $('[data-toggle="tooltip"]').tooltip();
@@ -96,6 +98,20 @@ function Game(){
 
     this.setHintHTML = function(hintHTMLElement){
         self.hintHTML = hintHTMLElement;
+    };
+
+    this.clearModal = function(){
+
+        $('#hintBody iframe').remove();
+
+        if(!($('.mainHintContent').is(':hidden'))){
+            console.log('Showing mainHintContent!');
+            $('.mainHintContent').toggle('hidden');
+        }
+
+        if(!($('#searchButton').is(':hidden'))){
+            $('#searchButton').toggle('hidden');
+        }
     };
 
     this.setPlayerOneName = function(){
@@ -191,17 +207,17 @@ function Game(){
 
         model.searchYoutube(questionText, function(result){
             console.log('Searched youtube!');
-            $('#hintBody').append(result);
-
-            // var newURL = result +
+            // $('#hintBody').append(result);
 
             var newIFrame = $('<iframe>').attr({
                 'src':result,
-                'width':'560px',
-                'height':'315px'
+                // 'width':'560px',
+                // 'height':'315px'
+                'height': '110%',
+                'width': '100%'
             });
 
-            $('#hintBody').append(newIFrame);
+            $('#hintBody').css('height', '80%').append(newIFrame);
         });
 
         // $('#searchButton').attr('data-original-title', 'Use 2 points');
