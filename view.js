@@ -41,6 +41,9 @@ function initializeGame() {
 
     $('#setPlayerInfo').click(view.setPlayerInfo);
 
+    $('.mainHintContent').toggle('hidden');
+    $('#searchButton').toggle('hidden');
+
     // $('.btn').css({'outline': 'none'});
     //
     // $('[data-toggle="tooltip"]').tooltip();
@@ -159,14 +162,14 @@ function Game(){
         $('.wikiContainer').remove();
         $('.tempTwitter').remove();
 
-        if($('.mainHintContent').css('display') === 'none'){
-            console.log('Showing mainHintContent!');
-            $('.mainHintContent').toggle('hidden');
-        }
-
-        if($('#searchButton').css('display') === 'none'){
-            $('#searchButton').toggle('hidden');
-        }
+        // if($('.mainHintContent').css('display') === 'none'){
+        //     console.log('Showing mainHintContent!');
+        //     $('.mainHintContent').toggle('hidden');
+        // }
+        //
+        // if($('#searchButton').css('display') === 'none'){
+        //     $('#searchButton').toggle('hidden');
+        // }
     };
 
     // this.setPlayerOneName = function(){

@@ -224,8 +224,6 @@ function Controller()
     }
 
     this.constructWikiHint = function(){
-        $('.mainHintContent').toggle('hidden');
-        $('#searchButton').toggle('hidden');
 
         $('#hintTitle').text('Wikipedia');
         $('#search').attr('value', $('#question').text() );
@@ -257,8 +255,6 @@ function Controller()
 
     this.constructYoutubeHint = function(){
         $('#hintTitle').text('Youtube');
-        $('.mainHintContent').toggle('hidden');
-        $('#searchButton').toggle('hidden');
 
         var questionText = $('#question').text();
 
@@ -281,8 +277,6 @@ function Controller()
 
             // $('#hintBody').css('height', '80%').append(newIFrame);
         });
-
-        // $('#searchButton').attr('data-original-title', 'Use 2 points');
     };
 
     this.randomThree = function(string){
@@ -291,21 +285,6 @@ function Controller()
         var newString = '';
         newStringArray = string.split(' ');
         console.log(newStringArray);
-        // for(var i = 0; i<newStringArray.length; i++){
-        //     for(var j = 0; j<1; j++){
-        //         if(newStringArray[i][j].toUpperCase() == newStringArray[i][j]) {
-        //             newString += newStringArray[i];
-        //             wordCount ++;
-        //             if(wordCount == 3){
-        //                 return newString;
-        //             }
-        //             else{
-        //                 newString += '+';
-        //             }
-        //         }
-        //     }
-        //     console.log(newString);
-        // }
 
         for(var i = 0; i < 3; i++){
             newString += newStringArray[Math.floor(Math.random()*(newStringArray.length-1) )];
@@ -319,9 +298,6 @@ function Controller()
     };
 
     this.constructTwitterHint = function() {
-        $('.mainHintContent').toggle('hidden');
-        $('#searchButton').toggle('hidden');
-
         $('#hintTitle').text('Twitter');
         $('#search').attr('value', $('#question').text());
         $('#searchButton').attr('data-original-title', 'Use 1 point');
