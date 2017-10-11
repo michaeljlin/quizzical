@@ -16,7 +16,11 @@ function Controller()
         }
         else{
             model.getTriviaQuestion(questionObject.category, questionObject.difficulty, function(dataBank){
-                model.setCurrentQuestion(dataBank.question);
+
+                var quoteFix = questionBank.question.replace(/&quot;/g,'\"');
+                var apostFix = quoteFix.replace(/&#039;/g,'\"');
+
+                model.setCurrentQuestion(apostFix);
                 model.setCurrentAnswer(dataBank.correct_answer);
                 model.setCurrentWrongAnswers(dataBank.incorrect_answers);
                 model.setCurrentCategory(dataBank.category);

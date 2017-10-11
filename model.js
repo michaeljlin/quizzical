@@ -53,6 +53,13 @@ function Model() {
                 console.log('success', data);
                 console.log(data.results[0]);
                 questionBank = data.results[0];
+
+                // var quoteFix = questionBank.question.replace(/&quot;/g,'\"');
+                // var apostFix = quoteFix.replace(/&#039;/g,'\"');
+
+                // console.log('fixed quotes: '+quoteFix);
+                // console.log('fixed apostrophe: '+apostFix);
+
                 callback(questionBank);
             },
             error: function (data) {
