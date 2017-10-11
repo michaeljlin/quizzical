@@ -59,7 +59,9 @@ function Model() {
                 console.log('YT success', data);
                 console.log('YT first video id', YTResult[YTKeys[0]]);
                 console.log('https://www.youtube.com/watch?v=' + videoId);
-                callback('https://www.youtube.com/watch?v=' + videoId);
+                // Can't use watch, need to use /embed/
+                // callback('https://www.youtube.com/watch?v=' + videoId);
+                callback('https://www.youtube.com/embed/' + videoId);
             },
             error: function (data) {
                 console.log('something went wrong with YT', data);

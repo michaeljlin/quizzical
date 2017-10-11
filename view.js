@@ -182,7 +182,29 @@ function Game(){
 
     this.constructYoutubeHint = function(){
         $('#hintTitle').text('Youtube');
-        $('#searchButton').attr('data-original-title', 'Use 2 points');
+        $('.mainHintContent').toggle('hidden');
+        $('#searchButton').toggle('hidden');
+
+        var questionText = $('#question').text();
+
+        console.log("Question was: "+questionText);
+
+        model.searchYoutube(questionText, function(result){
+            console.log('Searched youtube!');
+            $('#hintBody').append(result);
+
+            // var newURL = result +
+
+            var newIFrame = $('<iframe>').attr({
+                'src':result,
+                'width':'560px',
+                'height':'315px'
+            });
+
+            $('#hintBody').append(newIFrame);
+        });
+
+        // $('#searchButton').attr('data-original-title', 'Use 2 points');
     };
 
     this.constructTwitterHint = function(){
