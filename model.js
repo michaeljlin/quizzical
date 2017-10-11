@@ -1,5 +1,5 @@
 var questionBank; //variable to hold current question and answer(s)
-var imageArray = [images/proff.png,images/super-simple-avatar-icon.jpg];
+var imageArray = ['images/proff.png','images/super-simple-avatar-icon.jpg'];
 
 /***************************************************************************************************
  * model (MVC)

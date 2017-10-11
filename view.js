@@ -10,6 +10,11 @@ function initializeGame(){
     $('#answer3').click(newGame.pressAnswerButton);
     $('#answer4').click(newGame.pressAnswerButton);
 
+    $('#submitName').click(newGame.setPlayerOneName);
+
+    $('#option1').click(newGame.setAvatars);
+    $('#option2').click(newGame.setAvatars);
+
     // newGame.setupButtons();
     newGame.setupNextQuestion();
 
@@ -23,6 +28,15 @@ function Game(){
     this.hintHTML = null;
 
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
+
+    this.setAvatars = function(){
+        var avatarSrc = $(this)[0].currentSrc;
+
+        // controller.
+        console.log(avatarSrc);
+
+        // return $(this);
+    };
 
     this.refreshPage = function(nextTurnInfo){
         self.updateStatus(nextTurnInfo.status);
@@ -57,6 +71,13 @@ function Game(){
         self.hintHTML = hintHTMLElement;
     };
 
+    this.setPlayerOneName = function(){
+        var name = $('#setName').val();
+
+        controller.getPlayerNameImage(name);
+        console.log(name);
+    };
+
     this.showHint = function(){
 
     };
@@ -64,7 +85,7 @@ function Game(){
     this.setupNextQuestion = function(){
         for(var i = 0; i < self.categories.length; i++){
             var newOptionElement = new $('<option>').text(self.categories[i]);
-            $('.form-control').append(newOptionElement);
+            $('.categoryOptionList').append(newOptionElement);
         }
     };
 
@@ -147,3 +168,5 @@ function Game(){
 var newGame = new Game();
 
 var controller = new Controller();
+
+var model = new Model();
