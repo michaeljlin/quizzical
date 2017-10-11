@@ -145,3 +145,5 @@ function Game(){
 }
 
 var newGame = new Game();
+
+var controller = new Controller();
