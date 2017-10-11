@@ -98,9 +98,9 @@ function Game(){
     };
 
     this.pressAnswerButton = function(){
-        var chosenAnswer = $(this)[0].innerText;
+        var chosenAnswer = $(this)[0].innerText.substr(0, $(this)[0].innerText.length-1);
         console.log(chosenAnswer);
-        // controller.getTheAnswer(chosenAnswer);
+        controller.answerButtonPressed(chosenAnswer);
     };
 
     this.setHintHTML = function(hintHTMLElement){

@@ -12,7 +12,7 @@ var imageArray = ['images/proff.png','images/super-simple-avatar-icon.jpg'];
  */
 function Model() {
     var imageArray = ['images/proff.png', 'images/super-simple-avatar-icon.jpg'];
-    this.playersInfo = [{}, {}, 0]; // player Object index 2 will be 1/2 for player turn and will alternate
+    this.playersInfo = [{points: 0}, {points: 0}, 0]; // player Object index 2 will be 1/2 for player turn and will alternate
     this.playerStats = [{}, {}];
 
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
