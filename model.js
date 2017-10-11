@@ -12,8 +12,12 @@ var imageArray = ['images/proff.png','images/super-simple-avatar-icon.jpg'];
  */
 function Model() {
     var imageArray = ['images/proff.png', 'images/super-simple-avatar-icon.jpg'];
-    this.playersInfo = [{}, {}, 0]; // player Object index 2 will be 0 or 1 for player turn and will alternate
+    this.playersInfo = [{points: 0}, {points: 0}, 0]; // player Object index 2 will be 1/2 for player turn and will alternate
     this.playerStats = [{}, {}];
+
+    this.soundArray = ['sounds/buzzer.mp3', 'sounds/correct.mp3'];
+    this.correctAudioObject = new Audio('sounds/correct.mp3');
+    this.wrongAudioObject = new Audio('sounds/buzzer.mp3');
 
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];

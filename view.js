@@ -32,6 +32,8 @@ function initializeGame() {
 
     $('#hint').on('hidden.bs.modal', view.clearModal);
 
+    view.nextQuestion();
+
     // $('.btn').css({'outline': 'none'});
     //
     // $('[data-toggle="tooltip"]').tooltip();
@@ -102,9 +104,9 @@ function Game(){
     };
 
     this.pressAnswerButton = function(){
-        var chosenAnswer = $(this)[0].innerText;
+        var chosenAnswer = $(this)[0].innerText.substr(0, $(this)[0].innerText.length-1);
         console.log(chosenAnswer);
-        // controller.getTheAnswer(chosenAnswer);
+        controller.answerButtonPressed(chosenAnswer);
     };
 
     this.setHintHTML = function(hintHTMLElement){
@@ -144,45 +146,6 @@ function Game(){
             $('.categoryOptionList').append(newOptionElement);
         }
     };
-
-    // this.setupButtons = function(){
-    //     for (var i = 0; i < self.categories.length; i++){
-    //         console.log("Running for: "+i);
-    //             var newCategoryHolder = new $('<div>').addClass('col-md-1');
-    //             var newButtonGroup = new $('<div>').addClass('btn-group');
-    //             var newButton = new $('<button>').addClass('btn btn-default btn-block dropdown-toggle').attr({
-    //                 "data-toggle":"dropdown",
-    //                 "aria-haspopup": true,
-    //                 "aria-expanded": false
-    //             }).css("outline", "none").text(self.categories[i]+" ");
-    //
-    //             // console.log(newButton);
-    //
-    //             var newCaretElement = new $('<span>').addClass('caret');
-    //             newButton.append(newCaretElement);
-    //             newButtonGroup.append(newButton);
-    //
-    //             var newUlElement = new $('<ul>').addClass('dropdown-menu');
-    //             var newEasyElement = new $('<li>').html('<a href="#">Easy</a>');
-    //             var newMediumElement = new $('<li>').html('<a href="#">Medium</a>');
-    //             var newHardElement = new $('<li>').html('<a href="#">Hard</a>');
-    //
-    //             newUlElement.append(newEasyElement, newMediumElement, newHardElement);
-    //
-    //             newButtonGroup.append(newUlElement);
-    //
-    //             if(i === 0){
-    //                 newCategoryHolder.addClass('col-md-offset-1');
-    //             }
-    //
-    //             newCategoryHolder.append(newButtonGroup);
-    //
-    //             console.log(newCategoryHolder);
-    //
-    //             $('#catButtons').append(newCategoryHolder);
-    //
-    //     }
-    // };
 
     this.nextQuestion = function(){
         $('#nextQuestion').modal('toggle');
