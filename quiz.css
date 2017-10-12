@@ -1,6 +1,6 @@
 #mainScreen{
     width: 100%;
-    margin-top: 20vh;
+    margin-top: 10vh;
     display: none;
 }
 
@@ -50,7 +50,62 @@ aside {
     padding-top: 10px;
     border-radius: 4px;
     background-color: rgba(0,0,0,0.5);
+    height: 375px;
 }
+
+.playerColumn {
+    height: 200px;
+    opacity: 0.2;
+}
+
+.currentTurn{
+    font-size: 16px;
+}
+.hintBox{
+    height: 30px;
+    font-size: 14px;
+    padding-top: 1.2%;
+    margin-bottom: 5%;
+    letter-spacing: .1em;
+    font-weight: 400;
+}
+#help{
+    margin-top: 8%;
+}
+
+#wiki:hover,#youtube:hover,#twitter:hover{
+    background-color: #2c6fae;
+    opacity: 0.9;
+    border-radius: 4px;
+    border: 1px solid yellow;
+    color: white;
+}
+#wiki,#youtube,#twitter{
+    border-radius: 4px;
+    margin: 3px;
+}
+
+.activePlayer{
+    opacity: 1;
+    border: 3px solid yellow;
+}
+
+.hint-content{
+    overflow: auto;
+}
+
+.highlightText:hover{
+    background-color: white !important;
+}
+
+.answerText{
+    font-size: 16px;
+    text-align: center;
+}
+.modal-body p {
+    word-wrap: break-word;
+}
+
 
 /*#question{*/
     /*text-align: center;*/

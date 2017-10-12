@@ -40,16 +40,20 @@ function Controller()
         if(chosenAnswerText === model.currentAnswer){
             this.pointing(currentTurn,questionBank.difficulty,this.help);
             model.correctAudioObject.play();
+            view.setAnswerResult('correct', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question correct! Toggling next question modal!');
             model.playersInfo[currentTurn].points+=1;
             this.changeCurrentTurn();
+            view.setActivePlayerStatus(model.playersInfo[2]);
             view.updateStatus(model.playersInfo[2] + 1, model.playersInfo[0].points, model.playersInfo[1].points);
             view.nextQuestion();
         }
         else{
             model.wrongAudioObject.play();
+            view.setAnswerResult('wrong', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question wrong! Toggling next question modal!');
             this.changeCurrentTurn();
+            view.setActivePlayerStatus(model.playersInfo[2]);
             view.updateStatus(model.playersInfo[2] + 1, model.playersInfo[0].points, model.playersInfo[1].points);
             view.nextQuestion();
         }
@@ -61,21 +65,24 @@ function Controller()
             return;
         }
         else{
+            view.toggleMainQuizSection();
+
             model.getTriviaQuestion(questionObject.category, questionObject.difficulty, function(dataBank){
 
-                var quoteFix = questionBank.question.replace(/&quot;/g,'\"');
-                var apostFix = quoteFix.replace(/&#039;/g,'\"');
+                // var quoteFix = questionBank.question.replace(/&quot;/g,'\"');
+                // var apostFix = quoteFix.replace(/&#039;/g,'\"');
 
                 var fixedIncorrectAnswers = [];
 
                 for(var i = 0; i < dataBank.incorrect_answers.length; i++){
-                    fixedIncorrectAnswers.push(controller.sanitizeText(dataBank.incorrect_answers[i]));
+                    fixedIncorrectAnswers.push(he.decode(dataBank.incorrect_answers[i]));
                 }
 
-                model.setCurrentQuestion(controller.sanitizeText(questionBank.question));
-                model.setCurrentAnswer(controller.sanitizeText(dataBank.correct_answer));
+                model.setCurrentQuestion(he.decode(dataBank.question));
+                model.setCurrentAnswer(he.decode(dataBank.correct_answer));
                 model.setCurrentWrongAnswers(fixedIncorrectAnswers);
                 model.setCurrentCategory(dataBank.category);
+                model.setCurrentDifficulty(dataBank.difficulty);
 
                 view.updateQuestion(model.currentCategory, model.currentQuestion);
 
@@ -89,6 +96,7 @@ function Controller()
                     temp[randomPosition] = hold;
                 }
 
+                view.updateQuestionDiffPanel(model.currentDifficulty);
                 view.updateAnswers(temp);
             });
         }
@@ -293,7 +301,7 @@ function Controller()
 
             // console.log('converted html: '+$(convertedHTML));
 
-            var wikiElementContainer = $('<div>').addClass('wikiContainer col-md-12');
+            var wikiElementContainer = $('<div>').addClass('wikiContainer col-md-11');
 
             view.removeLoadingIcon();
             wikiElementContainer.html( $(convertedHTML).find('p') );

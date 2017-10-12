@@ -76,19 +76,19 @@
 
                             <div id="diff" class="col-md-12">
                                 <label class="radio-inline">
-                                    <input type="radio" name="difficultyLevel" id="easyDiff" value="easy">Easy
+                                    <input type="radio" name="difficultyLevel" id="easyDiff" value="easy">Easy (10 points)
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="difficultyLevel" id="mediumDiff" value="medium">Medium
+                                    <input type="radio" name="difficultyLevel" id="mediumDiff" value="medium">Medium (20 points)
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="difficultyLevel" id="hardDiff" value="hard">Hard
+                                    <input type="radio" name="difficultyLevel" id="hardDiff" value="hard">Hard (30 points)
                                 </label>
                             </div>
 
                             <div class="col-md-12">
                                 <select class="form-control categoryOptionList">
-                                    <option></option>
+                                    <option hidden>Select a Category!</option>
                                 </select>
                             </div>
 
@@ -107,7 +107,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div id="setupTitle" class="modal-title">
-                        Enter Names & Choose Avatar
+                        Enter Player Names
                     </div>
                 </div>
                 <div id="setupBody" class="modal-body">
@@ -118,13 +118,13 @@
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-user"></span>
                                     </span>
-                                    <input type="text" class="form-control" name="username" id="username1" placeholder="Enter Name Here">
+                                    <input type="text" class="form-control" name="username" id="username1" placeholder="Enter Player 1 Name Here">
                                 </div>
                                 <div class="mainSetupContent input-group form-group">
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-user"></span>
                                     </span>
-                                    <input type="text" class="form-control" name="username" id="username2" placeholder="Enter Name Here">
+                                    <input type="text" class="form-control" name="username" id="username2" placeholder="Enter Player 2 Name Here">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -163,16 +163,16 @@
 
 
                 <div class="column">
-                    <p class="col-md-12 panel panel-default">Current Turn: <span id="turn" class="label label-default">Player 1</span></p>
+                    <p class="col-md-12 panel panel-default currentTurn">Current Turn: <span id="turn" class="label label-default">Player 1</span></p>
                     <div class="col-md-5">
-                        <div class="panel panel-primary row">
+                        <div class="playerOneStatusBox panel panel-primary row playerColumn">
                             <div class="panel-heading">Status</div>
                             <p class="col-md-12"><span id="playerOneName">P1</span> Points: <span id="playerOnePoints" class="label label-default">0</span></p>
                         </div>
 
                     </div>
                     <div class="col-md-5 col-md-offset-2">
-                        <div class="panel panel-primary row">
+                        <div class="playerTwoStatusBox panel panel-primary row playerColumn">
                             <div class="panel-heading">Status</div>
                             <p class="col-md-12"><span id="playerTwoName">P2</span> Points: <span id="playerTwoPoints" class="label label-default">0</span></p>
                         </div>
@@ -194,12 +194,13 @@
                     <div id="answer3" class="col-md-6"><div class="btn btn-default btn-block text-center"><span id="answer3Text">answer3</span></div></div>
                     <div id="answer4" class="col-md-6"><div class="btn btn-default btn-block text-center"><span id="answer4Text">answer4</span></div></div>
                 </div>
-                <div id="help" class="col-md-6 col-md-offset-3 text-center row">
-                    <p class="label label-success col-md-12">Available hints:</p>
-                    <div class="btn-group btn-group-lg" role="group">
-                        <button id="wiki" type="button" class="btn btn-default">Wikipedia</button>
-                        <button id="youtube" type="button" class="btn btn-default">Youtube</button>
-                        <button id="twitter" type="button" class="btn btn-default">Twitter</button>
+                <div id="help" class="col-md-9 col-md-offset-1 text-center row">
+                    <p class="label label-success col-md-8 col-md-offset-2 hintBox">Available hints:</p>
+                    <div class="row btn-group btn-group-lg" role="group">
+                        <button id="wiki" type="button" class="btn btn-default">Wikipedia  <i class="fa fa-wikipedia-w" aria-hidden="true"></i></button>
+                        <button id="youtube" type="button" class="btn btn-default">YouTube  <i class="fa fa-youtube" aria-hidden="true"></i></button>
+                        <button id="twitter" type="button" class="btn btn-default">Twitter  <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
             </article>
