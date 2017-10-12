@@ -223,5 +223,120 @@ function Controller()
         this.checktheAnswer();
     }
 
+    this.constructWikiHint = function(){
+
+        $('#hintTitle').text('Wikipedia');
+
+        view.prepareLoadingIcon();
+
+        var questionText = $('#question').text();
+
+        model.searchWikipedia(questionText, model.getWikipediaText, function(result){
+            // console.log('raw result data: '+result);
+
+            var convertedHTML = new $('<div>').html(result);
+
+            // console.log('converted html: '+$(convertedHTML));
+
+            var wikiElementContainer = $('<div>').addClass('wikiContainer col-md-12');
+
+            view.removeLoadingIcon();
+            wikiElementContainer.html( $(convertedHTML).find('p') );
+
+            view.displayWikiHint(wikiElementContainer);
+
+            // $('#hintBody .row').append(wikiElementContainer);
+            //
+            // $('.wikiContainer a').attr(
+            //     'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
+            //     'target', '_blank'
+            // );
+        });
+    };
+
+    this.constructYoutubeHint = function(){
+        $('#hintTitle').text('Youtube');
+
+        var questionText = $('#question').text();
+
+        view.prepareLoadingIcon();
+
+        console.log("Question was: "+questionText);
+
+        model.searchYoutube(questionText, function(result){
+            console.log('Searched youtube!');
+            // $('#hintBody').append(result);
+
+            var newIFrame = $('<iframe>').attr({
+                'src':result+'?autoplay=1',
+                // 'width':'560px',
+                // 'height':'315px'
+                'height': '110%',
+                'width': '100%'
+            });
+
+            view.removeLoadingIcon();
+            view.displayYoutubeHint(newIFrame);
+
+            // $('#hintBody').css('height', '80%').append(newIFrame);
+        });
+    };
+
+    this.randomThree = function(string){
+        var newStringArray = [];
+        var wordCount = 0;
+        var newString = '';
+        newStringArray = string.split(' ');
+        console.log(newStringArray);
+
+        for(var i = 0; i < 3; i++){
+            newString += newStringArray[Math.floor(Math.random()*(newStringArray.length-1) )];
+
+            if(i !== 2){
+                newString+='+';
+            }
+        }
+
+        return newString;
+    };
+
+    this.constructTwitterHint = function() {
+        $('#hintTitle').text('Twitter');
+
+        view.prepareLoadingIcon();
+
+        var questionText = $('#question').text();
+
+        var answerString = "";
+
+        for (var i = 0; i < model.currentWrongAnswers.length; i++) {
+            answerString += model.currentWrongAnswers[i] + " ";
+        }
+
+        answerString += model.currentAnswer;
+
+        console.log('answer string is: ' + answerString);
+
+        // console.log("Question was: "+questionText);
+
+        var tempTwitterElement = new $('<div>').addClass('tempTwitter col-md-6 col-md-offset-4');
+
+        $('.outerHintContent').append(tempTwitterElement);
+
+        questionText = this.randomThree(questionText);
+
+
+        model.searchTwitter(questionText, model.getTwitterEmbed, function (result) {
+            console.log('raw embed data: ' + result);
+
+            view.removeLoadingIcon();
+            view.displayTwitterHint(result);
+
+
+            // $('.tempTwitter').html(result);
+        });
+    }
+
+
 }
 

@@ -41,6 +41,9 @@ function initializeGame() {
 
     $('#setPlayerInfo').click(view.setPlayerInfo);
 
+    $('.mainHintContent').toggle('hidden');
+    $('#searchButton').toggle('hidden');
+
     // $('.btn').css({'outline': 'none'});
     //
     // $('[data-toggle="tooltip"]').tooltip();
@@ -81,7 +84,6 @@ function Game(){
         controller.getPlayerAvatar(avatarSrc);
         console.log(avatarSrc);
 
-        // return $(this);
     };
 
     this.getNextQuestion = function(){
@@ -159,22 +161,17 @@ function Game(){
         $('.wikiContainer').remove();
         $('.tempTwitter').remove();
 
-        if($('.mainHintContent').css('display') === 'none'){
-            console.log('Showing mainHintContent!');
-            $('.mainHintContent').toggle('hidden');
-        }
+        // if($('.mainHintContent').css('display') === 'none'){
+        //     console.log('Showing mainHintContent!');
+        //     $('.mainHintContent').toggle('hidden');
+        // }
+        //
+        // if($('#searchButton').css('display') === 'none'){
+        //     $('#searchButton').toggle('hidden');
+        // }
 
-        if($('#searchButton').css('display') === 'none'){
-            $('#searchButton').toggle('hidden');
-        }
+        self.removeLoadingIcon();
     };
-
-    // this.setPlayerOneName = function(){
-    //     var name = $('#setName').val();
-    //
-    //     controller.getPlayerName(name);
-    //     console.log(name);
-    // };
 
     this.showHint = function(){
 
@@ -195,143 +192,48 @@ function Game(){
     this.hintToggle = function(hint){
         switch(hint.data.type){
             case 'wiki':
-                self.constructWikiHint();
+                controller.constructWikiHint();
                 break;
             case 'youtube':
-                self.constructYoutubeHint();
+                controller.constructYoutubeHint();
                 break;
             case 'twitter':
-                self.constructTwitterHint();
+                controller.constructTwitterHint();
         }
 
         $('#hint').modal('toggle');
     };
 
-    this.constructWikiHint = function(){
-        $('.mainHintContent').toggle('hidden');
-        $('#searchButton').toggle('hidden');
+    this.displayWikiHint = function(wikiElementContainer){
+        $('#hintBody .row').append(wikiElementContainer);
 
-        $('#hintTitle').text('Wikipedia');
-        $('#search').attr('value', $('#question').text() );
-        $('#searchButton').attr('data-original-title', 'Use 3 points');
-
-        var questionText = $('#question').text();
-
-        model.searchWikipedia(questionText, model.getWikipediaText, function(result){
-            // console.log('raw result data: '+result);
-
-            var convertedHTML = new $('<div>').html(result);
-
-            // console.log('converted html: '+$(convertedHTML));
-
-            var wikiElementContainer = $('<div>').addClass('wikiContainer col-md-12');
-
-            wikiElementContainer.html( $(convertedHTML).find('p') );
-
-            $('#hintBody .row').append(wikiElementContainer);
-
-            $('.wikiContainer a').attr(
-                'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
-                    'target', '_blank'
-            );
-        });
+        $('.wikiContainer a').attr(
+            'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
+            'target', '_blank'
+        );
     };
 
-    this.constructYoutubeHint = function(){
-        $('#hintTitle').text('Youtube');
-        $('.mainHintContent').toggle('hidden');
-        $('#searchButton').toggle('hidden');
-
-        var questionText = $('#question').text();
-
-        console.log("Question was: "+questionText);
-
-        model.searchYoutube(questionText, function(result){
-            console.log('Searched youtube!');
-            // $('#hintBody').append(result);
-
-            var newIFrame = $('<iframe>').attr({
-                'src':result+'?autoplay=1',
-                // 'width':'560px',
-                // 'height':'315px'
-                'height': '110%',
-                'width': '100%'
-            });
-
-            $('#hintBody').css('height', '80%').append(newIFrame);
-        });
-
-        // $('#searchButton').attr('data-original-title', 'Use 2 points');
-    };
-
-    this.randomThree = function(string){
-        var newStringArray = [];
-        var wordCount = 0;
-        var newString = '';
-        newStringArray = string.split(' ');
-        console.log(newStringArray);
-        // for(var i = 0; i<newStringArray.length; i++){
-        //     for(var j = 0; j<1; j++){
-        //         if(newStringArray[i][j].toUpperCase() == newStringArray[i][j]) {
-        //             newString += newStringArray[i];
-        //             wordCount ++;
-        //             if(wordCount == 3){
-        //                 return newString;
-        //             }
-        //             else{
-        //                 newString += '+';
-        //             }
-        //         }
-        //     }
-        //     console.log(newString);
-        // }
-
-        for(var i = 0; i < 3; i++){
-            newString += newStringArray[Math.floor(Math.random()*(newStringArray.length-1) )];
-
-            if(i !== 2){
-                newString+='+';
-            }
-        }
-
-        return newString;
+    this.displayYoutubeHint = function(newIFrame){
+        $('#hintBody').css('height', '80%').append(newIFrame);
     };
 
 
-    this.constructTwitterHint = function() {
-        $('.mainHintContent').toggle('hidden');
-        $('#searchButton').toggle('hidden');
+    this.displayTwitterHint = function(result){
+        $('.tempTwitter').html(result);
+    };
 
-        $('#hintTitle').text('Twitter');
-        $('#search').attr('value', $('#question').text());
-        $('#searchButton').attr('data-original-title', 'Use 1 point');
+    this.prepareLoadingIcon = function(){
+        var bootstrapElementHolder = $('<div>').addClass('spinHolder col-md-1 col-md-offset-5');
+        var loadingIcon = $('<i>').addClass("fa fa-spinner fa-spin").css('font-size', '200px');
 
-        var questionText = $('#question').text();
+        bootstrapElementHolder.append(loadingIcon);
 
-        var answerString = "";
+        $('#hintBody .container .row').append(bootstrapElementHolder);
+    };
 
-        for (var i = 0; i < model.currentWrongAnswers.length; i++) {
-            answerString += model.currentWrongAnswers[i] + " ";
-        }
-
-        answerString += model.currentAnswer;
-
-        console.log('answer string is: ' + answerString);
-
-        // console.log("Question was: "+questionText);
-
-        var tempTwitterElement = new $('<div>').addClass('tempTwitter col-md-6 col-md-offset-4');
-
-        $('.outerHintContent').append(tempTwitterElement);
-
-        questionText = self.randomThree(questionText);
-
-
-        model.searchTwitter(questionText, model.getTwitterEmbed, function (result) {
-            console.log('raw embed data: ' + result);
-            $('.tempTwitter').html(result);
-        });
-    }
+    this.removeLoadingIcon = function(){
+        $('.spinHolder').remove();
+    };
 
 }
 
