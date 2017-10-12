@@ -246,7 +246,7 @@ function Controller()
 
             // console.log('converted html: '+$(convertedHTML));
 
-            var wikiElementContainer = $('<div>').addClass('wikiContainer col-md-12');
+            var wikiElementContainer = $('<div>').addClass('wikiContainer col-md-11');
 
             view.removeLoadingIcon();
             wikiElementContainer.html( $(convertedHTML).find('p') );
