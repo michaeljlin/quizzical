@@ -214,16 +214,11 @@ function Model() {
         })
     };
 
-    this.returnAvatars = function () {
-        return imageArray;
-    }
-    this.getPlayerAvatar = function (image) {
-        if (this.playersInfo[2] == 0) {
-            this.playersInfo[0].avatar = image;
-        } else {
-            this.playersInfo[1].avatar = image;
-        }
-    }
+   this.updatePlayerInfo = function(playerOnePoint,playerTwoPoint)
+   {
+       this.playersInfo[0].points = playerOnePoint;
+       this.playersInfo[1].points = playerTwoPoint;
+   };
 
     this.getPlayerName = function(string){
         if (this.playersInfo[2] == 0) {
