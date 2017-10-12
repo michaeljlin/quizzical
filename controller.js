@@ -2,10 +2,10 @@ function Controller()
 {
     this.playerOneName = null;
     this.playerTwoName = null;
-    this.playerOneAvatar = null;
-    this.playerTwoAvatar = null;
     this.playerOnePoint = 0;
     this.playerTwoPoint = 0;
+    this.difficultyLevel = null;
+    this.help = null;
     this.playerTurn = null;
     this.helpsArray = [{title:"youtube",quantities:3},{title:"wikipedia",numbers:3},{title:"pass",numbers:3}];
     this.help = null;
@@ -31,18 +31,16 @@ function Controller()
                 this.help = 3;
                 break;
         }
-        this.help = helpName;
     };
 
     this.answerButtonPressed = function(chosenAnswerText){
         var currentTurn = model.playersInfo[2];
 
         if(chosenAnswerText === model.currentAnswer){
-            this.pointing(currentTurn,questionBank.difficulty,this.help);
+            this.pointing(currentTurn,this.difficultyLevel,this.help);
             model.correctAudioObject.play();
             view.setAnswerResult('correct', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question correct! Toggling next question modal!');
-            model.playersInfo[currentTurn].points+=1;
             this.changeCurrentTurn();
             view.setActivePlayerStatus(model.playersInfo[2]);
             view.updateStatus(model.playersInfo[2] + 1, model.playersInfo[0].points, model.playersInfo[1].points);
@@ -60,6 +58,10 @@ function Controller()
     };
 
     this.setCurrentQuestionInModel = function(questionObject){
+
+        model.updatePlayersStats(questionObject);
+        this.difficultyLevel = questionObject.difficulty;
+
         if(questionObject === undefined){
 
             return;
@@ -109,20 +111,6 @@ function Controller()
         return apostFix;
     };
 
-    this.getPlayerNameImage = function(turn,name,avatar)
-    {
-        if (turn === 1)
-        {
-            this.playerOneName = name;
-            this.playerOneAvatar = avatar;
-        }
-
-        if (turn === 2)
-        {
-            this.playerTwoName = name;
-            this.playerTwoAvatar = avatar;
-        }
-    };
 
     this.getPlayerName = function(avatarAddress)
     {
@@ -131,32 +119,15 @@ function Controller()
 
     };
 
-    this.getPlayerAvatar = function(avatarAddress)
-    {
-        model.getPlayerAvatar(avatarAddress);
-        this.changeCurrentTurn();
 
-    };
 
     this.changeCurrentTurn = function()
     {
         model.playersInfo[2] = 1-model.playersInfo[2];
     };
 
-    this.updateDomElements = function()
-    {
 
 
-
-    };
-
-    this.askPlayerToSelectCategory = function()
-    {
-        var selectedQuestion = {};
-        selectedQuestion.category = null;
-        selectedQuestion.difficulty = null;
-        return selectedQuestion;
-    };
 
     this.questionSelectionButtonClicked = function()
     {
@@ -201,49 +172,49 @@ function Controller()
 
     this.pointing = function(turn,difficultylevel,help)
     {
+        var  difficultylevelNum = 1;
         switch (difficultylevel)
         {
             case ("easy") :
-                var difficultylevelNum = 1;
+                difficultylevelNum = 1;
                 break;
             case ("medium") :
-                var difficultylevelNum = 2;
+                difficultylevelNum = 2;
                 break;
             case ("difficult") :
-                var difficultylevelNum = 3;
+                difficultylevelNum = 3;
                 break;
         }
-        if ( turn === 0 && (help === 0 || help === 3))
+        if ( turn === 0 && (help === null || help === 3))
         {
-            playerOnePoint += difficultylevelNum*10;
+            this.playerOnePoint += difficultylevelNum*10;
         }
 
         if ( turn === 0 && help === 1)
         {
-            playerOnePoint += difficultylevelNum*10*.5;
+            this.playerOnePoint += difficultylevelNum*10*.5;
         }
 
         if ( turn === 0 && help === 2)
         {
-            playerOnePoint += difficultylevelNum*10*.75;
+           this.playerOnePoint += difficultylevelNum*10*.75;
         }
 
-        if ( turn === 1 && (help === 0 || help === 3))
+        if ( turn === 1 && (help === null || help === 3))
         {
-            playerTwoPoint += difficultylevelNum*10;
+            this.playerTwoPoint += difficultylevelNum*10;
         }
 
         if ( turn === 1 && help === 1)
         {
-            playerTwoPoint += difficultylevelNum*10*.5;
+            this.playerTwoPoint += difficultylevelNum*10*.5;
         }
 
         if ( turn === 1 && help === 2)
         {
-            playerTwoPoint += difficultylevelNum*10*.75;
+            this.playerTwoPoint += difficultylevelNum*10*.75;
         }
 
-        view.updateStatus(this.playerTurn, this.playerOnePoint, this.playerTwoPoint);
         model.updatePlayerInfo(this.playerOnePoint,this.playerTwoPoint);
 
     };
@@ -261,13 +232,7 @@ function Controller()
 
     };
 
-    this.getAndPassPlayersInfo = function()
-    {
-        var playersInfo = [];
 
-
-
-    };
 
     this.printQuestionAndAnswers = function()
     {
@@ -278,15 +243,13 @@ function Controller()
         $("#answer3").text();
         $("#answer4").text();
 
-    }
-
-
-    this.getTheAnswer = function ()
-    {
-        this.checktheAnswer();
     };
 
+
+
     this.constructWikiHint = function(){
+
+        this.help = 1;
 
         $('#hintTitle').text('Wikipedia');
 
@@ -318,6 +281,7 @@ function Controller()
     };
 
     this.constructYoutubeHint = function(){
+        this.help = 2;
         $('#hintTitle').text('Youtube');
 
         var questionText = $('#question').text();
@@ -364,6 +328,9 @@ function Controller()
     };
 
     this.constructTwitterHint = function() {
+
+        this.help =3;
+
         $('#hintTitle').text('Twitter');
 
         view.prepareLoadingIcon();
