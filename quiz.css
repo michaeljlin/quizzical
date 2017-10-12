@@ -82,6 +82,7 @@ aside {
 }
 #wiki,#youtube,#twitter{
     border-radius: 4px;
+    margin: 3px;
 }
 
 .activePlayer{
