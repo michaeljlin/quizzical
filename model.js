@@ -83,7 +83,7 @@ function Model() {
      */
     this.searchYoutube = function (string, callback) {
         $.ajax({
-            url: 'http://s-apis.learningfuze.com/hackathon/youtube/search.php',
+            url: 'https://s-apis.learningfuze.com/hackathon/youtube/search.php',
             dataType: 'json',
             data: {
                 q: string,
@@ -168,7 +168,7 @@ function Model() {
     this.searchTwitter = function (string, callback, secondCallback) { //Modified to have a second callback function
 
         $.ajax({
-            url: 'http://s-apis.learningfuze.com/hackathon/twitter/index.php',
+            url: 'https://s-apis.learningfuze.com/hackathon/twitter/index.php',
             data: {
                 search_term: string
             },
