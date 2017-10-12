@@ -7,59 +7,33 @@ function initializeGame() {
     $('#answer2').click(view.pressAnswerButton);
     $('#answer3').click(view.pressAnswerButton);
     $('#answer4').click(view.pressAnswerButton);
-
-    // $('#submitName').click(view.setPlayerOneName);
-
-    $('#option1').click(view.setAvatars);
-    $('#option2').click(view.setAvatars);
-
-    // view.setupButtons();
     view.setupNextQuestion();
-
     $('.btn').css({'outline': 'none'});
-
     $("#wiki").tooltip({title:'Search Wikipedia for help', placement: 'bottom'});
     $("#youtube").tooltip({title:'Ask Youtube for help', placement: 'bottom'});
     $("#twitter").tooltip({title:'Ask Twitter for help', placement: 'bottom'});
-
     $('[data-toggle="tooltip"]').tooltip();
-
     $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
     $(document).on('click', '#youtube', {type:'youtube'}, view.hintToggle);
     $(document).on('click', '#twitter', {type:'twitter'}, view.hintToggle);
-
     $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
-
     $('#hint').on('hidden.bs.modal', view.clearModal);
-
-    // view.nextQuestion();
-
-    // $('#mainScreen').toggle('hidden');
-
     $('#setPlayers').modal('toggle');
     $('#setPlayers').on('hidden.bs.modal', view.nextQuestion);
-
     $('#setPlayerInfo').click(view.setPlayerInfo);
-
     $('.mainHintContent').toggle('hidden');
     $('#searchButton').toggle('hidden');
 
-    // $('.btn').css({'outline': 'none'});
-    //
-    // $('[data-toggle="tooltip"]').tooltip();
 }
 
 function Game(){
     var self = this;
     this.hintHTML = null;
-
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
-
     this.setPlayerInfo = function(){
         var name1 = $('#username1').val();
         var name2 = $('#username2').val();
-
         if(name1 === ""){
             name1 = 'Player 1'
         }
@@ -73,18 +47,9 @@ function Game(){
         },{
             name: name2
         }];
-
         controller.setPlayerInfo(playerObject);
-
     };
 
-    this.setAvatars = function(){
-        var avatarSrc = $(this)[0].currentSrc;
-
-        controller.getPlayerAvatar(avatarSrc);
-        console.log(avatarSrc);
-
-    };
 
     this.getNextQuestion = function(){
 
@@ -92,25 +57,16 @@ function Game(){
             $('#mainScreen').toggle('hidden');
         }
 
-        console.log("Next question called!");
-
         var raw = $('.categoryOptionList').val();
-
         var number = self.categories.indexOf(raw);
-
         var catNum = self.categoryNum[number];
-
         var diff = $("input[name=difficultyLevel]:checked").val();
-
         var questionObject = {category:catNum, difficulty: diff};
 
         console.log("raw value: "+raw);
         console.log("index value: "+number);
         console.log("category number: "+catNum);
         console.log("difficulty: "+diff);
-
-        // console.log('question object: '+$(questionObject));
-
         controller.setCurrentQuestionInModel(questionObject);
 
         $('#nextQuestion').modal('toggle');
@@ -160,16 +116,6 @@ function Game(){
         $('#hintBody iframe').remove();
         $('.wikiContainer').remove();
         $('.tempTwitter').remove();
-
-        // if($('.mainHintContent').css('display') === 'none'){
-        //     console.log('Showing mainHintContent!');
-        //     $('.mainHintContent').toggle('hidden');
-        // }
-        //
-        // if($('#searchButton').css('display') === 'none'){
-        //     $('#searchButton').toggle('hidden');
-        // }
-
         self.removeLoadingIcon();
     };
 
@@ -193,12 +139,15 @@ function Game(){
         switch(hint.data.type){
             case 'wiki':
                 controller.constructWikiHint();
+                controller.getHelpType("wiki");
                 break;
             case 'youtube':
                 controller.constructYoutubeHint();
+                controller.getHelpType("youtube");
                 break;
             case 'twitter':
                 controller.constructTwitterHint();
+                controller.getHelpType("twitter");
         }
 
         $('#hint').modal('toggle');
@@ -234,6 +183,7 @@ function Game(){
     this.removeLoadingIcon = function(){
         $('.spinHolder').remove();
     };
+
 
 }
 

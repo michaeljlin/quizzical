@@ -8,6 +8,7 @@ function Controller()
     this.playerTwoPoint = 0;
     this.playerTurn = null;
     this.helpsArray = [{title:"youtube",quantities:3},{title:"wikipedia",numbers:3},{title:"pass",numbers:3}];
+    this.help = null;
 
     this.setPlayerInfo = function(playerInfoArray){
         model.playersInfo[0].name = playerInfoArray[0].name;
@@ -16,10 +17,28 @@ function Controller()
         view.displayPlayerNameAndAvatars(model.playersInfo[0].name, model.playersInfo[1].name);
     };
 
+    this.getHelpType = function(helpName)
+    {
+        switch (helpName)
+        {
+            case ("wiki"):
+                this.help = 1;
+                break;
+            case("youtube") :
+                this.help = 2;
+                break;
+            case("twitter") :
+                this.help = 3;
+                break;
+        }
+        this.help = helpName;
+    };
+
     this.answerButtonPressed = function(chosenAnswerText){
         var currentTurn = model.playersInfo[2];
 
         if(chosenAnswerText === model.currentAnswer){
+            this.pointing(currentTurn,questionBank.difficulty,this.help);
             model.correctAudioObject.play();
             console.log('Player '+ (currentTurn+1) + ' got the question correct! Toggling next question modal!');
             model.playersInfo[currentTurn].points+=1;
@@ -174,15 +193,51 @@ function Controller()
 
     this.pointing = function(turn,difficultylevel,help)
     {
-        if ( turn === 1 && help === flase)
+        switch (difficultylevel)
         {
-            playerOnePoint *= difficultylevel*10;
+            case ("easy") :
+                var difficultylevelNum = 1;
+                break;
+            case ("medium") :
+                var difficultylevelNum = 2;
+                break;
+            case ("difficult") :
+                var difficultylevelNum = 3;
+                break;
+        }
+        if ( turn === 0 && (help === 0 || help === 3))
+        {
+            playerOnePoint += difficultylevelNum*10;
         }
 
-        if ( turn === 1 && help === true)
+        if ( turn === 0 && help === 1)
         {
-            playerOnePoint *= (difficultylevel*10)/2;
+            playerOnePoint += difficultylevelNum*10*.5;
         }
+
+        if ( turn === 0 && help === 2)
+        {
+            playerOnePoint += difficultylevelNum*10*.75;
+        }
+
+        if ( turn === 1 && (help === 0 || help === 3))
+        {
+            playerTwoPoint += difficultylevelNum*10;
+        }
+
+        if ( turn === 1 && help === 1)
+        {
+            playerTwoPoint += difficultylevelNum*10*.5;
+        }
+
+        if ( turn === 1 && help === 2)
+        {
+            playerTwoPoint += difficultylevelNum*10*.75;
+        }
+
+        view.updateStatus(this.playerTurn, this.playerOnePoint, this.playerTwoPoint);
+        model.updatePlayerInfo(this.playerOnePoint,this.playerTwoPoint);
+
     };
 
 
@@ -221,7 +276,7 @@ function Controller()
     this.getTheAnswer = function ()
     {
         this.checktheAnswer();
-    }
+    };
 
     this.constructWikiHint = function(){
 
