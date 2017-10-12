@@ -1,27 +1,26 @@
 var questionBank; //variable to hold current question and answer(s)
-// var imageArray = ['images/proff.png','images/super-simple-avatar-icon.jpg'];
+
 
 /***************************************************************************************************
  * model (MVC)
  */
-/***************************************************************************************************
- * getTriviaQuestion
- * @params {category, difficultyLevel}
- * @returns: {Object} return question object with answers
- * creates object with question, answer, and guesses
- */
+
 function Model() {
-    var imageArray = ['images/proff.png', 'images/super-simple-avatar-icon.jpg'];
     this.playersInfo = [{points: 0}, {points: 0}, 0]; // player Object index 2 will be 1/2 for player turn and will alternate
-    this.playerStats = [{},{}];
+
+    this.playerStats = [{}, {}];
+    // sounds for game
 
     this.soundArray = ['sounds/buzzer.mp3', 'sounds/correct.mp3'];
     this.correctAudioObject = new Audio('sounds/correct.mp3');
     this.wrongAudioObject = new Audio('sounds/buzzer.mp3');
-
+    this.gameAudioObject = new Audio('sounds/ThemeSong.mp3');
+    this.gameAudioObject.loop = true;
+    this.gameAudioObject.play();
+    //used for category # reference
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebrities', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
-
+    // variables and methods below received from the view
     this.currentQuestion = null;
     this.currentAnswer = null;
     this.currentWrongAnswers = null;
@@ -47,14 +46,19 @@ function Model() {
     this.setCurrentDifficulty = function(diffString){
         this.currentDifficulty = diffString;
     };
-
+    /***************************************************************************************************
+     * search trivia question API
+     * @params {number(category),string(difficulty)} category and difficulty level
+     * @returns: {object} question with answers/solution
+     * returns an object to view
+     */
     this.getTriviaQuestion = function (category, difficultyLevel, callback) {
         console.log('this ran');
         $.ajax({
             url: 'https://opentdb.com/api.php?amount=1&type=multiple',
             data: {
-                category: category,
-                difficulty: difficultyLevel
+                category: category,  // represented by number
+                difficulty: difficultyLevel // string
             },
             dataType: 'json',
             method: 'Post',
@@ -62,13 +66,6 @@ function Model() {
                 console.log('success', data);
                 console.log(data.results[0]);
                 questionBank = data.results[0];
-
-                // var quoteFix = questionBank.question.replace(/&quot;/g,'\"');
-                // var apostFix = quoteFix.replace(/&#039;/g,'\"');
-
-                // console.log('fixed quotes: '+quoteFix);
-                // console.log('fixed apostrophe: '+apostFix);
-
                 callback(questionBank);
             },
             error: function (data) {
@@ -122,7 +119,6 @@ function Model() {
             data: {
                 format: "json",
                 action: "query",
-                // page: string,
                 prop: 'info',
                 list: 'search',
                 srsearch: string,
@@ -148,16 +144,11 @@ function Model() {
                 action: "parse",
                 page: string,
                 prop: 'text',
-                // list: 'search',
-                // srsearch: string,
-                // section: 0,
                 origin: '*'
             },
             success: function (data) {
                 console.log('Wiki text success', data);
-
                 var test = data.parse.text['*'];
-
                 callback(test);
             },
             error: function (data) {
@@ -267,7 +258,5 @@ function Model() {
             this.playersInfo[1].name = string;
         }
     }
-
-
 }
 
