@@ -19,7 +19,7 @@ function Model() {
     this.correctAudioObject = new Audio('sounds/correct.mp3');
     this.wrongAudioObject = new Audio('sounds/buzzer.mp3');
 
-    this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
+    this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebrities', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
 
     this.currentQuestion = null;
