@@ -126,3 +126,7 @@ aside {
 #turn{
     padding-bottom: 1px;
 }
+#winMessage{
+    font-size: 20px;
+    color: green;
+}
