@@ -214,9 +214,6 @@ function Game(){
         self.removeLoadingIcon();
     };
 
-    this.showHint = function(){
-
-    };
 
     this.setupNextQuestion = function(){
         for(var i = 0; i < model.categories.length; i++){
