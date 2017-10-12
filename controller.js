@@ -44,17 +44,17 @@ function Controller()
         else{
             model.getTriviaQuestion(questionObject.category, questionObject.difficulty, function(dataBank){
 
-                var quoteFix = questionBank.question.replace(/&quot;/g,'\"');
-                var apostFix = quoteFix.replace(/&#039;/g,'\"');
+                // var quoteFix = questionBank.question.replace(/&quot;/g,'\"');
+                // var apostFix = quoteFix.replace(/&#039;/g,'\"');
 
                 var fixedIncorrectAnswers = [];
 
                 for(var i = 0; i < dataBank.incorrect_answers.length; i++){
-                    fixedIncorrectAnswers.push(controller.sanitizeText(dataBank.incorrect_answers[i]));
+                    fixedIncorrectAnswers.push(he.decode(dataBank.incorrect_answers[i]));
                 }
 
-                model.setCurrentQuestion(controller.sanitizeText(questionBank.question));
-                model.setCurrentAnswer(controller.sanitizeText(dataBank.correct_answer));
+                model.setCurrentQuestion(he.decode(questionBank.question));
+                model.setCurrentAnswer(he.decode(dataBank.correct_answer));
                 model.setCurrentWrongAnswers(fixedIncorrectAnswers);
                 model.setCurrentCategory(dataBank.category);
 
