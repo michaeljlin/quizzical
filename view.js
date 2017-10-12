@@ -19,7 +19,11 @@ function initializeGame() {
     $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
     $('#hint').on('hidden.bs.modal', view.clearModal);
     $('#setPlayers').modal('toggle');
-    $('#setPlayers').on('hidden.bs.modal', view.nextQuestion);
+
+    $('#setPlayers').on('hidden.bs.modal', view.triggerInstructions);
+    $('#instructions').on('hidden.bs.modal', view.nextQuestion);
+
+
     $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
 
     $('#setPlayerInfo').click(view.setPlayerInfo);
@@ -37,6 +41,10 @@ function Game(){
 
     // this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
+
+    this.triggerInstructions = function(){
+        $('#instructions').modal('toggle');
+    };
 
     this.timeRunOutTrigger = function(){
         console.log('Timeout has been triggered!');
@@ -144,7 +152,9 @@ function Game(){
         controller.setCurrentQuestionInModel(questionObject);
 
         $('#nextQuestion').modal('toggle');
-        self.timerCountdown();
+
+        // Uncomment next line if a time limit for guessing questions is needed
+        // self.timerCountdown();
     };
 
     this.clearQuestionDiffPanel = function(){
