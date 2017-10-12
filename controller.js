@@ -8,7 +8,13 @@ function Controller()
     this.help = null;
     this.playerTurn = null;
     this.helpsArray = [{title:"youtube",quantities:3},{title:"wikipedia",numbers:3},{title:"pass",numbers:3}];
-    this.help = null;
+
+    /***************************************************************************************************
+     * method name: setPlayerInfo
+     * functionality: get players name from playersInfo in model object and call displayPlayerNameAndAvatars method of model object
+     * @params {array(playerInfoArray)}
+     * @returns: nothing
+     */
 
     this.setPlayerInfo = function(playerInfoArray){
         model.playersInfo[0].name = playerInfoArray[0].name;
@@ -16,6 +22,13 @@ function Controller()
 
         view.displayPlayerNameAndAvatars(model.playersInfo[0].name, model.playersInfo[1].name);
     };
+
+    /***************************************************************************************************
+     * method name: getHelpType
+     * functionality: get hint which is clicked by player from view as parameter and transfer it to a number by switch statement for future calculations
+     * @params {string(helpName)}
+     * @returns: nothing
+     */
 
     this.getHelpType = function(helpName)
     {
@@ -33,14 +46,42 @@ function Controller()
         }
     };
 
+    /***************************************************************************************************
+     * method name: answerButtonPressed
+     * functionality: check the received address from view is correct or not + update points + changing turn by calling
+      setActivePlayerStatus of view object + call updateStatus and nextQuestion methods from view object
+     * @params {string(chosenAnswerText)}
+     * @returns: nothing
+     */
+
     this.answerButtonPressed = function(chosenAnswerText){
         var currentTurn = model.playersInfo[2];
+        var winnerName = null;
 
         if(chosenAnswerText === model.currentAnswer){
             this.pointing(currentTurn,this.difficultyLevel,this.help);
             model.correctAudioObject.play();
             view.setAnswerResult('correct', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question correct! Toggling next question modal!');
+
+            if(model.questionCount == 30){
+                console.log('Game has reached 15 questions!');
+
+                if(model.playersInfo[0].points > model.playersInfo[1].points){
+                    winnerName = model.playersInfo[0].name;
+                }
+                else if(model.playersInfo[0].points < model.playersInfo[1].points){
+                    winnerName = model.playersInfo[1].name;
+                }
+                else{
+                    winnerName = undefined;
+                }
+
+                model.gameAudioObject.pause();
+                view.triggerWinner(winnerName);
+                return;
+            }
+
             this.changeCurrentTurn();
             view.setActivePlayerStatus(model.playersInfo[2]);
             view.updateStatus(model.playersInfo[2] + 1, model.playersInfo[0].points, model.playersInfo[1].points);
@@ -50,6 +91,25 @@ function Controller()
             model.wrongAudioObject.play();
             view.setAnswerResult('wrong', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question wrong! Toggling next question modal!');
+
+            if(model.questionCount == 30){
+                console.log('Game has reached 15 questions!');
+
+                if(model.playersInfo[0].points > model.playersInfo[1].points){
+                    winnerName = model.playersInfo[0].name;
+                }
+                else if(model.playersInfo[0].points < model.playersInfo[1].points){
+                    winnerName = model.playersInfo[1].name;
+                }
+                else{
+                    winnerName = undefined;
+                }
+
+                model.gameAudioObject.pause();
+                view.triggerWinner(winnerName);
+                return;
+            }
+
             this.changeCurrentTurn();
             view.setActivePlayerStatus(model.playersInfo[2]);
             view.updateStatus(model.playersInfo[2] + 1, model.playersInfo[0].points, model.playersInfo[1].points);
@@ -57,6 +117,14 @@ function Controller()
         }
     };
 
+    /***************************************************************************************************
+     * method name: setCurrentQuestionInModel
+     * functionality: getting question objects from view as parameter which is including category and difficulty level
+      and transfer it to model object by calling getTriviaQuestion and asking model to send back the generated question
+     by calling back function which is placed in parameters of getTriviaQuestion method
+     * @params {object(questionObject)}
+     * @returns: nothing
+     */
     this.setCurrentQuestionInModel = function(questionObject){
 
         model.updatePlayersStats(questionObject);
@@ -103,6 +171,16 @@ function Controller()
             });
         }
     };
+
+
+    /***************************************************************************************************
+     * method name: setCurrentQuestionInModel
+     * functionality: getting question objects from view as parameter which is including category and difficulty level
+     and transfer it to model object by calling getTriviaQuestion and asking model to send back the generated question
+     by calling back function which is placed in parameters of getTriviaQuestion method
+     * @params {object(questionObject)}
+     * @returns: nothing
+     */
 
     this.sanitizeText = function(rawString){
         var quoteFix = rawString.replace(/&quot;/g,'\"');
@@ -169,6 +247,14 @@ function Controller()
         return false;
 
     };
+
+    /***************************************************************************************************
+     * method name: cpointing
+     * calculating the point of answer based on the difficulty level, hint for each player based on their turns and update scores
+      by calling method updatePlayerInfo from model object
+     * @params : (number[0 or 1](turn),string[easy,difficult, medium],number[1,2,3](help))
+     * @returns: nothing
+     */
 
     this.pointing = function(turn,difficultylevel,help)
     {
@@ -246,6 +332,15 @@ function Controller()
     };
 
 
+    /***************************************************************************************************
+     * method name: constructWikiHint
+     * getting the wikipedia search result from model object by calling searchWikipedia method of model and recieve the
+      result by call back function and then pass it to view by calling displayWikiHint method of modal
+     * @params : empty
+     * @returns: nothing
+     */
+
+
 
     this.constructWikiHint = function(){
 
@@ -258,11 +353,9 @@ function Controller()
         var questionText = $('#question').text();
 
         model.searchWikipedia(questionText, model.getWikipediaText, function(result){
-            // console.log('raw result data: '+result);
 
             var convertedHTML = new $('<div>').html(result);
 
-            // console.log('converted html: '+$(convertedHTML));
 
             var wikiElementContainer = $('<div>').addClass('wikiContainer col-md-11');
 
@@ -271,14 +364,16 @@ function Controller()
 
             view.displayWikiHint(wikiElementContainer);
 
-            // $('#hintBody .row').append(wikiElementContainer);
-            //
-            // $('.wikiContainer a').attr(
-            //     'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
-            //     'target', '_blank'
-            // );
         });
     };
+
+    /***************************************************************************************************
+     * method name: constructYoutubeHint
+     * getting the youtube search result from model object by calling searchYoutube method of model and recieve the
+     result by call back function and then pass it to view by calling displayYouTubeHint method of modal
+     * @params : empty
+     * @returns: nothing
+     */
 
     this.constructYoutubeHint = function(){
         this.help = 2;
@@ -326,6 +421,14 @@ function Controller()
 
         return newString;
     };
+
+    /***************************************************************************************************
+     * method name: constructTwitterHint
+     * getting the Twitter search result from model object by calling searchTwitter method of model and recieve the
+     result by call back function and then pass it to view by calling displayWikiHint method of modal
+     * @params : empty
+     * @returns: nothing
+     */
 
     this.constructTwitterHint = function() {
 

@@ -126,15 +126,7 @@ aside {
 #turn{
     padding-bottom: 1px;
 }
-
-
-
-
-
-/*#question{*/
-    /*text-align: center;*/
-/*}*/
-
-/*#answer1, #answer2, #answer3, #answer4{*/
-    /*text-align: center;*/
-/*}*/
+#winMessage{
+    font-size: 20px;
+    color: green;
+}
