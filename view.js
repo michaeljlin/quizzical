@@ -331,29 +331,65 @@ function Game(){
         }
     };
 
+    /*******************************************************************************************************************
+     *   refreshPage - Refreshes all information on the document
+     *
+     *   @params: {object} nextTurnInfo - Contains updated information
+     *   @returns: {undefined} none
+     *   @calls: updateStatus, updateQuestion, updateAnswers
+     */
     this.refreshPage = function(nextTurnInfo){
         self.updateStatus(nextTurnInfo.status);
         self.updateQuestion(nextTurnInfo.question);
         self.updateAnswers(nextTurnInfo.answers);
     };
 
+    /*******************************************************************************************************************
+     *   displayPlayerNameAndAvatars - Refreshes player info
+     *
+     *   @params: {string} player1Name - The first player's username
+     *   @params: {string} player2Name - The second player's username
+     *   @returns: {undefined} none
+     */
     this.displayPlayerNameAndAvatars = function(player1Name, player2Name){
         $('#playerOneName').text(player1Name);
         $('#playerTwoName').text(player2Name);
         $('#setPlayers').modal('toggle');
     };
 
+    /*******************************************************************************************************************
+     *   updateStatus - Refreshes player status info
+     *
+     *   @params: {int} turn - The current turn
+     *   @params: {string} player1Points - The first player's points
+     *   @params: {string} player2Points - The second player's points
+     *   @returns: {undefined} none
+     */
     this.updateStatus = function(turn, player1Points, player2Points){
         $('#turn').text('Player '+turn);
         $('#playerOnePoints').text(player1Points);
         $('#playerTwoPoints').text(player2Points);
     };
 
+    /*******************************************************************************************************************
+     *   updateQuestion - Refreshes the current question
+     *
+     *   @params: {string} category - The current category
+     *   @params: {string} question - The current question
+     *   @returns: {undefined} none
+     */
     this.updateQuestion = function(category, question){
         $('#questionCategory').text(category);
         $('#question').text(question);
     };
 
+    /*******************************************************************************************************************
+     *   updateAnswers - Inserts questions into the answer buttons
+     *
+     *   @params: {array} answerArray - Array containing 4 questions
+     *   @returns: {undefined} none
+     *   @calls: toggleMainQuizSection
+     */
     this.updateAnswers = function(answerArray){
         for(var i = 0; i < 4 ; i++){
             $('#answer'+(i+1)+'Text').text(answerArray[i]);
@@ -361,20 +397,46 @@ function Game(){
         self.toggleMainQuizSection();
     };
 
+    /*******************************************************************************************************************
+     *   toggleMainQuizSection - Toggles the main quiz section in-between question rounds
+     *
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     */
     this.toggleMainQuizSection = function(){
         $('article').toggle('hidden');
     };
 
+    /*******************************************************************************************************************
+     *   pressAnswerButton - Called when an answer button has been pressed and sends the result to the controller
+     *
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: controller.answerButtonPressed
+     */
     this.pressAnswerButton = function(){
         var chosenAnswer = $(this)[0].innerText.substr(0, $(this)[0].innerText.length-1);
         console.log(chosenAnswer);
         controller.answerButtonPressed(chosenAnswer);
     };
 
+    /*******************************************************************************************************************
+     *   setHintHTML - Sets the current hint html code to a local variable
+     *
+     *   @params: {string} hintHTMLElement - The raw html code string
+     *   @returns: {undefined} none
+     */
     this.setHintHTML = function(hintHTMLElement){
         self.hintHTML = hintHTMLElement;
     };
 
+    /*******************************************************************************************************************
+     *   clearModal - Clears out the hint modal information
+     *
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: removeLoadingIcon
+     */
     this.clearModal = function(){
 
         $('#hintBody iframe').remove();
@@ -383,10 +445,22 @@ function Game(){
         self.removeLoadingIcon();
     };
 
+    /*******************************************************************************************************************
+     *   showHint - Shows the hint, currently depreciated
+     *
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     */
     this.showHint = function(){
 
     };
 
+    /*******************************************************************************************************************
+     *   setupNextQuestion - Dynamically creates the categories for the select input in the #selectQuestion modal
+     *
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     */
     this.setupNextQuestion = function(){
         for(var i = 0; i < model.categories.length; i++){
             var newOptionElement = new $('<option>').attr('data-category', model.categoryNum[i]).text(model.categories[i]);
@@ -394,11 +468,25 @@ function Game(){
         }
     };
 
+    /*******************************************************************************************************************
+     *   nextQuestion - Triggers the #nextQuestion modal
+     *
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     */
     this.nextQuestion = function(){
 
         $('#nextQuestion').modal('toggle');
     };
 
+    /*******************************************************************************************************************
+     *   hintToggle - Called when player clicks on a hint and triggers the appropriate controller functions in addition
+     *   to revealing the hint modal. Hint buttons are deactivated until the next question round
+     *
+     *   @params: {string} hint - A string indicating the hint clicked
+     *   @returns: {undefined} none
+     *   @calls: controller.constructWikiHint, controller.constructYoutubeHint, controller.constructTwitterHint, controller.getHelpType
+     */
     this.hintToggle = function(hint){
         switch(hint.data.type){
             case 'wiki':
@@ -419,6 +507,12 @@ function Game(){
         $('#hint').modal('toggle');
     };
 
+    /*******************************************************************************************************************
+     *   displayWikiHint - Displays the constructed Wikipedia hint on the hint modal
+     *
+     *   @params: {object} wikiElementContainer - An element containing the Wikipedia hint
+     *   @returns: {undefined} none
+     */
     this.displayWikiHint = function(wikiElementContainer){
         $('#hintBody .row').append(wikiElementContainer);
 
@@ -428,15 +522,32 @@ function Game(){
         );
     };
 
+    /*******************************************************************************************************************
+     *   displayYoutubeHint - Displays the constructed Wikipedia hint on the hint modal
+     *
+     *   @params: {object} newIFrame - An element containing the Youtube hint
+     *   @returns: {undefined} none
+     */
     this.displayYoutubeHint = function(newIFrame){
         $('#hintBody').css('height', '80%').append(newIFrame);
     };
 
-
+    /*******************************************************************************************************************
+     *   displayTwitterHint - Displays the constructed Twitter hint on the hint modal
+     *
+     *   @params: {string} result - A html string containing the Twitter hint embed code
+     *   @returns: {undefined} none
+     */
     this.displayTwitterHint = function(result){
         $('.tempTwitter').html(result);
     };
 
+    /*******************************************************************************************************************
+     *   prepareLoadingIcon - Adds an animated loading icon to the hint modal while the hint is being generated
+     *
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     */
     this.prepareLoadingIcon = function(){
         var bootstrapElementHolder = $('<div>').addClass('spinHolder col-md-1 col-md-offset-5');
         var loadingIcon = $('<i>').addClass("fa fa-spinner fa-spin").css('font-size', '200px');
@@ -446,6 +557,12 @@ function Game(){
         $('#hintBody .container .row').append(bootstrapElementHolder);
     };
 
+    /*******************************************************************************************************************
+     *   removeLoadingIcon - Removes the animated loading icon
+     *
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     */
     this.removeLoadingIcon = function(){
         $('.spinHolder').remove();
     };
