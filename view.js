@@ -60,7 +60,11 @@ function Game(){
 
     this.setAnswerResult = function(result, correctAnswer){
         var resultIconElement = new $('<span>');
-        var answerElement = new $('<div>');
+        var answerElement = new $('<span>').text(correctAnswer).css({
+            'background-color': 'black',
+            'color': 'black'
+        }).addClass('highlightText');
+        var answerElementHolder = new $('<div>').text('The correct answer was: ').append(answerElement).addClass('answerIcon col-md-5 col-md-offset-3');
 
         if(result === 'correct'){
             resultIconElement.addClass('answerIcon col-md-1 col-md-offset-5 glyphicon glyphicon-ok').css({
@@ -75,7 +79,7 @@ function Game(){
             });
         }
 
-        $('#nextQuestionBody .container .row').prepend(resultIconElement);
+        $('#nextQuestionBody .container .row').prepend(resultIconElement).prepend(answerElementHolder);
     };
 
     this.removeAnswerResult = function(){
@@ -127,6 +131,14 @@ function Game(){
         var catNum = self.categoryNum[number];
 
         var diff = $("input[name=difficultyLevel]:checked").val();
+
+        if(number === -1){
+            catNum = 9;
+        }
+
+        if(diff === undefined){
+            diff = 'medium';
+        }
 
         var questionObject = {category:catNum, difficulty: diff};
 
