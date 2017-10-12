@@ -39,10 +39,12 @@ function Game(){
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
 
     this.timeRunOutTrigger = function(){
+        console.log('Timeout has been triggered!');
         controller.answerButtonPressed('Time has run out!');
     };
 
     this.timerCountdown = function(){
+        console.log('Timer has started!');
         self.trackSetTimeout = setTimeout(self.timeRunOutTrigger, 15000);
     };
 
@@ -142,6 +144,7 @@ function Game(){
         controller.setCurrentQuestionInModel(questionObject);
 
         $('#nextQuestion').modal('toggle');
+        self.timerCountdown();
     };
 
     this.clearQuestionDiffPanel = function(){
