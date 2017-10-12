@@ -8,6 +8,8 @@ var questionBank; //variable to hold current question and answer(s)
 function Model() {
     this.playersInfo = [{points: 0}, {points: 0}, 0]; // player Object index 2 will be 1/2 for player turn and will alternate
 
+    this.questionCount = 0;
+
     this.playerStats = [{}, {}];
     // sounds for game
 

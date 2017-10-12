@@ -35,12 +35,32 @@ function Controller()
 
     this.answerButtonPressed = function(chosenAnswerText){
         var currentTurn = model.playersInfo[2];
+        var winnerName = null;
 
         if(chosenAnswerText === model.currentAnswer){
             this.pointing(currentTurn,this.difficultyLevel,this.help);
             model.correctAudioObject.play();
             view.setAnswerResult('correct', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question correct! Toggling next question modal!');
+
+            if(model.questionCount == 30){
+                console.log('Game has reached 15 questions!');
+
+                if(model.playersInfo[0].points > model.playersInfo[1].points){
+                    winnerName = model.playersInfo[0].name;
+                }
+                else if(model.playersInfo[0].points < model.playersInfo[1].points){
+                    winnerName = model.playersInfo[1].name;
+                }
+                else{
+                    winnerName = undefined;
+                }
+
+                model.gameAudioObject.pause();
+                view.triggerWinner(winnerName);
+                return;
+            }
+
             this.changeCurrentTurn();
             view.setActivePlayerStatus(model.playersInfo[2]);
             view.updateStatus(model.playersInfo[2] + 1, model.playersInfo[0].points, model.playersInfo[1].points);
@@ -50,6 +70,25 @@ function Controller()
             model.wrongAudioObject.play();
             view.setAnswerResult('wrong', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question wrong! Toggling next question modal!');
+
+            if(model.questionCount == 30){
+                console.log('Game has reached 15 questions!');
+
+                if(model.playersInfo[0].points > model.playersInfo[1].points){
+                    winnerName = model.playersInfo[0].name;
+                }
+                else if(model.playersInfo[0].points < model.playersInfo[1].points){
+                    winnerName = model.playersInfo[1].name;
+                }
+                else{
+                    winnerName = undefined;
+                }
+
+                model.gameAudioObject.pause();
+                view.triggerWinner(winnerName);
+                return;
+            }
+
             this.changeCurrentTurn();
             view.setActivePlayerStatus(model.playersInfo[2]);
             view.updateStatus(model.playersInfo[2] + 1, model.playersInfo[0].points, model.playersInfo[1].points);
