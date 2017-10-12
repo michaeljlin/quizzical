@@ -2,36 +2,37 @@ $(document).ready(initializeGame);
 
 function initializeGame() {
 
+    view.setupGame();
 
-    $('#answer1').click(view.pressAnswerButton);
-    $('#answer2').click(view.pressAnswerButton);
-    $('#answer3').click(view.pressAnswerButton);
-    $('#answer4').click(view.pressAnswerButton);
-    view.setupNextQuestion();
-    $('.btn').css({'outline': 'none'});
-    $("#wiki").tooltip({title:'Search Wikipedia for help', placement: 'bottom'});
-    $("#youtube").tooltip({title:'Ask Youtube for help', placement: 'bottom'});
-    $("#twitter").tooltip({title:'Ask Twitter for help', placement: 'bottom'});
-    $('[data-toggle="tooltip"]').tooltip();
-    $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
-    $(document).on('click', '#youtube', {type:'youtube'}, view.hintToggle);
-    $(document).on('click', '#twitter', {type:'twitter'}, view.hintToggle);
-    $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
-    $('#hint').on('hidden.bs.modal', view.clearModal);
-    $('#setPlayers').modal('toggle');
-
-    $('#setPlayers').on('hidden.bs.modal', view.triggerInstructions);
-    $('#instructions').on('hidden.bs.modal', view.nextQuestion);
-
-
-    $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
-
-    $('#setPlayerInfo').click(view.setPlayerInfo);
-    $('.playerOneStatusBox').addClass('activePlayer');
-
-    $('.mainHintContent').toggle('hidden');
-    $('#searchButton').toggle('hidden');
-
+    // view.setupNextQuestion();
+    // $('.playerOneStatusBox').addClass('activePlayer');
+    // $('.btn').css({'outline': 'none'});
+    //
+    // $('#setPlayers').modal('toggle');
+    // $('.mainHintContent').toggle('hidden');
+    // $('#searchButton').toggle('hidden');
+    //
+    // $('#answer1').click(view.pressAnswerButton);
+    // $('#answer2').click(view.pressAnswerButton);
+    // $('#answer3').click(view.pressAnswerButton);
+    // $('#answer4').click(view.pressAnswerButton);
+    //
+    // $('#setPlayerInfo').click(view.setPlayerInfo);
+    //
+    // $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
+    // $(document).on('click', '#youtube', {type:'youtube'}, view.hintToggle);
+    // $(document).on('click', '#twitter', {type:'twitter'}, view.hintToggle);
+    // $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
+    //
+    // $("#wiki").tooltip({title:'Search Wikipedia for help', placement: 'bottom'});
+    // $("#youtube").tooltip({title:'Ask Youtube for help', placement: 'bottom'});
+    // $("#twitter").tooltip({title:'Ask Twitter for help', placement: 'bottom'});
+    // $('[data-toggle="tooltip"]').tooltip();
+    //
+    // $('#hint').on('hidden.bs.modal', view.clearModal);
+    // $('#setPlayers').on('hidden.bs.modal', view.triggerInstructions);
+    // $('#instructions').on('hidden.bs.modal', view.nextQuestion);
+    // $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
 }
 
 function Game(){
@@ -40,7 +41,49 @@ function Game(){
     this.trackSetTimeout = null;
 
     // this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
-    this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
+    // this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
+
+    this.setupGame = function(){
+        self.setupNextQuestion();
+        $('.playerOneStatusBox').addClass('activePlayer');
+        $('.btn').css({'outline': 'none'});
+
+        $('#setPlayers').modal('toggle');
+        $('.mainHintContent').toggle('hidden');
+        $('#searchButton').toggle('hidden');
+
+        self.setupClickHandlers();
+        self.setupTooltips();
+        self.setupModalChain();
+    };
+
+    this.setupClickHandlers = function(){
+        $('#answer1').click(view.pressAnswerButton);
+        $('#answer2').click(view.pressAnswerButton);
+        $('#answer3').click(view.pressAnswerButton);
+        $('#answer4').click(view.pressAnswerButton);
+
+        $('#setPlayerInfo').click(view.setPlayerInfo);
+
+        $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
+        $(document).on('click', '#youtube', {type:'youtube'}, view.hintToggle);
+        $(document).on('click', '#twitter', {type:'twitter'}, view.hintToggle);
+        $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
+    };
+
+    this.setupTooltips = function(){
+        $("#wiki").tooltip({title:'Search Wikipedia for help', placement: 'bottom'});
+        $("#youtube").tooltip({title:'Ask Youtube for help', placement: 'bottom'});
+        $("#twitter").tooltip({title:'Ask Twitter for help', placement: 'bottom'});
+        $('[data-toggle="tooltip"]').tooltip();
+    };
+
+    this.setupModalChain = function(){
+        $('#hint').on('hidden.bs.modal', view.clearModal);
+        $('#setPlayers').on('hidden.bs.modal', view.triggerInstructions);
+        $('#instructions').on('hidden.bs.modal', view.nextQuestion);
+        $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
+    };
 
     this.triggerInstructions = function(){
         $('#instructions').modal('toggle');
