@@ -55,6 +55,7 @@ aside {
 
 .playerColumn {
     height: 200px;
+    opacity: 0.2;
 }
 
 .currentTurn{
@@ -63,11 +64,29 @@ aside {
 .hintBox{
     height: 30px;
     font-size: 14px;
-    padding-top: 2%;
+    padding-top: 1.2%;
     margin-bottom: 5%;
+    letter-spacing: .1em;
+    font-weight: 400;
 }
 #help{
     margin-top: 8%;
+}
+
+#wiki:hover,#youtube:hover,#twitter:hover{
+    background-color: #2c6fae;
+    opacity: 0.9;
+    border-radius: 4px;
+    border: 1px solid yellow;
+    color: white;
+}
+#wiki,#youtube,#twitter{
+    border-radius: 4px;
+}
+
+.activePlayer{
+    opacity: 1;
+    border: 3px solid yellow;
 }
 
 /*#question{*/
