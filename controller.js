@@ -42,6 +42,8 @@ function Controller()
             return;
         }
         else{
+            view.toggleMainQuizSection();
+
             model.getTriviaQuestion(questionObject.category, questionObject.difficulty, function(dataBank){
 
                 // var quoteFix = questionBank.question.replace(/&quot;/g,'\"');

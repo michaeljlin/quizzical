@@ -143,6 +143,11 @@ function Game(){
         for(var i = 0; i < 4 ; i++){
             $('#answer'+(i+1)+'Text').text(answerArray[i]);
         }
+        self.toggleMainQuizSection();
+    };
+
+    this.toggleMainQuizSection = function(){
+        $('article').toggle('hidden');
     };
 
     this.pressAnswerButton = function(){
