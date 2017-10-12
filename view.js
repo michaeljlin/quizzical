@@ -55,9 +55,21 @@ function initializeGame() {
 function Game(){
     var self = this;
     this.hintHTML = null;
-
+    this.trackSetTimeout = null;
     // this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
+
+    this.timeRunOutTrigger = function(){
+        controller.answerButtonPressed('Time has run out!');
+    };
+
+    this.timerCountdown = function(){
+        self.trackSetTimeout = setTimeout(self.timeRunOutTrigger, 15000);
+    };
+
+    this.clearTimer = function(){
+        clearTimeout(self.trackSetTimeout);
+    };
 
     this.setActivePlayerStatus = function(playerTurn){
 
