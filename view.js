@@ -20,36 +20,6 @@ var model = new Model();
 function initializeGame() {
 
     view.setupGame();
-
-    // view.setupNextQuestion();
-    // $('.playerOneStatusBox').addClass('activePlayer');
-    // $('.btn').css({'outline': 'none'});
-    //
-    // $('#setPlayers').modal('toggle');
-    // $('.mainHintContent').toggle('hidden');
-    // $('#searchButton').toggle('hidden');
-    //
-    // $('#answer1').click(view.pressAnswerButton);
-    // $('#answer2').click(view.pressAnswerButton);
-    // $('#answer3').click(view.pressAnswerButton);
-    // $('#answer4').click(view.pressAnswerButton);
-    //
-    // $('#setPlayerInfo').click(view.setPlayerInfo);
-    //
-    // $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
-    // $(document).on('click', '#youtube', {type:'youtube'}, view.hintToggle);
-    // $(document).on('click', '#twitter', {type:'twitter'}, view.hintToggle);
-    // $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
-    //
-    // $("#wiki").tooltip({title:'Search Wikipedia for help', placement: 'bottom'});
-    // $("#youtube").tooltip({title:'Ask Youtube for help', placement: 'bottom'});
-    // $("#twitter").tooltip({title:'Ask Twitter for help', placement: 'bottom'});
-    // $('[data-toggle="tooltip"]').tooltip();
-    //
-    // $('#hint').on('hidden.bs.modal', view.clearModal);
-    // $('#setPlayers').on('hidden.bs.modal', view.triggerInstructions);
-    // $('#instructions').on('hidden.bs.modal', view.nextQuestion);
-    // $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
 }
 
 function Game(){
