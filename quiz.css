@@ -1,6 +1,6 @@
 #mainScreen{
     width: 100%;
-    margin-top: 20vh;
+    margin-top: 10vh;
     display: none;
 }
 
@@ -50,7 +50,7 @@ aside {
     padding-top: 10px;
     border-radius: 4px;
     background-color: rgba(0,0,0,0.5);
-    height: 275px;
+    height: 375px;
 }
 
 .playerColumn {
@@ -95,8 +95,17 @@ aside {
 }
 
 .highlightText:hover{
-    background-color: white;
+    background-color: white !important;
 }
+
+.answerText{
+    font-size: 16px;
+    text-align: center;
+}
+.modal-body p {
+    word-wrap: break-word;
+}
+
 
 /*#question{*/
     /*text-align: center;*/

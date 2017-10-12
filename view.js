@@ -7,56 +7,60 @@ function initializeGame() {
     $('#answer2').click(view.pressAnswerButton);
     $('#answer3').click(view.pressAnswerButton);
     $('#answer4').click(view.pressAnswerButton);
-
-    // $('#submitName').click(view.setPlayerOneName);
-
-    $('#option1').click(view.setAvatars);
-    $('#option2').click(view.setAvatars);
-
-    // view.setupButtons();
     view.setupNextQuestion();
-
     $('.btn').css({'outline': 'none'});
-
     $("#wiki").tooltip({title:'Search Wikipedia for help', placement: 'bottom'});
     $("#youtube").tooltip({title:'Ask Youtube for help', placement: 'bottom'});
     $("#twitter").tooltip({title:'Ask Twitter for help', placement: 'bottom'});
-
     $('[data-toggle="tooltip"]').tooltip();
-
     $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
     $(document).on('click', '#youtube', {type:'youtube'}, view.hintToggle);
     $(document).on('click', '#twitter', {type:'twitter'}, view.hintToggle);
-
     $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
-
     $('#hint').on('hidden.bs.modal', view.clearModal);
-
-    // view.nextQuestion();
-
-    // $('#mainScreen').toggle('hidden');
-
     $('#setPlayers').modal('toggle');
     $('#setPlayers').on('hidden.bs.modal', view.nextQuestion);
-
     $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
 
     $('#setPlayerInfo').click(view.setPlayerInfo);
+    $('.playerOneStatusBox').addClass('activePlayer');
 
     $('.mainHintContent').toggle('hidden');
     $('#searchButton').toggle('hidden');
 
-    // $('.btn').css({'outline': 'none'});
-    //
-    // $('[data-toggle="tooltip"]').tooltip();
 }
 
 function Game(){
     var self = this;
     this.hintHTML = null;
+    this.trackSetTimeout = null;
 
     // this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
+
+    this.timeRunOutTrigger = function(){
+        controller.answerButtonPressed('Time has run out!');
+    };
+
+    this.timerCountdown = function(){
+        self.trackSetTimeout = setTimeout(self.timeRunOutTrigger, 15000);
+    };
+
+    this.clearTimer = function(){
+        clearTimeout(self.trackSetTimeout);
+    };
+
+    this.setActivePlayerStatus = function(playerTurn){
+
+        if(playerTurn === 0){
+            $('.playerOneStatusBox').addClass('activePlayer');
+            $('.playerTwoStatusBox').removeClass('activePlayer');
+        }
+        else {
+            $('.playerOneStatusBox').removeClass('activePlayer');
+            $('.playerTwoStatusBox').addClass('activePlayer');
+        }
+    };
 
     this.setAnswerResult = function(result, correctAnswer){
         var resultIconElement = new $('<span>');
@@ -64,7 +68,7 @@ function Game(){
             'background-color': 'black',
             'color': 'black'
         }).addClass('highlightText');
-        var answerElementHolder = new $('<div>').text('The correct answer was: ').append(answerElement).addClass('answerIcon col-md-5 col-md-offset-3');
+        var answerElementHolder = new $('<div>').text('The correct answer was: ').append(answerElement).addClass('answerIcon answerText col-md-5 col-md-offset-3');
 
         if(result === 'correct'){
             resultIconElement.addClass('answerIcon col-md-1 col-md-offset-5 glyphicon glyphicon-ok').css({
@@ -89,7 +93,6 @@ function Game(){
     this.setPlayerInfo = function(){
         var name1 = $('#username1').val();
         var name2 = $('#username2').val();
-
         if(name1 === ""){
             name1 = 'Player 1'
         }
@@ -103,18 +106,9 @@ function Game(){
         },{
             name: name2
         }];
-
         controller.setPlayerInfo(playerObject);
-
     };
 
-    this.setAvatars = function(){
-        var avatarSrc = $(this)[0].currentSrc;
-
-        controller.getPlayerAvatar(avatarSrc);
-        console.log(avatarSrc);
-
-    };
 
     this.getNextQuestion = function(){
 
@@ -122,10 +116,7 @@ function Game(){
             $('#mainScreen').toggle('hidden');
         }
 
-        console.log("Next question called!");
-
         var raw = $('.categoryOptionList').val();
-
         var number = model.categories.indexOf(raw);
 
         var catNum = model.categoryNum[number];
@@ -139,7 +130,6 @@ function Game(){
         if(diff === undefined){
             diff = 'medium';
         }
-
         var questionObject = {category:catNum, difficulty: diff};
 
         console.log("raw value: "+raw);
@@ -221,16 +211,6 @@ function Game(){
         $('#hintBody iframe').remove();
         $('.wikiContainer').remove();
         $('.tempTwitter').remove();
-
-        // if($('.mainHintContent').css('display') === 'none'){
-        //     console.log('Showing mainHintContent!');
-        //     $('.mainHintContent').toggle('hidden');
-        // }
-        //
-        // if($('#searchButton').css('display') === 'none'){
-        //     $('#searchButton').toggle('hidden');
-        // }
-
         self.removeLoadingIcon();
     };
 
@@ -254,12 +234,15 @@ function Game(){
         switch(hint.data.type){
             case 'wiki':
                 controller.constructWikiHint();
+                controller.getHelpType("wiki");
                 break;
             case 'youtube':
                 controller.constructYoutubeHint();
+                controller.getHelpType("youtube");
                 break;
             case 'twitter':
                 controller.constructTwitterHint();
+                controller.getHelpType("twitter");
         }
 
         $('#hint').modal('toggle');
@@ -295,6 +278,7 @@ function Game(){
     this.removeLoadingIcon = function(){
         $('.spinHolder').remove();
     };
+
 
 }
 
