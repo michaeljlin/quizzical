@@ -126,9 +126,9 @@ function Game(){
 
         var raw = $('.categoryOptionList').val();
 
-        var number = self.categories.indexOf(raw);
+        var number = model.categories.indexOf(raw);
 
-        var catNum = self.categoryNum[number];
+        var catNum = model.categoryNum[number];
 
         var diff = $("input[name=difficultyLevel]:checked").val();
 
@@ -147,11 +147,29 @@ function Game(){
         console.log("category number: "+catNum);
         console.log("difficulty: "+diff);
 
-        // console.log('question object: '+$(questionObject));
+        self.clearQuestionDiffPanel();
 
         controller.setCurrentQuestionInModel(questionObject);
 
         $('#nextQuestion').modal('toggle');
+    };
+
+    this.clearQuestionDiffPanel = function(){
+        $('#questionBody').removeClass('panel-info panel-warning panel-danger panel-success');
+    };
+
+    this.updateQuestionDiffPanel = function(diff){
+        switch(diff){
+            case 'easy':
+                $('#questionBody').addClass('panel-success');
+                break;
+            case 'medium':
+                $('#questionBody').addClass('panel-warning');
+                break;
+            case 'hard':
+                $('#questionBody').addClass('panel-danger');
+                break;
+        }
     };
 
     this.refreshPage = function(nextTurnInfo){

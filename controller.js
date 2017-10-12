@@ -57,10 +57,11 @@ function Controller()
                     fixedIncorrectAnswers.push(he.decode(dataBank.incorrect_answers[i]));
                 }
 
-                model.setCurrentQuestion(he.decode(questionBank.question));
+                model.setCurrentQuestion(he.decode(dataBank.question));
                 model.setCurrentAnswer(he.decode(dataBank.correct_answer));
                 model.setCurrentWrongAnswers(fixedIncorrectAnswers);
                 model.setCurrentCategory(dataBank.category);
+                model.setCurrentDifficulty(dataBank.difficulty);
 
                 view.updateQuestion(model.currentCategory, model.currentQuestion);
 
@@ -74,6 +75,7 @@ function Controller()
                     temp[randomPosition] = hold;
                 }
 
+                view.updateQuestionDiffPanel(model.currentDifficulty);
                 view.updateAnswers(temp);
             });
         }

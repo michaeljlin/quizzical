@@ -1,5 +1,5 @@
 var questionBank; //variable to hold current question and answer(s)
-var imageArray = ['images/proff.png','images/super-simple-avatar-icon.jpg'];
+// var imageArray = ['images/proff.png','images/super-simple-avatar-icon.jpg'];
 
 /***************************************************************************************************
  * model (MVC)
@@ -26,6 +26,7 @@ function Model() {
     this.currentAnswer = null;
     this.currentWrongAnswers = null;
     this.currentCategory = null;
+    this.currentDifficulty = null;
 
     this.setCurrentQuestion = function(questionString){
         this.currentQuestion = questionString;
@@ -41,6 +42,10 @@ function Model() {
 
     this.setCurrentCategory = function(categoryString){
         this.currentCategory = categoryString;
+    };
+
+    this.setCurrentDifficulty = function(diffString){
+        this.currentDifficulty = diffString;
     };
 
     this.getTriviaQuestion = function (category, difficultyLevel, callback) {
