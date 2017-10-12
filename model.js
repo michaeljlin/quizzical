@@ -7,8 +7,10 @@ var questionBank; //variable to hold current question and answer(s)
 
 function Model() {
     this.playersInfo = [{points: 0}, {points: 0}, 0]; // player Object index 2 will be 1/2 for player turn and will alternate
+
     this.playerStats = [{}, {}];
     // sounds for game
+
     this.soundArray = ['sounds/buzzer.mp3', 'sounds/correct.mp3'];
     this.correctAudioObject = new Audio('sounds/correct.mp3');
     this.wrongAudioObject = new Audio('sounds/buzzer.mp3');
@@ -207,6 +209,46 @@ function Model() {
    {
        this.playersInfo[0].points = playerOnePoint;
        this.playersInfo[1].points = playerTwoPoint;
+   };
+
+   this.updatePlayersStats = function (questionInfo)
+   {
+       var category;
+       switch (questionInfo.category)
+       {
+           case (9):
+               category = "General Knowledge";
+               break;
+           case (17):
+               category = "Science & Nature";
+               break;
+           case (23):
+               category = "History";
+               break;
+           case (22):
+               category = "Geography";
+               break;
+           case (26):
+               category = "Celebrities";
+               break;
+           case (27):
+               category = "Animal";
+               break;
+           case (21):
+               category = "Sports";
+               break;
+           case (10):
+               category = "Books";
+               break;
+           case (12):
+               category = "Musics";
+               break;
+           case (11):
+               category = "Films";
+               break;
+
+       }
+       this.playerStats[0].category++;
    };
 
     this.getPlayerName = function(string){
