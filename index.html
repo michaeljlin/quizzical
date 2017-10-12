@@ -6,7 +6,6 @@
     <script src="he.js"></script>
 
     <!-- jQuery CDN -->
-
     <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -20,6 +19,8 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="quiz.css" type="text/css">
+    <!-- font link -->
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
 
     <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -111,9 +112,9 @@
                     </div>
                 </div>
                 <div id="setupBody" class="modal-body">
-                    <div class="container">
+                    <div class="container nameInput">
                         <div class="row">
-                            <div class="outerSetupContent col-md-6">
+                            <div class="outerSetupContent col-md-10">
                                 <div class="mainSetupContent input-group form-group">
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-user"></span>
@@ -167,14 +168,14 @@
                     <div class="col-md-5">
                         <div class="panel panel-primary row playerColumn">
                             <div class="panel-heading">Status</div>
-                            <p class="col-md-12"><span id="playerOneName">P1</span> Points: <span id="playerOnePoints" class="label label-default">0</span></p>
+                            <p class="col-md-12"><span id="playerOneName">P1</span> Points: <div id="playerOnePoints" class="playerLabel label label-default">0</div></p>
                         </div>
 
                     </div>
                     <div class="col-md-5 col-md-offset-2">
                         <div class="panel panel-primary row playerColumn">
                             <div class="panel-heading">Status</div>
-                            <p class="col-md-12"><span id="playerTwoName">P2</span> Points: <span id="playerTwoPoints" class="label label-default">0</span></p>
+                            <p class="col-md-12"><span id="playerTwoName">P2</span> Points: <div id="playerTwoPoints" class="playerLabel label label-default">0</div></p>
                         </div>
                     </div>
                 </div>
@@ -189,13 +190,13 @@
                     </div>
                 </div>
                 <div id="answers" class="col-md-12 row">
-                    <div id="answer1" class="col-md-6"><div class="btn btn-default btn-block text-center"><span id="answer1Text">answer1</span></div></div>
-                    <div id="answer2" class="col-md-6"><div class="btn btn-default btn-block text-center"><span id="answer2Text">answer2</span></div></div>
-                    <div id="answer3" class="col-md-6"><div class="btn btn-default btn-block text-center"><span id="answer3Text">answer3</span></div></div>
-                    <div id="answer4" class="col-md-6"><div class="btn btn-default btn-block text-center"><span id="answer4Text">answer4</span></div></div>
+                    <div id="answer1" class="col-md-6 col-sm-3"><div class="btn btn-default btn-block text-center"><span id="answer1Text">answer1</span></div></div>
+                    <div id="answer2" class="col-md-6 col-sm-3"><div class="btn btn-default btn-block text-center"><span id="answer2Text">answer2</span></div></div>
+                    <div id="answer3" class="col-md-6 col-sm-3"><div class="btn btn-default btn-block text-center"><span id="answer3Text">answer3</span></div></div>
+                    <div id="answer4" class="col-md-6 col-sm-3"><div class="btn btn-default btn-block text-center"><span id="answer4Text">answer4</span></div></div>
                 </div>
                 <div id="help" class="col-md-9 col-md-offset-1 text-center row">
-                    <p class="label label-success col-md-8 col-md-offset-2 hintBox">Available hints:</p>
+                    <p class="label label-success col-md-8 col-md-offset-2 col-sm-12 hintBox">Available hints:</p>
                     <div class="row btn-group btn-group-lg" role="group">
                         <button id="wiki" type="button" class="btn btn-default">Wikipedia  <i class="fa fa-wikipedia-w" aria-hidden="true"></i></button>
                         <button id="youtube" type="button" class="btn btn-default">YouTube  <i class="fa fa-youtube" aria-hidden="true"></i></button>
