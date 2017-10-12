@@ -94,6 +94,7 @@ function Game(){
         }
 
         $('#nextQuestionBody .container .row').prepend(resultIconElement).prepend(answerElementHolder);
+        $('.hintButton').removeClass('disabled');
     };
 
     this.removeAnswerResult = function(){
@@ -257,6 +258,8 @@ function Game(){
                 controller.constructTwitterHint();
                 controller.getHelpType("twitter");
         }
+
+        $('.hintButton').addClass('disabled');
 
         $('#hint').modal('toggle');
     };
