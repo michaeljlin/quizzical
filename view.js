@@ -1,4 +1,21 @@
+/***********************************************************************************************************************
+*   Listen for the document to load and initialize the game
+ */
 $(document).ready(initializeGame);
+
+/***********************************************************************************************************************
+ *   Global variables defined here.
+ */
+
+var view = new Game();
+var controller = new Controller();
+var model = new Model();
+
+/***********************************************************************************************************************
+*   initializeGame - Initializes the game by calling on the setupGame function in the view object
+ *   @params: {undefined} none
+ *   @returns: {undefined} none
+ */
 
 function initializeGame() {
 
@@ -43,12 +60,20 @@ function Game(){
     // this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     // this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
 
+
+    /*******************************************************************************************************************
+     *   setupGame - Initializes the game by setting up basic view information and starting the player name entry modal.
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: setupNextQuestion, setupClickHandlers, setupTooltips, setupModalChain
+     */
     this.setupGame = function(){
         self.setupNextQuestion();
         $('.playerOneStatusBox').addClass('activePlayer');
         $('.btn').css({'outline': 'none'});
 
         $('#setPlayers').modal('toggle');
+
         $('.mainHintContent').toggle('hidden');
         $('#searchButton').toggle('hidden');
 
@@ -57,6 +82,12 @@ function Game(){
         self.setupModalChain();
     };
 
+    /*******************************************************************************************************************
+     *   setupClickHandlers - Attaches click handlers to all buttons in document window
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: none
+     */
     this.setupClickHandlers = function(){
         $('#answer1').click(view.pressAnswerButton);
         $('#answer2').click(view.pressAnswerButton);
@@ -71,6 +102,12 @@ function Game(){
         $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
     };
 
+    /*******************************************************************************************************************
+     *   setupTooltips - Attaches tooltups to hings
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: none
+     */
     this.setupTooltips = function(){
         $("#wiki").tooltip({title:'Search Wikipedia for help', placement: 'bottom'});
         $("#youtube").tooltip({title:'Ask Youtube for help', placement: 'bottom'});
@@ -78,6 +115,12 @@ function Game(){
         $('[data-toggle="tooltip"]').tooltip();
     };
 
+    /*******************************************************************************************************************
+     *   setupModalChain - Connects functions to modal close/hidden events
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: none
+     */
     this.setupModalChain = function(){
         $('#hint').on('hidden.bs.modal', view.clearModal);
         $('#setPlayers').on('hidden.bs.modal', view.triggerInstructions);
@@ -85,24 +128,54 @@ function Game(){
         $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
     };
 
+    /*******************************************************************************************************************
+     *   triggerInstructions - Switch instruction modal on/off
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: none
+     */
     this.triggerInstructions = function(){
         $('#instructions').modal('toggle');
     };
 
+    /*******************************************************************************************************************
+     *   timeRunOutTrigger - Function callback for optional timers
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: controller.answerButtonPressed
+     */
     this.timeRunOutTrigger = function(){
         console.log('Timeout has been triggered!');
         controller.answerButtonPressed('Time has run out!');
     };
 
+    /*******************************************************************************************************************
+     *   timerCountdown - Initiates a question timer that will end the current question round in 15 seconds
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: timeRunOutTrigger
+     */
     this.timerCountdown = function(){
         console.log('Timer has started!');
         self.trackSetTimeout = setTimeout(self.timeRunOutTrigger, 15000);
     };
 
+    /*******************************************************************************************************************
+     *   clearTimer - Ends the current timer by clearing the local variable trackSetTimeout
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: none
+     */
     this.clearTimer = function(){
         clearTimeout(self.trackSetTimeout);
     };
 
+    /*******************************************************************************************************************
+     *   clearTimer - Ends the current timer by clearing the local variable trackSetTimeout
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: none
+     */
     this.setActivePlayerStatus = function(playerTurn){
 
         if(playerTurn === 0){
@@ -337,12 +410,4 @@ function Game(){
     this.removeLoadingIcon = function(){
         $('.spinHolder').remove();
     };
-
-
 }
-
-var view = new Game();
-
-var controller = new Controller();
-
-var model = new Model();
