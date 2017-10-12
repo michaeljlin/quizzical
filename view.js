@@ -39,6 +39,8 @@ function initializeGame() {
     $('#setPlayers').modal('toggle');
     $('#setPlayers').on('hidden.bs.modal', view.nextQuestion);
 
+    $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
+
     $('#setPlayerInfo').click(view.setPlayerInfo);
 
     $('.mainHintContent').toggle('hidden');
@@ -55,6 +57,30 @@ function Game(){
 
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
+
+    this.setAnswerResult = function(result, correctAnswer){
+        var resultIconElement = new $('<span>');
+        var answerElement = new $('<div>');
+
+        if(result === 'correct'){
+            resultIconElement.addClass('answerIcon col-md-1 col-md-offset-5 glyphicon glyphicon-ok').css({
+                'font-size':'70px',
+                'color': 'green'
+            });
+        }
+        else{
+            resultIconElement.addClass('answerIcon col-md-1 col-md-offset-5 glyphicon glyphicon-remove').css({
+                'font-size':'70px',
+                'color': 'red'
+            });
+        }
+
+        $('#nextQuestionBody .container .row').prepend(resultIconElement);
+    };
+
+    this.removeAnswerResult = function(){
+        $('.answerIcon').remove();
+    };
 
     this.setPlayerInfo = function(){
         var name1 = $('#username1').val();
