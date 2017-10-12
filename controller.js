@@ -267,7 +267,7 @@ function Controller()
             case ("medium") :
                 difficultylevelNum = 2;
                 break;
-            case ("difficult") :
+            case ("hard") :
                 difficultylevelNum = 3;
                 break;
         }
