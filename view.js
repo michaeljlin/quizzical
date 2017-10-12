@@ -239,8 +239,8 @@ function Game(){
     };
 
     this.setupNextQuestion = function(){
-        for(var i = 0; i < self.categories.length; i++){
-            var newOptionElement = new $('<option>').attr('data-category', self.categoryNum[i]).text(self.categories[i]);
+        for(var i = 0; i < model.categories.length; i++){
+            var newOptionElement = new $('<option>').attr('data-category', model.categoryNum[i]).text(model.categories[i]);
             $('.categoryOptionList').append(newOptionElement);
         }
     };
