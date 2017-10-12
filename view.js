@@ -42,6 +42,7 @@ function initializeGame() {
     $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
 
     $('#setPlayerInfo').click(view.setPlayerInfo);
+    $('.playerOneStatusBox').addClass('activePlayer');
 
     $('.mainHintContent').toggle('hidden');
     $('#searchButton').toggle('hidden');
@@ -57,6 +58,18 @@ function Game(){
 
     // this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
+
+    this.setActivePlayerStatus = function(playerTurn){
+
+        if(playerTurn === 0){
+            $('.playerOneStatusBox').addClass('activePlayer');
+            $('.playerTwoStatusBox').removeClass('activePlayer');
+        }
+        else {
+            $('.playerOneStatusBox').removeClass('activePlayer');
+            $('.playerTwoStatusBox').addClass('activePlayer');
+        }
+    };
 
     this.setAnswerResult = function(result, correctAnswer){
         var resultIconElement = new $('<span>');

@@ -25,6 +25,7 @@ function Controller()
             console.log('Player '+ (currentTurn+1) + ' got the question correct! Toggling next question modal!');
             model.playersInfo[currentTurn].points+=1;
             this.changeCurrentTurn();
+            view.setActivePlayerStatus(model.playersInfo[2]);
             view.updateStatus(model.playersInfo[2] + 1, model.playersInfo[0].points, model.playersInfo[1].points);
             view.nextQuestion();
         }
@@ -33,6 +34,7 @@ function Controller()
             view.setAnswerResult('wrong', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question wrong! Toggling next question modal!');
             this.changeCurrentTurn();
+            view.setActivePlayerStatus(model.playersInfo[2]);
             view.updateStatus(model.playersInfo[2] + 1, model.playersInfo[0].points, model.playersInfo[1].points);
             view.nextQuestion();
         }
