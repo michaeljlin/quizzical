@@ -171,8 +171,8 @@ function Game(){
     };
 
     /*******************************************************************************************************************
-     *   clearTimer - Ends the current timer by clearing the local variable trackSetTimeout
-     *   @params: {undefined} none
+     *   setActivePlayerStatus - Changes the status box by adding or removing the class activePlayer
+     *   @params: {int} playerTurn - The current turn
      *   @returns: {undefined} none
      *   @calls: none
      */
@@ -188,6 +188,13 @@ function Game(){
         }
     };
 
+    /*******************************************************************************************************************
+     *   setAnswerResult - Sets the answer results in the #nextQuestion modal
+     *   @params: {string} result - String indicating either correct or incorrect
+     *   @params: {string} correctAnswer - A string that is the correct answer
+     *   @returns: {undefined} none
+     *   @calls: none
+     */
     this.setAnswerResult = function(result, correctAnswer){
         var resultIconElement = new $('<span>');
         var answerElement = new $('<span>').text(correctAnswer).css({
@@ -213,10 +220,24 @@ function Game(){
         $('.hintButton').removeClass('disabled');
     };
 
+    /*******************************************************************************************************************
+     *   removeAnswerResult - Removes the answer results after the #nextQuestion modal is closed
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: none
+     */
     this.removeAnswerResult = function(){
         $('.answerIcon').remove();
     };
 
+    /*******************************************************************************************************************
+     *   setPlayerInfo - Sets the usernames based on the #setPlayers modal input, defaults to Player 1 & if
+     *   input is empty
+     *
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: controller.setPlayerInfo
+     */
     this.setPlayerInfo = function(){
         var name1 = $('#username1').val();
         var name2 = $('#username2').val();
@@ -236,7 +257,14 @@ function Game(){
         controller.setPlayerInfo(playerObject);
     };
 
-
+    /*******************************************************************************************************************
+     *   getNextQuestion - Grabs the input from the #nextQuestion modal and converts it to usable data to be passed to
+     *   the controller. Defaults to medium difficulty and General Knowledge category.
+     *
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: clearQuestionDiffPanel, controller.setCurrentQuestionInModel
+     */
     this.getNextQuestion = function(){
 
         if($('#mainScreen').css('display') === 'none'){
@@ -274,10 +302,21 @@ function Game(){
         // self.timerCountdown();
     };
 
+    /*******************************************************************************************************************
+     *   clearQuestionDiffPanel - Clears the panel difficulty indicator
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     */
     this.clearQuestionDiffPanel = function(){
         $('#questionBody').removeClass('panel-info panel-warning panel-danger panel-success');
     };
 
+    /*******************************************************************************************************************
+     *   updateQuestionDiffPanel - Updates the question panel with a bootstrap class based on the current difficulty
+     *
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     */
     this.updateQuestionDiffPanel = function(diff){
         switch(diff){
             case 'easy':
