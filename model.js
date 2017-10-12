@@ -14,6 +14,7 @@ function Model() {
     this.wrongAudioObject = new Audio('sounds/buzzer.mp3');
     this.gameAudioObject = new Audio('sounds/ThemeSong.mp3');
     this.gameAudioObject.loop = true;
+    this.gameAudioObject.play();
     //used for category # reference
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebrities', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
