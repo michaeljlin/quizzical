@@ -266,6 +266,9 @@ function Game(){
 
         controller.setCurrentQuestionInModel(questionObject);
 
+        model.questionCount++;
+        console.log('Current question count is: '+model.questionCount);
+
         $('#nextQuestion').modal('toggle');
 
         // Uncomment next line if a time limit for guessing questions is needed
@@ -536,4 +539,22 @@ function Game(){
     this.removeLoadingIcon = function(){
         $('.spinHolder').remove();
     };
+
+    /*******************************************************************************************************************
+     *   triggerWinner - Triggers the win modal
+     *
+     *   @params: {string} winnerName - Inserts the name into the win text if not undefined
+     *   @returns: {undefined} none
+     */
+    this.triggerWinner = function(winnerName){
+
+        if(winnerName !== undefined){
+            $('#winnerText').text(winnerName);
+        }
+        else{
+            $('#winMessage').text('Tie game!');
+        }
+        $('#winner').modal('toggle');
+    }
+
 }
