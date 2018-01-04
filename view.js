@@ -400,7 +400,7 @@ function Game(){
      *   @calls: controller.answerButtonPressed
      */
     this.pressAnswerButton = function(){
-        var chosenAnswer = $(this)[0].innerText.substr(0, $(this)[0].innerText.length-1);
+        var chosenAnswer = $(this)[0].innerText.split(/\n/)[0];
         console.log(chosenAnswer);
         controller.answerButtonPressed(chosenAnswer);
     };
@@ -508,7 +508,7 @@ function Game(){
     };
 
     /*******************************************************************************************************************
-     *   displayYoutubeHint - Displays the constructed Wikipedia hint on the hint modal
+     *   displayYoutubeHint - Displays the constructed Youtube hint on the hint modal
      *
      *   @params: {object} newIFrame - An element containing the Youtube hint
      *   @returns: {undefined} none
