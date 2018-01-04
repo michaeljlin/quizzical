@@ -28,6 +28,7 @@ function Model() {
     this.currentWrongAnswers = null;
     this.currentCategory = null;
     this.currentDifficulty = null;
+    this.token = null;
 
     this.setCurrentQuestion = function(questionString){
         this.currentQuestion = questionString;
@@ -48,6 +49,34 @@ function Model() {
     this.setCurrentDifficulty = function(diffString){
         this.currentDifficulty = diffString;
     };
+
+    this.setDBToken = function(token){
+        this.token = token;
+    };
+
+    this.getDBToken = function(callback){
+        $.ajax({
+            url: 'https://opentdb.com/api_token.php?command=request',
+            data: {},
+            dataType: 'json',
+            method: 'Post',
+            success: function(data){
+                console.log(`got data:`, data);
+
+                if(data.response_code === 0){
+                    callback(data.token);
+                }
+                else{
+                    console.log(`something went wrong`);
+                    callback('error');
+                }
+            },
+            error: function(data){
+                console.log(`failed to get data, error dump: ${data}`)
+            }
+        });
+    };
+
     /***************************************************************************************************
      * search trivia question API
      * @params {number(category),string(difficulty)} category and difficulty level
@@ -60,7 +89,8 @@ function Model() {
             url: 'https://opentdb.com/api.php?amount=1&type=multiple',
             data: {
                 category: category,  // represented by number
-                difficulty: difficultyLevel // string
+                difficulty: difficultyLevel, // string
+                token: this.token
             },
             dataType: 'json',
             method: 'Post',

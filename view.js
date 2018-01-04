@@ -38,6 +38,7 @@ function Game(){
      *   @calls: setupNextQuestion, setupClickHandlers, setupTooltips, setupModalChain
      */
     this.setupGame = function(){
+        self.setDBToken();
         self.setupNextQuestion();
         $('.playerOneStatusBox').addClass('activePlayer');
         $('.btn').css({'outline': 'none'});
@@ -50,6 +51,17 @@ function Game(){
         self.setupClickHandlers();
         self.setupTooltips();
         self.setupModalChain();
+    };
+
+    /**********************************************************************************
+     *  setDBToken - Initiates request token for trivia database
+     *   @params: {undefined} none
+     *   @returns: {undefined} none
+     *   @calls: none
+     */
+
+    this.setDBToken = function(){
+        controller.setDBToken();
     };
 
     /*******************************************************************************************************************
