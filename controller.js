@@ -9,6 +9,16 @@ function Controller()
     this.playerTurn = null;
     this.helpsArray = [{title:"youtube",quantities:3},{title:"wikipedia",numbers:3},{title:"pass",numbers:3}];
 
+    this.setDBToken = function(){
+        model.getDBToken(function(token){
+            console.log(`request result: ${token}`);
+
+            if(token !== 'error'){
+                model.setDBToken(token);
+            }
+        });
+    };
+
     /***************************************************************************************************
      * method name: setPlayerInfo
      * functionality: get players name from playersInfo in model object and call displayPlayerNameAndAvatars method of model object
@@ -249,7 +259,7 @@ function Controller()
     };
 
     /***************************************************************************************************
-     * method name: cpointing
+     * method name: pointing
      * calculating the point of answer based on the difficulty level, hint for each player based on their turns and update scores
       by calling method updatePlayerInfo from model object
      * @params : (number[0 or 1](turn),string[easy,difficult, medium],number[1,2,3](help))
