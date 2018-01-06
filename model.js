@@ -29,6 +29,19 @@ function Model() {
     this.currentCategory = null;
     this.currentDifficulty = null;
     this.token = null;
+    this.hintType = null;
+
+    this.setHintType = function(hint){
+        this.hintType = hint;
+    };
+
+    this.getHintType = function(){
+        return this.hintType;
+    };
+
+    this.resetHintType = function(){
+        this.hintType = null;
+    };
 
     this.setCurrentQuestion = function(questionString){
         this.currentQuestion = questionString;

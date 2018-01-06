@@ -42,18 +42,20 @@ function Controller()
 
     this.getHelpType = function(helpName)
     {
-        switch (helpName)
-        {
-            case ("wiki"):
-                this.help = 1;
-                break;
-            case("youtube") :
-                this.help = 2;
-                break;
-            case("twitter") :
-                this.help = 3;
-                break;
-        }
+        model.setHintType(helpName);
+        // switch (helpName)
+        // {
+        //     case ("wiki"):
+        //         this.help = 1;
+        //         model.setHintType();
+        //         break;
+        //     case("youtube") :
+        //         this.help = 2;
+        //         break;
+        //     case("twitter") :
+        //         this.help = 3;
+        //         break;
+        // }
     };
 
     /***************************************************************************************************
@@ -69,7 +71,8 @@ function Controller()
         var winnerName = null;
 
         if(chosenAnswerText === model.currentAnswer){
-            this.pointing(currentTurn,this.difficultyLevel,this.help);
+            this.pointing(currentTurn, this.difficultyLevel, model.getHintType());
+            model.resetHintType();
             model.correctAudioObject.play();
             view.setAnswerResult('correct', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question correct! Toggling next question modal!');
@@ -98,6 +101,7 @@ function Controller()
             view.nextQuestion();
         }
         else{
+            model.resetHintType();
             model.wrongAudioObject.play();
             view.setAnswerResult('wrong', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question wrong! Toggling next question modal!');
@@ -199,7 +203,6 @@ function Controller()
         return apostFix;
     };
 
-
     this.getPlayerName = function(avatarAddress)
     {
         model.getPlayerName(avatarAddress);
@@ -207,15 +210,10 @@ function Controller()
 
     };
 
-
-
     this.changeCurrentTurn = function()
     {
         model.playersInfo[2] = 1-model.playersInfo[2];
     };
-
-
-
 
     this.questionSelectionButtonClicked = function()
     {
@@ -244,9 +242,6 @@ function Controller()
         }
     };
 
-
-
-
     this.checkTheAnswer = function(playerAnswer,realAnswer)
     {
         if (playerAnswer !== realAnswer)
@@ -266,58 +261,46 @@ function Controller()
      * @returns: nothing
      */
 
-    this.pointing = function(turn,difficultylevel,help)
+    this.pointing = function(turn, difficultylevel, help)
     {
-        var  difficultylevelNum = 1;
+        let  basePoints = null;
         switch (difficultylevel)
         {
             case ("easy") :
-                difficultylevelNum = 1;
+                basePoints = 10;
                 break;
             case ("medium") :
-                difficultylevelNum = 2;
+                basePoints = 20;
                 break;
             case ("hard") :
-                difficultylevelNum = 3;
+                basePoints = 40;
                 break;
         }
-        if ( turn === 0 && (help === null || help === 3))
-        {
-            this.playerOnePoint += difficultylevelNum*10;
+
+        if(help !== null){
+            switch(help){
+                case 'wiki':
+                    basePoints *= 0.5;
+                    break;
+                case 'youtube':
+                    basePoints *= 0.75;
+                    break;
+                case 'twitter':
+                    basePoints *= 1;
+                    break;
+            }
         }
 
-        if ( turn === 0 && help === 1)
-        {
-            this.playerOnePoint += difficultylevelNum*10*.5;
+        if(turn === 0){
+            this.playerOnePoint += basePoints;
         }
-
-        if ( turn === 0 && help === 2)
-        {
-           this.playerOnePoint += difficultylevelNum*10*.75;
-        }
-
-        if ( turn === 1 && (help === null || help === 3))
-        {
-            this.playerTwoPoint += difficultylevelNum*10;
-        }
-
-        if ( turn === 1 && help === 1)
-        {
-            this.playerTwoPoint += difficultylevelNum*10*.5;
-        }
-
-        if ( turn === 1 && help === 2)
-        {
-            this.playerTwoPoint += difficultylevelNum*10*.75;
+        else{
+            this.playerTwoPoint += basePoints;
         }
 
         model.updatePlayerInfo(this.playerOnePoint,this.playerTwoPoint);
 
     };
-
-
-
-
 
     this.questionSelection = function(viewData)
     {
@@ -327,8 +310,6 @@ function Controller()
         return questionifo;
 
     };
-
-
 
     this.printQuestionAndAnswers = function()
     {
@@ -340,7 +321,6 @@ function Controller()
         $("#answer4").text();
 
     };
-
 
     /***************************************************************************************************
      * method name: constructWikiHint
