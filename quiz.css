@@ -28,6 +28,10 @@ body{
     width: 100%;
 }
 
+#diff{
+    text-align: center;
+}
+
 #option1, #option2{
     box-sizing: border-box;
 }
@@ -110,7 +114,6 @@ aside {
 }
 
 #nextTitle,.answerText{
-    /*font-family: 'Acme', sans-serif;*/
     font-size: 18px;
 }
 .btn {
