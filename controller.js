@@ -9,6 +9,10 @@ function Controller()
     this.playerTurn = null;
     this.helpsArray = [{title:"youtube",quantities:3},{title:"wikipedia",numbers:3},{title:"pass",numbers:3}];
 
+    this.soundToggle = function(){
+        model.setSoundOnOff();
+    };
+
     this.setDBToken = function(){
         model.getDBToken(function(token){
             console.log(`request result: ${token}`);
@@ -73,7 +77,8 @@ function Controller()
         if(chosenAnswerText === model.currentAnswer){
             this.pointing(currentTurn, this.difficultyLevel, model.getHintType());
             model.resetHintType();
-            model.correctAudioObject.play();
+            // model.correctAudioObject.play();
+            model.playSoundCorrect();
             view.setAnswerResult('correct', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question correct! Toggling next question modal!');
 
@@ -102,7 +107,8 @@ function Controller()
         }
         else{
             model.resetHintType();
-            model.wrongAudioObject.play();
+            // model.wrongAudioObject.play();
+            model.playSoundWrong();
             view.setAnswerResult('wrong', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question wrong! Toggling next question modal!');
 

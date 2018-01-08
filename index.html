@@ -16,16 +16,15 @@
 
     <title>Quizzical</title>
 
+    <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Main CSS -->
     <link rel="stylesheet" href="quiz.css" type="text/css">
     <!-- font link -->
     <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
 
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="model.js"></script>
     <script src="controller.js"></script>
@@ -229,6 +228,10 @@
                             <div class="panel-heading">Status</div>
                             <p class="col-md-12"><span id="playerTwoName">P2</span> Points: <div id="playerTwoPoints" class="playerLabel label label-default">0</div></p>
                         </div>
+                    </div>
+
+                    <div class="col-md-6 col-md-offset-3">
+                        <span class="sound">Sound: </span> <input id="sound-toggle" type="checkbox">
                     </div>
                 </div>
 

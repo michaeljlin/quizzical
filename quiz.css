@@ -16,6 +16,10 @@ body{
     background-size: auto;
 }
 
+.sound{
+    color: white;
+}
+
 #answer1, #answer2, #answer3, #answer4{
     padding: 1em;
 }

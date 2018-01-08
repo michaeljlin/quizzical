@@ -78,10 +78,17 @@ function Game(){
 
         $('#setPlayerInfo').click(view.setPlayerInfo);
 
+        $(document).on('change', '#sound-toggle', null, this.handleSound);
+
         $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
         $(document).on('click', '#youtube', {type:'youtube'}, view.hintToggle);
         $(document).on('click', '#twitter', {type:'twitter'}, view.hintToggle);
         $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
+    };
+
+    this.handleSound = function(){
+        console.log('sound switch triggered');
+        controller.soundToggle();
     };
 
     /*******************************************************************************************************************
