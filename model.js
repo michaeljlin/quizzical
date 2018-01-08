@@ -33,6 +33,20 @@ function Model() {
     this.token = null;
     this.hintType = null;
 
+    this.reset = function(){
+        this.playersInfo = [{points: 0}, {points: 0}, 0];
+        this.questionCount = 0;
+        this.playerStats = [{}, {}];
+
+        this.currentQuestion = null;
+        this.currentAnswer = null;
+        this.currentWrongAnswers = null;
+        this.currentCategory = null;
+        this.currentDifficulty = null;
+        this.token = null;
+        this.hintType = null;
+    };
+
     this.setSoundOnOff = function(){
         this.soundSwitch = !this.soundSwitch;
 

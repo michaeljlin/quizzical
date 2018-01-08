@@ -30,6 +30,12 @@ function Game(){
     // this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     // this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
 
+    this.reset = function(){
+        controller.reset();
+        model.reset();
+        $('#mainScreen').toggle('hidden');
+        self.getStart();
+    };
 
     /*******************************************************************************************************************
      *   setupGame - Initializes the game by setting up basic view information and starting the player name entry modal.
@@ -47,7 +53,6 @@ function Game(){
         // $('#setPlayers').modal('toggle');
 
         $('.mainHintContent').toggle('hidden');
-        $('#searchButton').toggle('hidden');
 
         self.setupClickHandlers();
         self.setupTooltips();
@@ -93,6 +98,10 @@ function Game(){
         $(document).on('click', '#youtube', {type:'youtube'}, view.hintToggle);
         $(document).on('click', '#twitter', {type:'twitter'}, view.hintToggle);
         $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
+    };
+
+    this.getStart = function(){
+        $('#start').modal('toggle');
     };
 
     this.handleQuick = function(){
