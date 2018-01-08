@@ -81,6 +81,8 @@ function Game(){
 
         $(document).on('change', '#sound-toggle', null, this.handleSound);
 
+        $(document).on('click', '#info', null, this.triggerInstructions);
+
         $(document).on('click', '#quick', null, this.handleQuick);
         $(document).on('click', '#custom', null, function(){
             $('#start').modal('toggle');
@@ -125,8 +127,8 @@ function Game(){
      */
     this.setupModalChain = function(){
         $('#hint').on('hidden.bs.modal', view.clearModal);
-        $('#setPlayers').on('hidden.bs.modal', view.triggerInstructions);
-        $('#instructions').on('hidden.bs.modal', view.nextQuestion);
+        $('#setPlayers').on('hidden.bs.modal', view.nextQuestion);
+        // $('#instructions').on('hidden.bs.modal', view.nextQuestion);
         $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
     };
 
