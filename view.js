@@ -78,6 +78,8 @@ function Game(){
 
         $('#setPlayerInfo').click(view.setPlayerInfo);
 
+        $('.resetGame').click(view.resetGame)
+
         $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
         $(document).on('click', '#youtube', {type:'youtube'}, view.hintToggle);
         $(document).on('click', '#twitter', {type:'twitter'}, view.hintToggle);
@@ -567,6 +569,25 @@ function Game(){
             $('#winMessage').text('Tie game!');
         }
         $('#winner').modal('toggle');
+    }
+    /*******************************************************************************************************************
+     *   resetGame - Clears current points and restarts game
+     *
+     *   @params: none
+     *   @returns: {undefined} none
+     */
+    this.resetGame = function(){
+        console.log('test')
+        $('#mainScreen').remove()
+
+        // var questionBank;
+        // var view = new Game();
+        // var controller = new Controller();
+        // var model = new Model();
+
+        initializeGame();
+
+
     }
 
 }

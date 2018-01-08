@@ -119,6 +119,9 @@ aside {
 .btn {
     white-space: normal;
 }
+.btn-danger{
+    text-align: center;
+}
 .playerLabel{
     margin:5px;
     font-size:20px;
