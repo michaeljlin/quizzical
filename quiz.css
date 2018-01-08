@@ -16,6 +16,10 @@ body{
     background-size: auto;
 }
 
+.modal-content{
+    margin-top: 40vh;
+}
+
 .toggle{
     position: relative;
     display: inline-block;
