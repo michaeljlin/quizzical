@@ -14,11 +14,13 @@ function Model() {
     // sounds for game
 
     this.soundArray = ['sounds/buzzer.mp3', 'sounds/correct.mp3'];
+    this.soundSwitch = false;
+
     this.correctAudioObject = new Audio('sounds/correct.mp3');
     this.wrongAudioObject = new Audio('sounds/buzzer.mp3');
     this.gameAudioObject = new Audio('sounds/ThemeSong.mp3');
     this.gameAudioObject.loop = true;
-    this.gameAudioObject.play();
+    // this.gameAudioObject.play();
     //used for category # reference
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebrities', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
@@ -31,14 +33,40 @@ function Model() {
     this.token = null;
     this.hintType = null;
 
+    this.setSoundOnOff = function(){
+        this.soundSwitch = !this.soundSwitch;
+
+        if(!this.soundSwitch){
+            this.gameAudioObject.pause();
+            this.correctAudioObject.pause();
+            this.wrongAudioObject.pause();
+
+            this.correctAudioObject.currentTime = 0;
+            this.wrongAudioObject.currentTime = 0;
+        }
+        else{
+            this.gameAudioObject.play();
+        }
+    };
+
+    this.playSoundCorrect = function(){
+        if(this.soundSwitch){
+            this.correctAudioObject.play();
+        }
+    };
+
+    this.playSoundWrong = function(){
+        if(this.soundSwitch){
+            this.wrongAudioObject.play();
+        }
+    };
+
     this.setHintType = function(hint){
         this.hintType = hint;
     };
-
     this.getHintType = function(){
         return this.hintType;
     };
-
     this.resetHintType = function(){
         this.hintType = null;
     };
@@ -46,19 +74,15 @@ function Model() {
     this.setCurrentQuestion = function(questionString){
         this.currentQuestion = questionString;
     };
-
     this.setCurrentAnswer = function(correctAnswerString){
         this.currentAnswer = correctAnswerString;
     };
-
     this.setCurrentWrongAnswers = function(answerArray){
         this.currentWrongAnswers = answerArray;
     };
-
     this.setCurrentCategory = function(categoryString){
         this.currentCategory = categoryString;
     };
-
     this.setCurrentDifficulty = function(diffString){
         this.currentDifficulty = diffString;
     };
