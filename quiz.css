@@ -70,6 +70,10 @@ input:checked + .slider:before{
     border-radius: 50%;
 }
 
+.startContent{
+    text-align: center;
+}
+
 .sound{
     color: white;
 }
