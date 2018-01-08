@@ -16,8 +16,8 @@ body{
     background-size: auto;
 }
 
-.modal-content{
-    margin-top: 40vh;
+#nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
+    margin-top: 35vh;
 }
 
 .toggle{
