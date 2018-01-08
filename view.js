@@ -214,7 +214,7 @@ function Game(){
             'background-color': 'black',
             'color': 'black'
         }).addClass('highlightText');
-        var answerElementHolder = new $('<div>').text('The correct answer was: ').append(answerElement).addClass('answerIcon answerText col-md-5 col-md-offset-3');
+        var answerElementHolder = new $('<div>').text('The correct answer was: ').append(answerElement).addClass('answerIcon answerText col-md-12');
 
         if(result === 'correct'){
             resultIconElement.addClass('answerIcon col-md-1 col-md-offset-5 glyphicon glyphicon-ok').css({
