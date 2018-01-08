@@ -80,6 +80,7 @@ function Game(){
         $('#setPlayerInfo').click(view.setPlayerInfo);
 
         $('.resetGame').click(view.resetGame)
+        
         $(document).on('change', '#sound-toggle', null, this.handleSound);
 
         $(document).on('click', '#info', null, this.triggerInstructions);
