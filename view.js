@@ -43,7 +43,8 @@ function Game(){
         $('.playerOneStatusBox').addClass('activePlayer');
         $('.btn').css({'outline': 'none'});
 
-        $('#setPlayers').modal('toggle');
+        $('#start').modal('toggle');
+        // $('#setPlayers').modal('toggle');
 
         $('.mainHintContent').toggle('hidden');
         $('#searchButton').toggle('hidden');
@@ -79,11 +80,31 @@ function Game(){
         $('#setPlayerInfo').click(view.setPlayerInfo);
 
         $('.resetGame').click(view.resetGame)
+        $(document).on('change', '#sound-toggle', null, this.handleSound);
+
+        $(document).on('click', '#info', null, this.triggerInstructions);
+
+        $(document).on('click', '#quick', null, this.handleQuick);
+        $(document).on('click', '#custom', null, function(){
+            $('#start').modal('toggle');
+            $('#setPlayers').modal('toggle');
+        });
 
         $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
         $(document).on('click', '#youtube', {type:'youtube'}, view.hintToggle);
         $(document).on('click', '#twitter', {type:'twitter'}, view.hintToggle);
         $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
+    };
+
+    this.handleQuick = function(){
+        $('#start').modal('toggle');
+        self.setPlayerInfo(true);
+        self.getNextQuestion();
+    };
+
+    this.handleSound = function(){
+        console.log('sound switch triggered');
+        controller.soundToggle();
     };
 
     /*******************************************************************************************************************
@@ -107,8 +128,8 @@ function Game(){
      */
     this.setupModalChain = function(){
         $('#hint').on('hidden.bs.modal', view.clearModal);
-        $('#setPlayers').on('hidden.bs.modal', view.triggerInstructions);
-        $('#instructions').on('hidden.bs.modal', view.nextQuestion);
+        $('#setPlayers').on('hidden.bs.modal', view.nextQuestion);
+        // $('#instructions').on('hidden.bs.modal', view.nextQuestion);
         $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
     };
 
@@ -222,23 +243,37 @@ function Game(){
      *   @returns: {undefined} none
      *   @calls: controller.setPlayerInfo
      */
-    this.setPlayerInfo = function(){
-        var name1 = $('#username1').val();
-        var name2 = $('#username2').val();
+    this.setPlayerInfo = function(quick){
+
+        let playerObject = [{
+            name: 'P1'
+        },{
+            name: 'P2'
+        }];
+
+        if(quick !== undefined){
+            controller.setPlayerInfo(playerObject);
+            return;
+        }
+
+        let name1 = $('#username1').val();
+        let name2 = $('#username2').val();
         if(name1 === ""){
-            name1 = 'Player 1'
+            name1 = 'P1'
         }
 
         if(name2 === ""){
-            name2 = 'Player 2'
+            name2 = 'P2'
         }
 
-        var playerObject = [{
+        playerObject = [{
             name: name1
         },{
             name: name2
         }];
+
         controller.setPlayerInfo(playerObject);
+        $('#setPlayers').modal('toggle');
     };
 
     /*******************************************************************************************************************
@@ -283,7 +318,9 @@ function Game(){
         model.questionCount++;
         console.log('Current question count is: '+model.questionCount);
 
-        $('#nextQuestion').modal('toggle');
+        if( $('#nextQuestion').hasClass('in') ){
+            $('#nextQuestion').modal('toggle');
+        }
 
         // Uncomment next line if a time limit for guessing questions is needed
         // self.timerCountdown();
@@ -341,7 +378,10 @@ function Game(){
     this.displayPlayerNameAndAvatars = function(player1Name, player2Name){
         $('#playerOneName').text(player1Name);
         $('#playerTwoName').text(player2Name);
-        $('#setPlayers').modal('toggle');
+        if($('#setPlayers').hasClass('in')){
+            $('#setPlayers').modal('toggle');
+        };
+
     };
 
     /*******************************************************************************************************************
