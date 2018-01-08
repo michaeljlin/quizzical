@@ -9,6 +9,13 @@ function Controller()
     this.playerTurn = null;
     this.helpsArray = [{title:"youtube",quantities:3},{title:"wikipedia",numbers:3},{title:"pass",numbers:3}];
 
+    this.reset = function(){
+        this.playerOnePoint = 0;
+        this.playerTwoPoint = 0;
+        this.difficultyLevel = null;
+        this.help = null;
+    };
+
     this.soundToggle = function(){
         model.setSoundOnOff();
     };
