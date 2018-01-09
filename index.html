@@ -235,16 +235,17 @@
             </div>
         </div>
 
+<!-- Main Game Area -->
         <section class="column col-md-12">
-            <aside class="col-md-2 col-md-offset-1">
-                <div class="column">
+            <!-- Player and Stats Box -->
+            <aside class="col-md-3 col-lg-2 col-md-offset-1">
+                <div class="column col-md-12 col-sm-12">
                     <p class="col-md-12 panel panel-default currentTurn">Current Turn: <span id="turn" class="label label-default">Player 1</span></p>
                     <div class="col-md-5">
                         <div class="playerOneStatusBox panel panel-primary row playerColumn">
                             <div class="panel-heading">Status</div>
                             <p class="col-md-12"><span id="playerOneName">P1</span> Points: <div id="playerOnePoints" class="playerLabel label label-default">0</div></p>
                         </div>
-
                     </div>
                     <div class="col-md-5 col-md-offset-2">
                         <div class="playerTwoStatusBox panel panel-primary row playerColumn">
@@ -257,10 +258,8 @@
                         <span class="sound">Sound: </span> <label class="toggle"><input id="sound-toggle" type="checkbox"><span class="slider round"></span></label>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-offset-1">
                         <button id="info" class="btn btn-info">Instructions</button>
-                    </div>
-                    <div class="col-md-6">
                         <button class="btn btn-danger resetGame">Reset</button>
                     </div>
                 </div>
@@ -280,7 +279,7 @@
                     <div id="answer3" class="col-md-6 col-sm-3"><div class="btn btn-default btn-block text-center"><span id="answer3Text">answer3</span></div></div>
                     <div id="answer4" class="col-md-6 col-sm-3"><div class="btn btn-default btn-block text-center"><span id="answer4Text">answer4</span></div></div>
                 </div>
-                <div id="help" class="col-md-8 col-md-offset-2 text-center row">
+                <div id="help" class="col-md-9 col-md-offset-1 text-center row">
                     <p class="label label-success col-md-8 col-md-offset-2 col-sm-12 hintBox">Available hints:</p>
                     <div class="row btn-group btn-group-lg" role="group">
                         <button id="wiki" type="button" class="hintButton btn btn-default"><span class="hidden-xs">Wikipedia </span><i class="fa fa-wikipedia-w" aria-hidden="true"></i></button>
