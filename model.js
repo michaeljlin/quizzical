@@ -6,6 +6,8 @@ var questionBank; //variable to hold current question and answer(s)
  */
 
 function Model() {
+    var self = this;
+
     this.playersInfo = [{points: 0}, {points: 0}, 0]; // player Object index 2 will be 1/2 for player turn and will alternate
 
     this.questionCount = 0;
@@ -210,11 +212,17 @@ function Model() {
             },
             success: function (data) {
                 console.log('Wiki success', data);
+
+                if(data.query.search.length === 0){
+                    $('.hintButton').removeClass('disabled');
+                    console.log(this);
+                    self.setHintType(null);
+                }
                 // callback('https://en.wikipedia.org/?curid=' + data.query.search[0].pageid);
                 callback(data.query.search[0].title, secondCallback);
             },
             error: function (data) {
-                console.log('wiki fail', data)
+                console.log('wiki fail', data);
             }
         })
     };
