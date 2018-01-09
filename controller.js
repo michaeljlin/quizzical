@@ -14,6 +14,8 @@ function Controller()
         this.playerTwoPoint = 0;
         this.difficultyLevel = null;
         this.help = null;
+        this.playerTurn = 0;
+        
     };
 
     this.soundToggle = function(){
