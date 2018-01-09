@@ -18,7 +18,7 @@ var model = new Model();
  */
 
 function initializeGame() {
-
+    
     view.setupGame();
 }
 
@@ -30,12 +30,7 @@ function Game(){
     // this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     // this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
 
-    this.reset = function(){
-        controller.reset();
-        model.reset();
-        $('#mainScreen').toggle('hidden');
-        self.getStart();
-    };
+
 
     /*******************************************************************************************************************
      *   setupGame - Initializes the game by setting up basic view information and starting the player name entry modal.
@@ -84,7 +79,7 @@ function Game(){
 
         $('#setPlayerInfo').click(view.setPlayerInfo);
 
-        $('.resetGame').click(view.resetGame)
+        $('.resetGame').click(this.reset)
         
         $(document).on('change', '#sound-toggle', null, this.handleSound);
 
@@ -626,18 +621,16 @@ function Game(){
      *   @params: none
      *   @returns: {undefined} none
      */
-    this.resetGame = function(){
-        console.log('test')
-        $('#mainScreen').remove()
-
-        // var questionBank;
-        // var view = new Game();
-        // var controller = new Controller();
-        // var model = new Model();
-
-        initializeGame();
-
-
-    }
+    this.reset = function(){
+        controller.reset();
+        model.reset();
+        $('#mainScreen').toggle('hidden');
+        self.getStart();
+        $('#playerOnePoints').text(controller.playerOnePoint);
+        $('#playerTwoPoints').text(controller.playerTwoPoint);
+        self.setActivePlayerStatus(controller.playerTurn);
+        
+    };
 
 }
+
