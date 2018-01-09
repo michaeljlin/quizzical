@@ -16,6 +16,10 @@ body{
     background-size: auto;
 }
 
+#nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
+    margin-top: 35vh;
+}
+
 .toggle{
     position: relative;
     display: inline-block;
