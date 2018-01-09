@@ -79,7 +79,7 @@ function Game(){
 
         $('#setPlayerInfo').click(view.setPlayerInfo);
 
-        $('.resetGame').click(this.reset)
+        $('.resetGame').click(this.reset);
         
         $(document).on('change', '#sound-toggle', null, this.handleSound);
 
@@ -256,7 +256,7 @@ function Game(){
             name: 'P2'
         }];
 
-        if(quick !== undefined){
+        if(quick !== undefined && quick.type !== 'click'){
             controller.setPlayerInfo(playerObject);
             return;
         }
@@ -278,7 +278,7 @@ function Game(){
         }];
 
         controller.setPlayerInfo(playerObject);
-        $('#setPlayers').modal('toggle');
+        // $('#setPlayers').modal('toggle');
     };
 
     /*******************************************************************************************************************
@@ -629,7 +629,7 @@ function Game(){
         $('#playerOnePoints').text(controller.playerOnePoint);
         $('#playerTwoPoints').text(controller.playerTwoPoint);
         self.setActivePlayerStatus(controller.playerTurn);
-        
+        $('#turn').text('Player 1');
     };
 
 }
