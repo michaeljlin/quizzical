@@ -235,6 +235,12 @@ aside {
     .controls{
         margin-top: 35px;
     }
+    #answers{
+        margin-left: 1px;
+    }
+    .playerOneStatusBox > div {
+        padding: 0px;
+    }
 
 
 }
@@ -252,3 +258,5 @@ aside {
     }
 
 }
+
+@media screen and (max-width: )
