@@ -212,15 +212,31 @@ aside {
     }
     .playerOneStatusBox, .playerTwoStatusBox{
         padding-top: 10px;
+        display: none;
+    }
+    .toggle{
+        top: 14px;
+        color: white;
     }
     .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 20px;
-        left: 0;
-        right: 0;
-        bottom: -20px;
+        top: -8px;
+        left: 64px;
+        right: -60px;
+        bottom: 9px;
+        /* margin: 5px */
     }
+    .currentTurn{
+        text-align: center;
+        display: none;
+    }
+    #info, #reset{
+        margin: 5px;
+    }
+    .controls{
+        margin-top: 35px;
+    }
+
+
 }
 
 @media screen and (max-width: 460px){
@@ -231,4 +247,8 @@ aside {
         position: relative;
         top: 2px;
     }
+    #mainScreen{
+        margin-top: 17vh;
+    }
+
 }

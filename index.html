@@ -228,7 +228,7 @@
             </div>
         </div>
     </div>
-    <div>
+    <div class='currentTurn'>
         <h3 class="col-md-12 panel panel-default visible-xs">Current Turn: <span id="turn" class="label label-default">Player 1</span></h3>
     </div>
     <article class="col-xs-12 visible-xs">
@@ -296,8 +296,8 @@
                     <div id="answer3" class="col-md-6 col-xs-6"><div class="btn btn-default btn-block text-center"><span id="answer3Text">answer3</span></div></div>
                     <div id="answer4" class="col-md-6 col-xs-6"><div class="btn btn-default btn-block text-center"><span id="answer4Text">answer4</span></div></div>
                 </div>
-                <div id="help" class="col-md-9 col-sm-9 col-xs-10 col-md-offset-1 col-xs-offset-1 text-center row">
-                    <p class="label label-success col-md-8 col-sm-8 col-xs-12 col-md-offset-2 hintBox">Available hints:</p>
+                <div id="help" class="col-md-9 col-sm-8 col-xs-10 col-md-offset-1 col-xs-offset-1 text-center row">
+                    <p class="label label-success col-md-8 col-sm-8 col-xs-12 col-md-offset-2 col-sm-offset-2 hintBox">Available hints:</p>
                     <div class="row btn-group btn-group-lg" role="group">
                         <button id="wiki" type="button" class="hintButton btn btn-default"><span class="hidden-xs">Wikipedia </span><i class="fa fa-wikipedia-w" aria-hidden="true"></i></button>
                         <button id="youtube" type="button" class="hintButton btn btn-default"><span class="hidden-xs">Youtube </span><i class="fa fa-youtube" aria-hidden="true"></i></button>
@@ -306,10 +306,10 @@
                     </div>
                 </div>
             </article>
-            <article class="col-xs-12 visible-xs">
-                <button id="info" class="btn btn-info">Instructions</button>
-                <button class="btn btn-danger resetGame">Reset</button>
-                <span class=" col-xs-2">Sound: </span> <label class="toggle"><input id="sound-toggle" type="checkbox"><span class="slider round"></span></label>
+            <article class="col-xs-12 visible-xs controls">
+                <button id="info" class="btn btn-info col-xs-4">Instructions</button>
+                <button id="reset" class="btn btn-danger col-xs-3">Reset</button>
+                <label class="toggle col-xs-2">Sound<input id="sound-toggle" type="checkbox"><span class="slider round"></span></label>
             </article>
         </section>
         

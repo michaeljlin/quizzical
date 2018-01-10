@@ -79,7 +79,7 @@ function Game(){
 
         $('#setPlayerInfo').click(view.setPlayerInfo);
 
-        $('.resetGame').click(this.reset);
+        $('#reset').click(this.reset);
         
         $(document).on('change', '#sound-toggle', null, this.handleSound);
 
@@ -293,6 +293,14 @@ function Game(){
 
         if($('#mainScreen').css('display') === 'none'){
             $('#mainScreen').toggle('hidden');
+            // $('.playerOneStatusBox, .playerTwoStatusBox').toggle('hidden');
+            // $('.currentTurn').toggle('hidden')
+        }
+        if($('.currentTurn').css('display') === 'none'){
+            $('.currentTurn').toggle('hidden');
+        }
+        if($('.playerOneStatusBox, .playerTwoStatusBox').css('display') === 'none'){
+            $('.playerOneStatusBox, .playerTwoStatusBox').toggle('hidden');
         }
 
         var raw = $('.categoryOptionList').val();
