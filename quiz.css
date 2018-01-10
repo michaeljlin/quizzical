@@ -197,7 +197,7 @@ aside {
 .nameInput{
     max-width: 100%;
 }
-#turn{
+#turn, #turn-mobile{
     padding-bottom: 1px;
 }
 #winMessage{

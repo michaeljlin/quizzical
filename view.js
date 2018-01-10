@@ -399,8 +399,8 @@ function Game(){
      *   @returns: {undefined} none
      */
     this.displayPlayerNameAndAvatars = function(player1Name, player2Name){
-        $('#playerOneName').text(player1Name);
-        $('#playerTwoName').text(player2Name);
+        $('#playerOneName,#playerOneName-mobile').text(player1Name);
+        $('#playerTwoName,#playerTwoName-mobile').text(player2Name);
         if($('#setPlayers').hasClass('in')){
             $('#setPlayers').modal('toggle');
         };
@@ -416,9 +416,9 @@ function Game(){
      *   @returns: {undefined} none
      */
     this.updateStatus = function(turn, player1Points, player2Points){
-        $('#turn').text('Player '+turn);
-        $('#playerOnePoints').text(player1Points);
-        $('#playerTwoPoints').text(player2Points);
+        $('#turn,#turn-mobile').text('Player '+turn);
+        $('#playerOnePoints,#playerOnePoints-mobile').text(player1Points);
+        $('#playerTwoPoints,#playerTwoPoints-mobile').text(player2Points);
     };
 
     /*******************************************************************************************************************
@@ -644,10 +644,10 @@ function Game(){
         model.reset();
         $('#mainScreen').toggle('hidden');
         self.getStart();
-        $('#playerOnePoints').text(controller.playerOnePoint);
-        $('#playerTwoPoints').text(controller.playerTwoPoint);
+        $('#playerOnePoints,#playerOnePoints-mobile').text(controller.playerOnePoint);
+        $('#playerTwoPoints,#playerTwoPoints-mobile').text(controller.playerTwoPoint);
         self.setActivePlayerStatus(controller.playerTurn);
-        $('#turn').text('Player 1');
+        $('#turn,#turn-mobile').text('Player 1');
     };
 
 }
