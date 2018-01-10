@@ -79,7 +79,7 @@ function Game(){
 
         $('#setPlayerInfo').click(view.handleCustomGame);
 
-        $('#reset').click(this.reset);
+        $('.reset').click(this.reset);
         
         $(document).on('change', '#sound-toggle', null, this.handleSound);
 
