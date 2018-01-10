@@ -211,6 +211,9 @@ aside {
 .soundContainer{
     text-align: center;
 }
+#answer1,#answer2,#answer3,#answer4 {
+    padding: 2px;
+}
 
 @media screen and (max-width: 768px) {
     .playerColumn{
@@ -275,5 +278,8 @@ aside {
     }
     .sound {
         bottom: 16px;
+    }
+    .playerOnePoints, .playerTwoPoints {
+        margin-left: 2px;
     }
 }
