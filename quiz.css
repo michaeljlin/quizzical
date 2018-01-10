@@ -205,3 +205,30 @@ aside {
 .statsButtons{
     padding: 0px;
 }
+
+@media screen and (max-width: 768px) {
+    .playerColumn{
+        height: 50px;
+    }
+    .playerOneStatusBox, .playerTwoStatusBox{
+        padding-top: 10px;
+    }
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 20px;
+        left: 0;
+        right: 0;
+        bottom: -20px;
+    }
+}
+
+@media screen and (max-width: 460px){
+    .playerColumn{
+        height: 50px;
+    }
+    .playerLabel{
+        position: relative;
+        top: 2px;
+    }
+}
