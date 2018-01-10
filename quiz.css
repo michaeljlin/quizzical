@@ -120,7 +120,7 @@ aside {
     padding-top: 10px;
     border-radius: 4px;
     background-color: rgba(0,0,0,0.5);
-    height: 375px;
+    height: 100%;
 }
 
 .playerColumn {
@@ -201,4 +201,54 @@ aside {
 #winMessage{
     font-size: 20px;
     color: green;
+}
+.statsButtons{
+    padding: 0px;
+}
+
+@media screen and (max-width: 768px) {
+    .playerColumn{
+        height: 50px;
+    }
+    .playerOneStatusBox, .playerTwoStatusBox{
+        padding-top: 10px;
+        display: none;
+    }
+    .toggle{
+        top: 14px;
+        color: white;
+    }
+    .slider {
+        top: -8px;
+        left: 64px;
+        right: -60px;
+        bottom: 9px;
+        /* margin: 5px */
+    }
+    .currentTurn{
+        text-align: center;
+        display: none;
+    }
+    #info, #reset{
+        margin: 5px;
+    }
+    .controls{
+        margin-top: 35px;
+    }
+
+
+}
+
+@media screen and (max-width: 460px){
+    .playerColumn{
+        height: 50px;
+    }
+    .playerLabel{
+        position: relative;
+        top: 2px;
+    }
+    #mainScreen{
+        margin-top: 17vh;
+    }
+
 }
