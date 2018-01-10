@@ -11,6 +11,7 @@ function Model() {
     this.playersInfo = [{points: 0}, {points: 0}, 0]; // player Object index 2 will be 1/2 for player turn and will alternate
 
     this.questionCount = 0;
+    this.maxQuestionCount = 10;
 
     this.playerStats = [{}, {}];
     // sounds for game
@@ -38,6 +39,7 @@ function Model() {
     this.reset = function(){
         this.playersInfo = [{points: 0}, {points: 0}, 0];
         this.questionCount = 0;
+        this.maxQuestionCount = 30;
         this.playerStats = [{}, {}];
 
         this.currentQuestion = null;
@@ -63,6 +65,14 @@ function Model() {
         else{
             this.gameAudioObject.play();
         }
+    };
+
+    this.setMaxQuestionCount = function(num){
+        this.maxQuestionCount = num;
+    };
+
+    this.getMaxQuestionCount = function(){
+        return this.maxQuestionCount;
     };
 
     this.playSoundCorrect = function(){

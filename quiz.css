@@ -94,7 +94,7 @@ input:checked + .slider:before{
     width: 100%;
 }
 
-#diff{
+#diff, #gameLength{
     text-align: center;
 }
 
