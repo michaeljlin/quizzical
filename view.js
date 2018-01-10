@@ -77,7 +77,7 @@ function Game(){
         $('#answer3').click(view.pressAnswerButton);
         $('#answer4').click(view.pressAnswerButton);
 
-        $('#setPlayerInfo').click(view.setPlayerInfo);
+        $('#setPlayerInfo').click(view.handleCustomGame);
 
         $('.resetGame').click(this.reset);
         
@@ -238,6 +238,16 @@ function Game(){
      */
     this.removeAnswerResult = function(){
         $('.answerIcon').remove();
+    };
+
+    this.setGameLength = function(){
+        controller.setGameLength($("input[name=length]:checked").val());
+    };
+
+    this.handleCustomGame = function(){
+        self.setGameLength();
+
+        self.setPlayerInfo();
     };
 
     /*******************************************************************************************************************

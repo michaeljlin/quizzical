@@ -18,6 +18,10 @@ function Controller()
         
     };
 
+    this.setGameLength = function(length){
+        model.setMaxQuestionCount(length);
+    };
+
     this.soundToggle = function(){
         model.setSoundOnOff();
     };
@@ -91,7 +95,7 @@ function Controller()
             view.setAnswerResult('correct', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question correct! Toggling next question modal!');
 
-            if(model.questionCount == 30){
+            if(model.questionCount === model.getMaxQuestionCount() ){
                 console.log('Game has reached 15 questions!');
 
                 if(model.playersInfo[0].points > model.playersInfo[1].points){
@@ -121,7 +125,7 @@ function Controller()
             view.setAnswerResult('wrong', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question wrong! Toggling next question modal!');
 
-            if(model.questionCount == 30){
+            if(model.questionCount ===  model.getMaxQuestionCount() ){
                 console.log('Game has reached 15 questions!');
 
                 if(model.playersInfo[0].points > model.playersInfo[1].points){
