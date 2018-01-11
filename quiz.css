@@ -1,7 +1,11 @@
 #mainScreen{
     width: 100%;
-    margin-top: 10vh;
+    margin-top: 1vh;
     display: none;
+}
+
+.currentTurn{
+    text-align: center;
 }
 
 #question{
@@ -126,7 +130,6 @@ aside {
 }
 
 .playerColumn {
-    height: 200px;
     opacity: 0.2;
     font-size: 100%;
     text-align: center;
@@ -232,6 +235,13 @@ aside {
     text-align: center;
 }
 
+@media screen and (min-width: 992px){
+    #mainScreen{
+        margin-top: 10vh;
+    }
+}
+
+
 @media screen and (max-width: 768px) {
     .playerColumn{
         height: 50px;
@@ -239,7 +249,6 @@ aside {
 
     .playerOneStatusBox, .playerTwoStatusBox{
         padding-top: 10px;
-        display: none;
     }
 
     .toggle{
@@ -257,7 +266,6 @@ aside {
 
     .currentTurn{
         text-align: center;
-        display: none;
     }
 
     #info, .reset{
@@ -271,10 +279,6 @@ aside {
     #answers{
         margin-left: 1px;
     }
-
-    #help{
-        margin-left: 14%;
-    }
 }
 
 @media screen and (max-width: 460px){
@@ -285,10 +289,6 @@ aside {
     .playerLabel{
         position: relative;
         top: 2px;
-    }
-
-    #mainScreen{
-        margin-top: 17vh;
     }
 }
 
