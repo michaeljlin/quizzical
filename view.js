@@ -214,13 +214,13 @@ function Game(){
         var answerElementHolder = new $('<div>').text('The correct answer was: ').append(answerElement).addClass('answerIcon answerText col-md-12');
 
         if(result === 'correct'){
-            resultIconElement.addClass('answerIcon col-md-1 col-md-offset-5 glyphicon glyphicon-ok').css({
+            resultIconElement.addClass('answerIcon col-md-1 col-md-offset-5 col-xs-12 glyphicon glyphicon-ok').css({
                 'font-size':'70px',
                 'color': 'green'
             });
         }
         else{
-            resultIconElement.addClass('answerIcon col-md-1 col-md-offset-5 glyphicon glyphicon-remove').css({
+            resultIconElement.addClass('answerIcon col-md-1 col-md-offset-5 col-xs-12 glyphicon glyphicon-remove').css({
                 'font-size':'70px',
                 'color': 'red'
             });

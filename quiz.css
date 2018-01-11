@@ -214,6 +214,9 @@ aside {
 #answer1,#answer2,#answer3,#answer4 {
     padding: 2px;
 }
+.answerIcon{
+    text-align: center;
+}
 
 @media screen and (max-width: 768px) {
     .playerColumn{
@@ -250,6 +253,7 @@ aside {
     #help{
         margin-left: 14%;
     }
+
 
 
 
