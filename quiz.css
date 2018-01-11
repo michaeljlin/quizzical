@@ -5,7 +5,6 @@
 }
 
 #question{
-    /* height: 5em; */
     font-weight: 500;
     font-size: 16px;
 }
@@ -70,6 +69,7 @@ input:checked + .slider:before{
 .slider.round{
     border-radius: 34px;
 }
+
 .slider.round:before{
     border-radius: 50%;
 }
@@ -136,6 +136,7 @@ aside {
 .currentTurn{
     font-size: 16px;
 }
+
 .hintBox{
     height: 30px;
     font-size: 14px;
@@ -144,6 +145,7 @@ aside {
     letter-spacing: .1em;
     font-weight: 400;
 }
+
 #help{
     margin-top: 8%;
 }
@@ -155,6 +157,7 @@ aside {
     border: 1px solid yellow;
     color: white;
 }
+
 #wiki,#youtube,#twitter{
     border-radius: 4px;
     margin: 3px;
@@ -177,6 +180,7 @@ aside {
     font-size: 16px;
     text-align: center;
 }
+
 .modal-body p {
     word-wrap: break-word;
 }
@@ -184,36 +188,46 @@ aside {
 #nextTitle,.answerText{
     font-size: 18px;
 }
+
 .btn {
     white-space: normal;
 }
+
 .btn-danger{
     text-align: center;
 }
+
 .playerLabel{
     margin:5px;
     font-size:20px;
 }
+
 .nameInput{
     max-width: 100%;
 }
+
 #turn, #turn-mobile{
     padding-bottom: 1px;
 }
+
 #winMessage{
     font-size: 20px;
     color: green;
 }
+
 .statsButtons{
     padding: 0px;
     text-align: center;
 }
+
 .soundContainer{
     text-align: center;
 }
+
 #answer1,#answer2,#answer3,#answer4 {
     padding: 2px;
 }
+
 .answerIcon{
     text-align: center;
 }
@@ -222,14 +236,17 @@ aside {
     .playerColumn{
         height: 50px;
     }
+
     .playerOneStatusBox, .playerTwoStatusBox{
         padding-top: 10px;
         display: none;
     }
+
     .toggle{
         top: 14px;
         color: white;
     }
+
     .slider {
         top: -8px;
         left: 64px;
@@ -237,55 +254,61 @@ aside {
         bottom: 9px;
         /* margin: 5px */
     }
+
     .currentTurn{
         text-align: center;
         display: none;
     }
+
     #info, .reset{
         margin: 5px;
     }
+
     .controls{
         margin-top: 35px;
     }
+
     #answers{
         margin-left: 1px;
     }
+
     #help{
         margin-left: 14%;
     }
-
-
-
-
 }
 
 @media screen and (max-width: 460px){
     .playerColumn{
         height: 50px;
     }
+
     .playerLabel{
         position: relative;
         top: 2px;
     }
+
     #mainScreen{
         margin-top: 17vh;
     }
-
 }
 
 @media screen and (min-width: 760px) and (max-width: 980px){
     .playerOneStatusBox > div:nth-child(1) {
         padding: 0px;
     }
+
     .playerTwoStatusBox > div:nth-child(1) {
         padding: 0px;
     }
+
     .playerOneStatusBox > p, .playerTwoStatusBox > p {
         padding: 0px;
     }
+
     .sound {
         bottom: 16px;
     }
+    
     .playerOnePoints, .playerTwoPoints {
         margin-left: 2px;
     }
