@@ -19,6 +19,10 @@ body{
     background-size: auto;
 }
 
+#startBody>div{
+    width: 100%;
+}
+
 #nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
     margin-top: 35vh;
 }
@@ -112,6 +116,9 @@ input:checked + .slider:before{
     border: 1px solid yellow;
 }
 
+.playerOneStatusBox, .playerTwoStatusBox{
+    height: 38px;
+}
 .modal-title{
     text-align: center;
 }
@@ -239,6 +246,10 @@ aside {
     #mainScreen{
         margin-top: 10vh;
     }
+
+    .playerOneStatusBox, .playerTwoStatusBox{
+        height: 125px;
+    }
 }
 
 
@@ -279,6 +290,10 @@ aside {
     #answers{
         margin-left: 1px;
     }
+
+    .playerOneStatusBox>p, .playerTwoStatusBox>p{
+        display: inline-block;
+    }
 }
 
 @media screen and (max-width: 460px){
@@ -292,7 +307,7 @@ aside {
     }
 }
 
-@media screen and (min-width: 760px) and (max-width: 980px){
+@media screen and (min-width: 760px) and (max-width: 991px){
     .playerOneStatusBox > div:nth-child(1) {
         padding: 0px;
     }
@@ -311,5 +326,9 @@ aside {
     
     .playerOnePoints, .playerTwoPoints {
         margin-left: 2px;
+    }
+
+    .playerOneStatusBox>p, .playerTwoStatusBox>p{
+        display: inline-block;
     }
 }
