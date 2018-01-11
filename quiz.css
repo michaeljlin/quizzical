@@ -19,6 +19,10 @@ body{
     background-size: auto;
 }
 
+.toggle{
+    color: white;
+}
+
 #startBody>div{
     width: 100%;
 }
@@ -137,7 +141,7 @@ aside {
 }
 
 .playerColumn {
-    opacity: 0.2;
+    opacity: 0.5;
     font-size: 100%;
     text-align: center;
     word-wrap: normal;
@@ -272,7 +276,6 @@ aside {
         left: 64px;
         right: -60px;
         bottom: 9px;
-        /* margin: 5px */
     }
 
     .currentTurn{
@@ -323,12 +326,28 @@ aside {
     .sound {
         bottom: 16px;
     }
-    
+
+    .toggle{
+        right: 8px;
+        top: 6px;
+    }
+
     .playerOnePoints, .playerTwoPoints {
         margin-left: 2px;
     }
 
     .playerOneStatusBox>p, .playerTwoStatusBox>p{
         display: inline-block;
+    }
+
+    .playerOneStatusBox, .playerTwoStatusBox{
+        padding-top: 5px;
+    }
+
+    .slider {
+        top: -8px;
+        left: 64px;
+        right: -60px;
+        bottom: 9px;
     }
 }
