@@ -247,6 +247,9 @@ aside {
     #answers{
         margin-left: 1px;
     }
+    #help{
+        margin-left: 14%;
+    }
 
 
 
@@ -280,6 +283,6 @@ aside {
         bottom: 16px;
     }
     .playerOnePoints, .playerTwoPoints {
-        margin-left: 2px;
+        margin-left: 3px;
     }
 }
