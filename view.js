@@ -650,6 +650,9 @@ function Game(){
     this.reset = function(){
         controller.reset();
         model.reset();
+
+        $('.answerIcon').remove();
+
         $('#mainScreen').toggle('hidden');
         self.getStart();
         $('#playerOnePoints,#playerOnePoints-mobile').text(0);
