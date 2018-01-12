@@ -82,6 +82,7 @@ function Game(){
         $('.reset').click(this.reset);
         
         $(document).on('change', '#sound-toggle', null, this.handleSound);
+        $(document).on('change', '#sound-toggle-min', null, this.handleSound);
 
         $(document).on('click', '#info', null, this.triggerInstructions);
 
@@ -109,6 +110,13 @@ function Game(){
 
     this.handleSound = function(){
         console.log('sound switch triggered');
+
+        if(this.id === 'sound-toggle'){
+            $('#sound-toggle-min')[0].checked = !$('#sound-toggle-min')[0].checked;
+        }
+        else{
+            $('#sound-toggle')[0].checked = !$('#sound-toggle')[0].checked;
+        }
         controller.soundToggle();
     };
 
