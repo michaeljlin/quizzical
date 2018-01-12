@@ -644,9 +644,9 @@ function Game(){
         model.reset();
         $('#mainScreen').toggle('hidden');
         self.getStart();
-        $('#playerOnePoints,#playerOnePoints-mobile').text(controller.playerOnePoint);
-        $('#playerTwoPoints,#playerTwoPoints-mobile').text(controller.playerTwoPoint);
-        self.setActivePlayerStatus(controller.playerTurn);
+        $('#playerOnePoints,#playerOnePoints-mobile').text(0);
+        $('#playerTwoPoints,#playerTwoPoints-mobile').text(0);
+        self.setActivePlayerStatus(0);
         $('#turn,#turn-mobile').text('Player 1');
     };
 
