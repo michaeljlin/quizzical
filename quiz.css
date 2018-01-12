@@ -1,7 +1,11 @@
 #mainScreen{
     width: 100%;
-    margin-top: 10vh;
+    margin-top: 1vh;
     display: none;
+}
+
+.currentTurn{
+    text-align: center;
 }
 
 #question{
@@ -13,6 +17,14 @@ body{
     background-image: url("images/general-back.jpg");
     background-repeat: no-repeat;
     background-size: auto;
+}
+
+.toggle{
+    color: white;
+}
+
+#startBody>div{
+    width: 100%;
 }
 
 #nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
@@ -108,6 +120,9 @@ input:checked + .slider:before{
     border: 1px solid yellow;
 }
 
+.playerOneStatusBox, .playerTwoStatusBox{
+    height: 38px;
+}
 .modal-title{
     text-align: center;
 }
@@ -126,8 +141,7 @@ aside {
 }
 
 .playerColumn {
-    height: 200px;
-    opacity: 0.2;
+    opacity: 0.5;
     font-size: 100%;
     text-align: center;
     word-wrap: normal;
@@ -232,6 +246,17 @@ aside {
     text-align: center;
 }
 
+@media screen and (min-width: 992px){
+    #mainScreen{
+        margin-top: 10vh;
+    }
+
+    .playerOneStatusBox, .playerTwoStatusBox{
+        height: 125px;
+    }
+}
+
+
 @media screen and (max-width: 768px) {
     .playerColumn{
         height: 50px;
@@ -239,7 +264,6 @@ aside {
 
     .playerOneStatusBox, .playerTwoStatusBox{
         padding-top: 10px;
-        display: none;
     }
 
     .toggle{
@@ -252,12 +276,10 @@ aside {
         left: 64px;
         right: -60px;
         bottom: 9px;
-        /* margin: 5px */
     }
 
     .currentTurn{
         text-align: center;
-        display: none;
     }
 
     #info, .reset{
@@ -272,8 +294,8 @@ aside {
         margin-left: 1px;
     }
 
-    #help{
-        margin-left: 14%;
+    .playerOneStatusBox>p, .playerTwoStatusBox>p{
+        display: inline-block;
     }
 }
 
@@ -286,13 +308,9 @@ aside {
         position: relative;
         top: 2px;
     }
-
-    #mainScreen{
-        margin-top: 17vh;
-    }
 }
 
-@media screen and (min-width: 760px) and (max-width: 980px){
+@media screen and (min-width: 760px) and (max-width: 991px){
     .playerOneStatusBox > div:nth-child(1) {
         padding: 0px;
     }
@@ -308,8 +326,28 @@ aside {
     .sound {
         bottom: 16px;
     }
-    
+
+    .toggle{
+        right: 8px;
+        top: 6px;
+    }
+
     .playerOnePoints, .playerTwoPoints {
         margin-left: 2px;
+    }
+
+    .playerOneStatusBox>p, .playerTwoStatusBox>p{
+        display: inline-block;
+    }
+
+    .playerOneStatusBox, .playerTwoStatusBox{
+        padding-top: 5px;
+    }
+
+    .slider {
+        top: -8px;
+        left: 64px;
+        right: -60px;
+        bottom: 9px;
     }
 }
