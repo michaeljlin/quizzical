@@ -241,7 +241,7 @@ function Game(){
     };
 
     this.setGameLength = function(){
-        controller.setGameLength($("input[name=length]:checked").val());
+        controller.setGameLength( parseInt($("input[name=length]:checked").val()) );
     };
 
     this.handleCustomGame = function(){
