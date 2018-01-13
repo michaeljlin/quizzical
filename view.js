@@ -631,10 +631,11 @@ function Game(){
      *   @params: {string} winnerName - Inserts the name into the win text if not undefined
      *   @returns: {undefined} none
      */
-    this.triggerWinner = function(winnerName){
+    this.triggerWinner = function(winnerName, points){
 
         if(winnerName !== undefined){
             $('#winnerText').text(winnerName);
+            $('#winnerPoints').text(points);
         }
         else{
             $('#winMessage').text('Tie game!');
