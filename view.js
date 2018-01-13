@@ -655,6 +655,7 @@ function Game(){
         $('#playerTwoPoints,#playerTwoPoints-mobile').text(0);
         self.setActivePlayerStatus(0);
         $('#turn,#turn-mobile').text('Player 1');
+        $('.hintButton').removeClass('disabled');
     };
 
 }

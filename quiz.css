@@ -28,7 +28,7 @@ body{
 }
 
 #nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
-    margin-top: 35vh;
+    margin-top: 20vh;
 }
 
 .toggle{
@@ -252,6 +252,10 @@ aside {
     .playerOneStatusBox, .playerTwoStatusBox{
         height: 125px;
     }
+
+    #nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
+        margin-top: 35vh;
+    }
 }
 
 
@@ -294,6 +298,10 @@ aside {
 
     .playerOneStatusBox>p, .playerTwoStatusBox>p{
         display: inline-block;
+    }
+
+    #nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
+        margin-top: 35vh;
     }
 }
 
@@ -358,5 +366,9 @@ aside {
         left: 64px;
         right: -60px;
         bottom: 9px;
+    }
+
+    #nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
+        margin-top: 35vh;
     }
 }
