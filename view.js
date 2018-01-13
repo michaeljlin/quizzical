@@ -142,8 +142,8 @@ function Game(){
     this.setupModalChain = function(){
         $('#hint').on('hidden.bs.modal', view.clearModal);
         $('#setPlayers').on('hidden.bs.modal', view.nextQuestion);
-        // $('#instructions').on('hidden.bs.modal', view.nextQuestion);
         $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
+        $('#winner').on('hidden.bs.modal', view.reset);
     };
 
     /*******************************************************************************************************************
