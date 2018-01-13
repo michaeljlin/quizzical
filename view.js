@@ -27,11 +27,6 @@ function Game(){
     this.hintHTML = null;
     this.trackSetTimeout = null;
 
-    // this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
-    // this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
-
-
-
     /*******************************************************************************************************************
      *   setupGame - Initializes the game by setting up basic view information and starting the player name entry modal.
      *   @params: {undefined} none
@@ -279,8 +274,8 @@ function Game(){
             return;
         }
 
-        let name1 = $('#username1').val();
-        let name2 = $('#username2').val();
+        let name1 = $('#username1').val().slice(0,10);
+        let name2 = $('#username2').val().slice(0,10);
         if(name1 === ""){
             name1 = 'P1'
         }
@@ -641,7 +636,7 @@ function Game(){
             $('#winMessage').text('Tie game!');
         }
         $('#winner').modal('toggle');
-    }
+    };
     /*******************************************************************************************************************
      *   resetGame - Clears current points and restarts game
      *
