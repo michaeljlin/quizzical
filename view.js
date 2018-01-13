@@ -27,11 +27,6 @@ function Game(){
     this.hintHTML = null;
     this.trackSetTimeout = null;
 
-    // this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebreties', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
-    // this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
-
-
-
     /*******************************************************************************************************************
      *   setupGame - Initializes the game by setting up basic view information and starting the player name entry modal.
      *   @params: {undefined} none
@@ -82,6 +77,7 @@ function Game(){
         $('.reset').click(this.reset);
         
         $(document).on('change', '#sound-toggle', null, this.handleSound);
+        $(document).on('change', '#sound-toggle-min', null, this.handleSound);
 
         $(document).on('click', '#info', null, this.triggerInstructions);
 
@@ -109,6 +105,13 @@ function Game(){
 
     this.handleSound = function(){
         console.log('sound switch triggered');
+
+        if(this.id === 'sound-toggle'){
+            $('#sound-toggle-min')[0].checked = !$('#sound-toggle-min')[0].checked;
+        }
+        else{
+            $('#sound-toggle')[0].checked = !$('#sound-toggle')[0].checked;
+        }
         controller.soundToggle();
     };
 
@@ -134,8 +137,8 @@ function Game(){
     this.setupModalChain = function(){
         $('#hint').on('hidden.bs.modal', view.clearModal);
         $('#setPlayers').on('hidden.bs.modal', view.nextQuestion);
-        // $('#instructions').on('hidden.bs.modal', view.nextQuestion);
         $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
+        $('#winner').on('hidden.bs.modal', view.reset);
     };
 
     /*******************************************************************************************************************
@@ -208,9 +211,9 @@ function Game(){
     this.setAnswerResult = function(result, correctAnswer){
         var resultIconElement = new $('<span>');
         var answerElement = new $('<span>').text(correctAnswer).css({
-            'background-color': 'black',
+            'background-color': result === 'correct' ? 'white' : 'black',
             'color': 'black'
-        }).addClass('highlightText');
+        }).addClass(result === 'correct' ? '' : 'highlightText');
         var answerElementHolder = new $('<div>').text('The correct answer was: ').append(answerElement).addClass('answerIcon answerText col-md-12');
 
         if(result === 'correct'){
@@ -271,8 +274,8 @@ function Game(){
             return;
         }
 
-        let name1 = $('#username1').val();
-        let name2 = $('#username2').val();
+        let name1 = $('#username1').val().slice(0,10);
+        let name2 = $('#username2').val().slice(0,10);
         if(name1 === ""){
             name1 = 'P1'
         }
@@ -600,7 +603,7 @@ function Game(){
      */
     this.prepareLoadingIcon = function(){
         var bootstrapElementHolder = $('<div>').addClass('spinHolder col-md-1 col-md-offset-5');
-        var loadingIcon = $('<i>').addClass("fa fa-spinner fa-spin").css('font-size', '200px');
+        var loadingIcon = $('<i>').addClass("fa fa-spinner fa-spin").css('font-size', '150px');
 
         bootstrapElementHolder.append(loadingIcon);
 
@@ -623,16 +626,17 @@ function Game(){
      *   @params: {string} winnerName - Inserts the name into the win text if not undefined
      *   @returns: {undefined} none
      */
-    this.triggerWinner = function(winnerName){
+    this.triggerWinner = function(winnerName, points){
 
         if(winnerName !== undefined){
             $('#winnerText').text(winnerName);
+            $('#winnerPoints').text(points);
         }
         else{
             $('#winMessage').text('Tie game!');
         }
         $('#winner').modal('toggle');
-    }
+    };
     /*******************************************************************************************************************
      *   resetGame - Clears current points and restarts game
      *
@@ -642,6 +646,9 @@ function Game(){
     this.reset = function(){
         controller.reset();
         model.reset();
+
+        $('.answerIcon').remove();
+
         $('#mainScreen').toggle('hidden');
         self.getStart();
         $('#playerOnePoints,#playerOnePoints-mobile').text(0);

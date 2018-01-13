@@ -182,9 +182,6 @@ aside {
     border: 3px solid yellow;
 }
 
-.hint-content{
-    overflow: auto;
-}
 
 .highlightText:hover{
     background-color: white !important;
@@ -226,6 +223,7 @@ aside {
 
 #winMessage{
     font-size: 20px;
+    text-align: center;
     color: green;
 }
 
@@ -300,8 +298,19 @@ aside {
 }
 
 @media screen and (max-width: 460px){
-    .playerColumn{
-        height: 50px;
+    .hint-content{
+        width: 95vw;
+        overflow: hidden;
+    }
+
+    .tempTwitter{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .playerOneStatusBox, .playerTwoStatusBox{
+        height: 100%;
+        padding-bottom: 10px;
     }
 
     .playerLabel{

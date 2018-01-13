@@ -96,20 +96,23 @@ function Controller()
             console.log('Player '+ (currentTurn+1) + ' got the question correct! Toggling next question modal!');
 
             if(model.questionCount === model.getMaxQuestionCount() ){
-                console.log('Game has reached 15 questions!');
+                console.log('Game has reached max questions!');
+                let pointScore = null;
 
                 if(model.playersInfo[0].points > model.playersInfo[1].points){
                     winnerName = model.playersInfo[0].name;
+                    pointScore = model.playersInfo[0].points;
                 }
                 else if(model.playersInfo[0].points < model.playersInfo[1].points){
                     winnerName = model.playersInfo[1].name;
+                    pointScore = model.playersInfo[1].points;
                 }
                 else{
                     winnerName = undefined;
                 }
 
                 model.gameAudioObject.pause();
-                view.triggerWinner(winnerName);
+                view.triggerWinner(winnerName, pointScore);
                 return;
             }
 
@@ -126,20 +129,23 @@ function Controller()
             console.log('Player '+ (currentTurn+1) + ' got the question wrong! Toggling next question modal!');
 
             if(model.questionCount ===  model.getMaxQuestionCount() ){
-                console.log('Game has reached 15 questions!');
+                console.log('Game has reached max questions!');
+                let pointScore = null;
 
                 if(model.playersInfo[0].points > model.playersInfo[1].points){
                     winnerName = model.playersInfo[0].name;
+                    pointScore = model.playersInfo[0].points;
                 }
                 else if(model.playersInfo[0].points < model.playersInfo[1].points){
                     winnerName = model.playersInfo[1].name;
+                    pointScore = model.playersInfo[1].points;
                 }
                 else{
                     winnerName = undefined;
                 }
 
                 model.gameAudioObject.pause();
-                view.triggerWinner(winnerName);
+                view.triggerWinner(winnerName, pointScore);
                 return;
             }
 
