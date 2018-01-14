@@ -60,6 +60,29 @@ function Game(){
         controller.setDBToken();
     };
 
+    this.handleQuestionNotFound = function(){
+        let error = new $('<div>').text('No more questions available for current difficulty and category, please select a different combination.').css('text-align', 'center').attr('id', 'error');
+
+        $('#nextQuestionBody .container .row').prepend(error);
+        // $('#mainScreen').toggle('hidden');
+
+        // if($('article').css('display') != 'none'){
+        //     $('article').toggle('hidden');
+        // }
+        $('#nextQuestionBody').modal('toggle');
+
+        if($('#nextQuestionBody').css('display') === 'none'){
+            $('#nextQuestionBody').toggle('display', 'block');
+        }
+
+        // if($('article').css('display') === 'block'){
+        //     $('article').css('display', 'none');
+        // }
+
+        $('.modal-backdrop').remove();
+        self.nextQuestion();
+    };
+
     /*******************************************************************************************************************
      *   setupClickHandlers - Attaches click handlers to all buttons in document window
      *   @params: {undefined} none
@@ -343,6 +366,8 @@ function Game(){
 
         model.questionCount++;
         console.log('Current question count is: '+model.questionCount);
+
+        $('#error').remove();
 
         if( $('#nextQuestion').hasClass('in') ){
             $('#nextQuestion').modal('toggle');

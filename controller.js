@@ -27,13 +27,14 @@ function Controller()
     };
 
     this.setDBToken = function(){
-        model.getDBToken(function(token){
-            console.log(`request result: ${token}`);
-
-            if(token !== 'error'){
-                model.setDBToken(token);
-            }
-        });
+        model.setDBToken('9995db0b9694dedfba888de6ed385c74acb8082da6cdd142862d1b1ab54cfae9');
+        // model.getDBToken(function(token){
+        //     console.log(`request result: ${token}`);
+        //
+        //     if(token !== 'error'){
+        //         model.setDBToken(token);
+        //     }
+        // });
     };
 
     /***************************************************************************************************
@@ -178,8 +179,11 @@ function Controller()
 
             model.getTriviaQuestion(questionObject.category, questionObject.difficulty, function(dataBank){
 
-                // var quoteFix = questionBank.question.replace(/&quot;/g,'\"');
-                // var apostFix = quoteFix.replace(/&#039;/g,'\"');
+                if(dataBank === '404'){
+                    console.log('No more unique questions in current question category');
+                    view.handleQuestionNotFound();
+                    return;
+                }
 
                 var fixedIncorrectAnswers = [];
 
