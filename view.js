@@ -545,6 +545,7 @@ function Game(){
      */
     this.clearModal = function(){
 
+        $('.hint-content').css('height', 'auto');
         $('#hintBody iframe').remove();
         $('.wikiContainer').remove();
         $('.tempTwitter').remove();
@@ -656,6 +657,8 @@ function Game(){
      *   @returns: {undefined} none
      */
     this.displayYoutubeHint = function(newIFrame){
+
+        $('.hint-content').css('height', '90vh');
         $('#hintBody').css('height', '80%').append(newIFrame);
     };
 
