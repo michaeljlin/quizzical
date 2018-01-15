@@ -700,6 +700,10 @@ function Game(){
         controller.reset();
         model.reset();
 
+        $('#error').remove();
+
+        this.resetDOMState();
+
         $('.answerIcon').remove();
 
         $('#mainScreen').toggle('hidden');

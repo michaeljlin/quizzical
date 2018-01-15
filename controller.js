@@ -218,7 +218,9 @@ function Controller()
                 view.updateQuestionDiffPanel(model.currentDifficulty);
                 view.updateAnswers(temp);
 
-                view.nextQuestion();
+                if( $('#nextQuestion').css('display') === 'block' ){
+                    view.nextQuestion();
+                }
 
                 requestStatus = true;
 
