@@ -27,14 +27,14 @@ function Controller()
     };
 
     this.setDBToken = function(){
-        model.setDBToken('93c403411c2829a02478e84147dba7821904f2e84d9e5032e6fb8fed313a7cc0');
-        // model.getDBToken(function(token){
-        //     console.log(`request result: ${token}`);
-        //
-        //     if(token !== 'error'){
-        //         model.setDBToken(token);
-        //     }
-        // });
+        // model.setDBToken('93c403411c2829a02478e84147dba7821904f2e84d9e5032e6fb8fed313a7cc0');
+        model.getDBToken(function(token){
+            console.log(`request result: ${token}`);
+
+            if(token !== 'error'){
+                model.setDBToken(token);
+            }
+        });
     };
 
     /***************************************************************************************************

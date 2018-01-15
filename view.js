@@ -62,6 +62,7 @@ function Game(){
 
     this.handleQuestionNotFound = function(){
 
+        this.resetDOMState();
         let error = new $('<div>').text('No more questions available for current difficulty and category, please select a different combination.').css({'text-align': 'center', 'color': 'red' }).attr('id', 'error');
 
         $('#nextQuestionBody .container .row').prepend(error);
@@ -83,6 +84,15 @@ function Game(){
 
         // $('.modal-backdrop').remove();
         // self.nextQuestion();
+    };
+
+    this.resetDOMState = function(){
+        $('#questionCategory').text('Category');
+        $('#question').text('Question');
+        $('#answer1Text').text('Answer');
+        $('#answer2Text').text('Answer');
+        $('#answer3Text').text('Answer');
+        $('#answer4Text').text('Answer');
     };
 
     /*******************************************************************************************************************
