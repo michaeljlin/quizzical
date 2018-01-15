@@ -231,7 +231,6 @@ function Model() {
 
                 if(data.query.search.length === 0){
                     $('.hintButton').removeClass('disabled');
-                    console.log(this);
                     self.setHintType(null);
                 }
                 // callback('https://en.wikipedia.org/?curid=' + data.query.search[0].pageid);
@@ -283,7 +282,15 @@ function Model() {
                 var assembledTweet = 'https://twitter.com/'+tweetData.user.screen_name+'/status/'+tweetData.id_str;
 
                 console.log('embedded tweet url: '+assembledTweet);
-                console.log('twitter success', data);
+                console.log('twitter request success', data);
+
+                if(data.tweets.statuses.length === 0){
+                    $('.hintButton').removeClass('disabled');
+                    console.log('twitter search found nothing');
+                    self.setHintType(null);
+                    return;
+                }
+
                 console.log(data.tweets.statuses[0].text);
                 // callback(data.tweets.statuses[0].text);
                 callback(assembledTweet, secondCallback);
