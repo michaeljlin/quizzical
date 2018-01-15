@@ -702,7 +702,7 @@ function Game(){
 
         $('#error').remove();
 
-        this.resetDOMState();
+        self.resetDOMState();
 
         $('.answerIcon').remove();
 
