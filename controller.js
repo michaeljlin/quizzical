@@ -27,6 +27,7 @@ function Controller()
     };
 
     this.setDBToken = function(){
+        // model.setDBToken('93c403411c2829a02478e84147dba7821904f2e84d9e5032e6fb8fed313a7cc0');
         model.getDBToken(function(token){
             console.log(`request result: ${token}`);
 
@@ -171,15 +172,24 @@ function Controller()
 
         if(questionObject === undefined){
 
-            return;
+            return false;
         }
         else{
             view.toggleMainQuizSection();
 
+            let requestStatus = false;
+
             model.getTriviaQuestion(questionObject.category, questionObject.difficulty, function(dataBank){
 
-                // var quoteFix = questionBank.question.replace(/&quot;/g,'\"');
-                // var apostFix = quoteFix.replace(/&#039;/g,'\"');
+                if(dataBank === '404'){
+                    console.log('No more unique questions in current question category');
+                    view.removeAnswerResult();
+                    view.handleQuestionNotFound();
+                    return requestStatus;
+                }
+
+                model.questionCount++;
+                console.log('Current question count is: '+model.questionCount);
 
                 var fixedIncorrectAnswers = [];
 
@@ -207,6 +217,12 @@ function Controller()
 
                 view.updateQuestionDiffPanel(model.currentDifficulty);
                 view.updateAnswers(temp);
+
+                view.nextQuestion();
+
+                requestStatus = true;
+
+                return requestStatus;
             });
         }
     };

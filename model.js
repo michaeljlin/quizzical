@@ -39,7 +39,7 @@ function Model() {
     this.reset = function(){
         this.playersInfo = [{points: 0}, {points: 0}, 0];
         this.questionCount = 0;
-        this.maxQuestionCount = 30;
+        // this.maxQuestionCount = 30;
         this.playerStats = [{}, {}];
 
         this.currentQuestion = null;
@@ -47,7 +47,6 @@ function Model() {
         this.currentWrongAnswers = null;
         this.currentCategory = null;
         this.currentDifficulty = null;
-        this.token = null;
         this.hintType = null;
     };
 
@@ -148,16 +147,23 @@ function Model() {
      */
     this.getTriviaQuestion = function (category, difficultyLevel, callback) {
         console.log('this ran');
+        let tokenURL = 'https://opentdb.com/api.php?amount=1&type=multiple'+'&token='+this.token;
+
         $.ajax({
-            url: 'https://opentdb.com/api.php?amount=1&type=multiple',
+            url: tokenURL,
             data: {
                 category: category,  // represented by number
-                difficulty: difficultyLevel, // string
-                token: this.token
+                difficulty: difficultyLevel // string
             },
             dataType: 'json',
             method: 'Post',
             success: function (data) {
+
+                if(data.response_code === 4){
+                    callback('404');
+                    return;
+                }
+
                 console.log('success', data);
                 console.log(data.results[0]);
                 questionBank = data.results[0];
@@ -167,7 +173,7 @@ function Model() {
                 console.log('something went wrong', data)
             }
         });
-    }
+    };
     /***************************************************************************************************
      * searchYoutube
      * @params {string} string is question from question list

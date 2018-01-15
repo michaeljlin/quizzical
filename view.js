@@ -60,6 +60,41 @@ function Game(){
         controller.setDBToken();
     };
 
+    this.handleQuestionNotFound = function(){
+
+        this.resetDOMState();
+        let error = new $('<div>').text('No more questions available for current difficulty and category, please select a different combination.').css({'text-align': 'center', 'color': 'red' }).attr('id', 'error');
+
+        $('#nextQuestionBody .container .row').prepend(error);
+        $('article').toggle('hidden');
+        // $('#mainScreen').toggle('hidden');
+
+        // if($('article').css('display') != 'none'){
+        //     $('article').toggle('hidden');
+        // }
+        // $('#nextQuestionBody').modal('toggle');
+        //
+        // if($('#nextQuestionBody').css('display') === 'none'){
+        //     $('#nextQuestionBody').toggle('display', 'block');
+        // }
+
+        // if($('article').css('display') === 'block'){
+        //     $('article').css('display', 'none');
+        // }
+
+        // $('.modal-backdrop').remove();
+        // self.nextQuestion();
+    };
+
+    this.resetDOMState = function(){
+        $('#questionCategory').text('Category');
+        $('#question').text('Question');
+        $('#answer1Text').text('Answer');
+        $('#answer2Text').text('Answer');
+        $('#answer3Text').text('Answer');
+        $('#answer4Text').text('Answer');
+    };
+
     /*******************************************************************************************************************
      *   setupClickHandlers - Attaches click handlers to all buttons in document window
      *   @params: {undefined} none
@@ -304,6 +339,8 @@ function Game(){
      */
     this.getNextQuestion = function(){
 
+        $('#error').remove();
+
         if($('#mainScreen').css('display') === 'none'){
             $('#mainScreen').toggle('hidden');
             // $('.playerOneStatusBox, .playerTwoStatusBox').toggle('hidden');
@@ -341,12 +378,27 @@ function Game(){
 
         controller.setCurrentQuestionInModel(questionObject);
 
-        model.questionCount++;
-        console.log('Current question count is: '+model.questionCount);
-
-        if( $('#nextQuestion').hasClass('in') ){
-            $('#nextQuestion').modal('toggle');
-        }
+        // if(tryQuestionRequest){
+        //     model.questionCount++;
+        //     console.log('Current question count is: '+model.questionCount);
+        //
+        //     $('#error').remove();
+        //
+        //     if( $('#nextQuestion').hasClass('in') ){
+        //         $('#nextQuestion').modal('toggle');
+        //     }
+        // }
+        // else{
+            // self.handleQuestionNotFound();
+        // }
+        // model.questionCount++;
+        // console.log('Current question count is: '+model.questionCount);
+        //
+        // $('#error').remove();
+        //
+        // if( $('#nextQuestion').hasClass('in') ){
+        //     $('#nextQuestion').modal('toggle');
+        // }
 
         // Uncomment next line if a time limit for guessing questions is needed
         // self.timerCountdown();
@@ -447,6 +499,7 @@ function Game(){
         for(var i = 0; i < 4 ; i++){
             $('#answer'+(i+1)+'Text').text(answerArray[i]);
         }
+
         self.toggleMainQuizSection();
     };
 
