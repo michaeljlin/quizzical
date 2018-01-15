@@ -623,10 +623,18 @@ function Game(){
         $('#hintBody .row').append(wikiElementContainer);
 
         let linkArray = wikiElementContainer.find('a');
+        let citeTest = RegExp('#cite_note*');
 
         for(let i = 0; i < linkArray.length; i++){
-            $(wikiElementContainer.find('a')[i]).attr(
-                'href', 'https://en.wikipedia.org'+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
+
+            if( citeTest.test($(wikiElementContainer.find('a')[i]).attr('href')) ){
+                $(wikiElementContainer.find('a')[i]).attr(
+                    'href', 'https://en.wikipedia.org/wiki/'+$(wikiElementContainer.find('b')[0]).text()+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
+            }
+            else{
+                $(wikiElementContainer.find('a')[i]).attr(
+                    'href', 'https://en.wikipedia.org'+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
+            }
         }
 
         // $('.wikiContainer a').attr(
