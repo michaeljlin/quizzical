@@ -254,8 +254,8 @@ function Model() {
             },
             success: function (data) {
                 console.log('Wiki text success', data);
-                var test = data.parse.text['*'];
-                callback(test);
+                var text = data.parse.text['*'];
+                callback({text:text, name: string.replace(/ /g,"_")} );
             },
             error: function (data) {
                 console.log('wiki fail', data)

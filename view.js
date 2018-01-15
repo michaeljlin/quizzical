@@ -620,7 +620,9 @@ function Game(){
      *   @params: {object} wikiElementContainer - An element containing the Wikipedia hint
      *   @returns: {undefined} none
      */
-    this.displayWikiHint = function(wikiElementContainer){
+    this.displayWikiHint = function(data){
+        let wikiElementContainer = data.element;
+
         $('#hintBody').find('.row').append(wikiElementContainer);
 
         let linkArray = wikiElementContainer.find('a');
@@ -632,7 +634,7 @@ function Game(){
 
             if( citeTest.test($(wikiElementContainer.find('a')[i]).attr('href')) ){
                 $(wikiElementContainer.find('a')[i]).attr(
-                    'href', 'https://en.wikipedia.org/wiki/'+$(wikiElementContainer.find('b')[0]).text()+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
+                    'href', 'https://en.wikipedia.org/wiki/'+data.name+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
             }
             else if( coordTest.test($(wikiElementContainer.find('a')[i]).attr('href')) || uploadTest.test($(wikiElementContainer.find('a')[i]).attr('href')) ){
                 $(wikiElementContainer.find('a')[i]).attr(

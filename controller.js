@@ -314,15 +314,14 @@ function Controller()
 
         model.searchWikipedia(questionText, model.getWikipediaText, function(result){
 
-            var convertedHTML = new $('<div>').html(result);
-
+            var convertedHTML = new $('<div>').html(result.text);
 
             var wikiElementContainer = $('<div>').addClass('wikiContainer col-md-12');
 
             view.removeLoadingIcon();
             wikiElementContainer.html( $(convertedHTML).find('p') );
 
-            view.displayWikiHint(wikiElementContainer);
+            view.displayWikiHint({element: wikiElementContainer, name: result.name});
 
         });
     };
