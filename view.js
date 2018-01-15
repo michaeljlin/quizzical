@@ -620,16 +620,21 @@ function Game(){
      *   @returns: {undefined} none
      */
     this.displayWikiHint = function(wikiElementContainer){
-        $('#hintBody .row').append(wikiElementContainer);
+        $('#hintBody').find('.row').append(wikiElementContainer);
 
         let linkArray = wikiElementContainer.find('a');
         let citeTest = RegExp('#cite_note*');
+        let coordTest = RegExp('tools.wmflabs.org*');
 
         for(let i = 0; i < linkArray.length; i++){
 
             if( citeTest.test($(wikiElementContainer.find('a')[i]).attr('href')) ){
                 $(wikiElementContainer.find('a')[i]).attr(
                     'href', 'https://en.wikipedia.org/wiki/'+$(wikiElementContainer.find('b')[0]).text()+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
+            }
+            else if( coordTest.test($(wikiElementContainer.find('a')[i]).attr('href')) ){
+                $(wikiElementContainer.find('a')[i]).attr(
+                    'href', 'https:'+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
             }
             else{
                 $(wikiElementContainer.find('a')[i]).attr(
