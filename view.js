@@ -625,6 +625,7 @@ function Game(){
         let linkArray = wikiElementContainer.find('a');
         let citeTest = RegExp('#cite_note*');
         let coordTest = RegExp('tools.wmflabs.org*');
+        let uploadTest = RegExp('upload.wikimedia.org*');
 
         for(let i = 0; i < linkArray.length; i++){
 
@@ -632,7 +633,7 @@ function Game(){
                 $(wikiElementContainer.find('a')[i]).attr(
                     'href', 'https://en.wikipedia.org/wiki/'+$(wikiElementContainer.find('b')[0]).text()+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
             }
-            else if( coordTest.test($(wikiElementContainer.find('a')[i]).attr('href')) ){
+            else if( coordTest.test($(wikiElementContainer.find('a')[i]).attr('href')) || uploadTest.test($(wikiElementContainer.find('a')[i]).attr('href')) ){
                 $(wikiElementContainer.find('a')[i]).attr(
                     'href', 'https:'+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
             }
