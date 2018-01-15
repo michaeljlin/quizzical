@@ -622,10 +622,17 @@ function Game(){
     this.displayWikiHint = function(wikiElementContainer){
         $('#hintBody .row').append(wikiElementContainer);
 
-        $('.wikiContainer a').attr(
-            'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
-            'target', '_blank'
-        );
+        let linkArray = wikiElementContainer.find('a');
+
+        for(let i = 0; i < linkArray.length; i++){
+            $(wikiElementContainer.find('a')[i]).attr(
+                'href', 'https://en.wikipedia.org'+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
+        }
+
+        // $('.wikiContainer a').attr(
+        //     'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
+        //     'target', '_blank'
+        // );
     };
 
     /*******************************************************************************************************************
