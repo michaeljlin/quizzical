@@ -61,19 +61,6 @@ function Controller()
     this.getHelpType = function(helpName)
     {
         model.setHintType(helpName);
-        // switch (helpName)
-        // {
-        //     case ("wiki"):
-        //         this.help = 1;
-        //         model.setHintType();
-        //         break;
-        //     case("youtube") :
-        //         this.help = 2;
-        //         break;
-        //     case("twitter") :
-        //         this.help = 3;
-        //         break;
-        // }
     };
 
     /***************************************************************************************************
@@ -91,7 +78,6 @@ function Controller()
         if(chosenAnswerText === model.currentAnswer){
             this.pointing(currentTurn, this.difficultyLevel, model.getHintType());
             model.resetHintType();
-            // model.correctAudioObject.play();
             model.playSoundCorrect();
             view.setAnswerResult('correct', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question correct! Toggling next question modal!');
@@ -124,7 +110,6 @@ function Controller()
         }
         else{
             model.resetHintType();
-            // model.wrongAudioObject.play();
             model.playSoundWrong();
             view.setAnswerResult('wrong', model.currentAnswer);
             console.log('Player '+ (currentTurn+1) + ' got the question wrong! Toggling next question modal!');
@@ -258,44 +243,6 @@ function Controller()
         model.playersInfo[2] = 1-model.playersInfo[2];
     };
 
-    this.questionSelectionButtonClicked = function()
-    {
-        var questionRequest = {};
-        questionRequest.categoryId = this.id;
-        questionRequest.difficultydata = this.data;
-        return questionRequest;
-
-    };
-
-    this.UseHelps = function()
-    {
-        var help = null;
-        for (var i=0; i < this.helpsArray; i++)
-        {
-            if ( help === this.helpsArray[i].title && this.helpsArray[i].quantities > 0)
-            {
-                this.helpsArray[i].quantities--;
-                break;
-            }
-
-            if (this.helpsArray[i].quantities > 0)
-            {
-                alert("you can not this hint anymore");
-            }
-        }
-    };
-
-    this.checkTheAnswer = function(playerAnswer,realAnswer)
-    {
-        if (playerAnswer !== realAnswer)
-        {
-            return true;
-        }
-
-        return false;
-
-    };
-
     /***************************************************************************************************
      * method name: pointing
      * calculating the point of answer based on the difficulty level, hint for each player based on their turns and update scores
@@ -310,13 +257,13 @@ function Controller()
         switch (difficultylevel)
         {
             case ("easy") :
-                basePoints = 10;
-                break;
-            case ("medium") :
                 basePoints = 20;
                 break;
-            case ("hard") :
+            case ("medium") :
                 basePoints = 40;
+                break;
+            case ("hard") :
+                basePoints = 80;
                 break;
         }
 
@@ -342,26 +289,6 @@ function Controller()
         }
 
         model.updatePlayerInfo(this.playerOnePoint,this.playerTwoPoint);
-
-    };
-
-    this.questionSelection = function(viewData)
-    {
-        var questionInfo = {};
-        questionInfo.category = viewData.categoryId;
-        questionInfo.difficulty = viewData.difficultydata;
-        return questionifo;
-
-    };
-
-    this.printQuestionAndAnswers = function()
-    {
-        var tempObj = modal.getTriviaQuestion();
-        $("#question").text(tempObj.question);
-        $("#answer1").text();
-        $("#answer2").text();
-        $("#answer3").text();
-        $("#answer4").text();
 
     };
 
@@ -424,8 +351,6 @@ function Controller()
 
             var newIFrame = $('<iframe>').attr({
                 'src':result+'?autoplay=1',
-                // 'width':'560px',
-                // 'height':'315px'
                 'height': '110%',
                 'width': '100%'
             });
@@ -433,7 +358,6 @@ function Controller()
             view.removeLoadingIcon();
             view.displayYoutubeHint(newIFrame);
 
-            // $('#hintBody').css('height', '80%').append(newIFrame);
         });
     };
 
@@ -483,8 +407,6 @@ function Controller()
 
         console.log('answer string is: ' + answerString);
 
-        // console.log("Question was: "+questionText);
-
         var tempTwitterElement = new $('<div>').addClass('tempTwitter col-md-6 col-md-offset-4');
 
         $('.outerHintContent').append(tempTwitterElement);
@@ -498,8 +420,6 @@ function Controller()
             view.removeLoadingIcon();
             view.displayTwitterHint(result);
 
-
-            // $('.tempTwitter').html(result);
         });
     }
 

@@ -100,13 +100,13 @@
 
                             <div id="diff" class="col-md-12">
                                 <label class="radio-inline">
-                                    <input type="radio" name="difficultyLevel" id="easyDiff" value="easy">Easy (10 points)
+                                    <input type="radio" name="difficultyLevel" id="easyDiff" value="easy">Easy (20 points)
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="difficultyLevel" id="mediumDiff" value="medium">Medium (20 points)
+                                    <input type="radio" name="difficultyLevel" id="mediumDiff" value="medium">Medium (40 points)
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="difficultyLevel" id="hardDiff" value="hard">Hard (40 points)
+                                    <input type="radio" name="difficultyLevel" id="hardDiff" value="hard">Hard (80 points)
                                 </label>
                             </div>
                             <div class="col-md-12">
@@ -192,16 +192,15 @@
                                 <ul>
                                     <li>Player 2 starts by choosing a question for Player 1 to answer</li>
                                     <li>After the first question is answered, Player 1 will choose a question for Player 2</li>
-                                    <li>The game continues to alternate between the players until 30 questions have been attempted</li>
-                                    <li>The player with the most points is the winner of Quizzical</li>
+                                    <li>The game continues to alternate between the players until the maximum number of questions have been attempted</li>
+                                    <li>At the end, the player with the most points is the winner of Quizzical</li>
                                 </ul>    
 
                                 <p>The questions work as follows:</p>
                                 <ul>
                                     <li>Each question can be drawn from one of 10 different categories.</li>
                                     <li>Each category has 3 different difficulties: easy, medium, and hard.</li>
-                                    <li>Easy questions are worth 10 points, medium questions are 20 points, and hard questions are 40 points.</li>
-                                    <li>If nothing is chosen for difficulty or category, the default is medium and General Knowledge</li>
+                                    <li>Easy questions are worth 20 points, medium questions are 40 points, and hard questions are 80 points.</li>
                                 </ul>
 
                                 <p>There are also hints:</p>
@@ -210,6 +209,7 @@
                                     <li>Using Wikipedia will reduce the current question value by half.</li>
                                     <li>Using Youtube will reduce the current question value by a fourth.</li>
                                     <li>Using Twitter will not reduce the question value.</li>
+                                    <li>If the hint fails to load, no reduction will be applied.</li>
                                 </ul>
                             </div>
                         </div>
