@@ -545,6 +545,7 @@ function Game(){
      */
     this.clearModal = function(){
 
+        $('.hint-content').css('height', 'auto');
         $('#hintBody iframe').remove();
         $('.wikiContainer').remove();
         $('.tempTwitter').remove();
@@ -619,13 +620,36 @@ function Game(){
      *   @params: {object} wikiElementContainer - An element containing the Wikipedia hint
      *   @returns: {undefined} none
      */
-    this.displayWikiHint = function(wikiElementContainer){
-        $('#hintBody .row').append(wikiElementContainer);
+    this.displayWikiHint = function(data){
+        let wikiElementContainer = data.element;
 
-        $('.wikiContainer a').attr(
-            'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
-            'target', '_blank'
-        );
+        $('#hintBody').find('.row').append(wikiElementContainer);
+
+        let linkArray = wikiElementContainer.find('a');
+        let citeTest = RegExp('#cite_note*');
+        let coordTest = RegExp('tools.wmflabs.org*');
+        let uploadTest = RegExp('upload.wikimedia.org*');
+
+        for(let i = 0; i < linkArray.length; i++){
+
+            if( citeTest.test($(wikiElementContainer.find('a')[i]).attr('href')) ){
+                $(wikiElementContainer.find('a')[i]).attr(
+                    'href', 'https://en.wikipedia.org/wiki/'+data.name+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
+            }
+            else if( coordTest.test($(wikiElementContainer.find('a')[i]).attr('href')) || uploadTest.test($(wikiElementContainer.find('a')[i]).attr('href')) ){
+                $(wikiElementContainer.find('a')[i]).attr(
+                    'href', 'https:'+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
+            }
+            else{
+                $(wikiElementContainer.find('a')[i]).attr(
+                    'href', 'https://en.wikipedia.org'+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
+            }
+        }
+
+        // $('.wikiContainer a').attr(
+        //     'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
+        //     'target', '_blank'
+        // );
     };
 
     /*******************************************************************************************************************
@@ -635,6 +659,8 @@ function Game(){
      *   @returns: {undefined} none
      */
     this.displayYoutubeHint = function(newIFrame){
+
+        $('.hint-content').css('height', '90vh');
         $('#hintBody').css('height', '80%').append(newIFrame);
     };
 
