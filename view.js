@@ -122,6 +122,8 @@ function Game(){
             $('#setPlayers').modal('toggle');
         });
 
+        $(document).on('click', '#randomQuestion', null, view.handleRandomQuestion);
+
         $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
         $(document).on('click', '#youtube', {type:'youtube'}, view.hintToggle);
         $(document).on('click', '#twitter', {type:'twitter'}, view.hintToggle);
@@ -264,7 +266,7 @@ function Game(){
             });
         }
 
-        $('#nextQuestionBody .container .row').prepend(resultIconElement).prepend(answerElementHolder);
+        $('#nextQuestionBody > .container > .row').prepend(resultIconElement).prepend(answerElementHolder);
         $('.hintButton').removeClass('disabled');
     };
 
@@ -343,8 +345,6 @@ function Game(){
 
         if($('#mainScreen').css('display') === 'none'){
             $('#mainScreen').toggle('hidden');
-            // $('.playerOneStatusBox, .playerTwoStatusBox').toggle('hidden');
-            // $('.currentTurn').toggle('hidden')
         }
         if($('.currentTurn').css('display') === 'none'){
             $('.currentTurn').toggle('hidden');
@@ -378,30 +378,26 @@ function Game(){
 
         controller.setCurrentQuestionInModel(questionObject);
 
-        // if(tryQuestionRequest){
-        //     model.questionCount++;
-        //     console.log('Current question count is: '+model.questionCount);
-        //
-        //     $('#error').remove();
-        //
-        //     if( $('#nextQuestion').hasClass('in') ){
-        //         $('#nextQuestion').modal('toggle');
-        //     }
-        // }
-        // else{
-            // self.handleQuestionNotFound();
-        // }
-        // model.questionCount++;
-        // console.log('Current question count is: '+model.questionCount);
-        //
-        // $('#error').remove();
-        //
-        // if( $('#nextQuestion').hasClass('in') ){
-        //     $('#nextQuestion').modal('toggle');
-        // }
-
         // Uncomment next line if a time limit for guessing questions is needed
         // self.timerCountdown();
+    };
+
+    this.handleRandomQuestion = function(){
+
+        $('#error').remove();
+
+        if($('#mainScreen').css('display') === 'none'){
+            $('#mainScreen').toggle('hidden');
+        }
+        if($('.currentTurn').css('display') === 'none'){
+            $('.currentTurn').toggle('hidden');
+        }
+        if($('.playerOneStatusBox, .playerTwoStatusBox').css('display') === 'none'){
+            $('.playerOneStatusBox, .playerTwoStatusBox').toggle('hidden');
+        }
+
+        self.clearQuestionDiffPanel();
+        controller.setRandomQuestion();
     };
 
     /*******************************************************************************************************************
@@ -550,16 +546,6 @@ function Game(){
         $('.wikiContainer').remove();
         $('.tempTwitter').remove();
         self.removeLoadingIcon();
-    };
-
-    /*******************************************************************************************************************
-     *   showHint - Shows the hint, currently depreciated
-     *
-     *   @params: {undefined} none
-     *   @returns: {undefined} none
-     */
-    this.showHint = function(){
-
     };
 
     /*******************************************************************************************************************

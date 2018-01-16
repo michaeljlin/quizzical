@@ -142,6 +142,14 @@ function Controller()
         }
     };
 
+    this.setRandomQuestion = function(){
+        let randomCategory = model.categoryNum[Math.floor(Math.random()*model.categoryNum.length)];
+        let diffOptions = ['easy', 'medium', 'hard'];
+        let randomDifficulty = diffOptions[Math.floor(Math.random()*diffOptions.length)];
+
+        this.setCurrentQuestionInModel({category: randomCategory, difficulty: randomDifficulty});
+    };
+
     /***************************************************************************************************
      * method name: setCurrentQuestionInModel
      * functionality: getting question objects from view as parameter which is including category and difficulty level
