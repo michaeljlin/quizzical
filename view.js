@@ -60,30 +60,13 @@ function Game(){
         controller.setDBToken();
     };
 
-    this.handleQuestionNotFound = function(){
+    this.handleQuestionNotFound = function(data){
 
         this.resetDOMState();
-        let error = new $('<div>').text('No more questions available for current difficulty and category, please select a different combination.').css({'text-align': 'center', 'color': 'red' }).attr('id', 'error');
+        let error = new $('<div>').text(`No more ${data.difficulty} difficulty ${data.category} questions available, please select a different combination.`).css({'text-align': 'center', 'color': 'red' }).attr('id', 'error');
 
-        $('#nextQuestionBody .container .row').prepend(error);
+        $('#nextQuestionBody > .container > .row').prepend(error);
         $('article').toggle('hidden');
-        // $('#mainScreen').toggle('hidden');
-
-        // if($('article').css('display') != 'none'){
-        //     $('article').toggle('hidden');
-        // }
-        // $('#nextQuestionBody').modal('toggle');
-        //
-        // if($('#nextQuestionBody').css('display') === 'none'){
-        //     $('#nextQuestionBody').toggle('display', 'block');
-        // }
-
-        // if($('article').css('display') === 'block'){
-        //     $('article').css('display', 'none');
-        // }
-
-        // $('.modal-backdrop').remove();
-        // self.nextQuestion();
     };
 
     this.resetDOMState = function(){

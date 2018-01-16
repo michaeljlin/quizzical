@@ -177,7 +177,10 @@ function Controller()
                 if(dataBank === '404'){
                     console.log('No more unique questions in current question category');
                     view.removeAnswerResult();
-                    view.handleQuestionNotFound();
+
+                    let category = model.categories[model.categoryNum.indexOf(questionObject.category)];
+
+                    view.handleQuestionNotFound({category: category, difficulty: questionObject.difficulty});
                     return requestStatus;
                 }
 
