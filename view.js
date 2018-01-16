@@ -105,6 +105,10 @@ function Game(){
             $('#setPlayers').modal('toggle');
         });
 
+        $(document).on('click', '#newGame', null, ()=>{
+            $('#winner').modal('toggle');
+        });
+
         $(document).on('click', '#randomQuestion', null, view.handleRandomQuestion);
 
         $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
@@ -500,9 +504,9 @@ function Game(){
      *   @calls: controller.answerButtonPressed
      */
     this.pressAnswerButton = function(){
-        var chosenAnswer = $(this)[0].innerText.split(/\n/)[0];
-        console.log(chosenAnswer);
-        controller.answerButtonPressed(chosenAnswer);
+        let answerNum = $(this).attr('data-value');
+
+        controller.answerButtonPressed(answerNum);
     };
 
     /*******************************************************************************************************************
@@ -614,11 +618,6 @@ function Game(){
                     'href', 'https://en.wikipedia.org'+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
             }
         }
-
-        // $('.wikiContainer a').attr(
-        //     'href', 'https://en.wikipedia.org'+$('.wikiContainer a').attr('href')).attr(
-        //     'target', '_blank'
-        // );
     };
 
     /*******************************************************************************************************************

@@ -71,7 +71,10 @@ function Controller()
      * @returns: nothing
      */
 
-    this.answerButtonPressed = function(chosenAnswerText){
+    this.answerButtonPressed = function(number){
+
+        let chosenAnswerText = model.currentAnswerSet[number];
+
         var currentTurn = model.playersInfo[2];
         var winnerName = null;
 
@@ -210,6 +213,8 @@ function Controller()
                     temp[i] = temp[randomPosition];
                     temp[randomPosition] = hold;
                 }
+
+                model.currentAnswerSet = temp;
 
                 view.updateQuestionDiffPanel(model.currentDifficulty);
                 view.updateAnswers(temp);

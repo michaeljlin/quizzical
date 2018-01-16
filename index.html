@@ -230,8 +230,11 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
-                            <div class="outerSetupContent col-md-6">
+                            <div class="outerSetupContent col-md-12">
                                 <p id="winMessage">Congrats! <span id="winnerText">Temp</span> has won with <span id="winnerPoints">Temp</span> points!</p>
+                            </div>
+                            <div class="col-md-12">
+                                <button id="newGame" class="btn btn-success">Play Again!</button>
                             </div>
                         </div>
                     </div>
@@ -284,10 +287,10 @@
                     </div>
                 </div>
                 <div id="answers" class="col-md-12 col-sm-10 col-sm-offset-1 col-xs-12 col-md-offset-0 row">
-                    <div id="answer1" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center"><span id="answer1Text">Answer</span></div></div>
-                    <div id="answer2" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center"><span id="answer2Text">Answer</span></div></div>
-                    <div id="answer3" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center"><span id="answer3Text">Answer</span></div></div>
-                    <div id="answer4" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center"><span id="answer4Text">Answer</span></div></div>
+                    <div id="answer1" data-value="0" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center"><span id="answer1Text">Answer</span></div></div>
+                    <div id="answer2" data-value="1" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center"><span id="answer2Text">Answer</span></div></div>
+                    <div id="answer3" data-value="2" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center"><span id="answer3Text">Answer</span></div></div>
+                    <div id="answer4" data-value="3" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center"><span id="answer4Text">Answer</span></div></div>
                 </div>
                 <div id="help" class="col-md-10 col-sm-10 col-sm-offset-1 col-xs-10 col-md-offset-1 col-xs-offset-1 text-center row">
                     <p class="label label-success col-md-8 col-sm-8 col-xs-12 col-md-offset-2 col-sm-offset-2 hintBox">Available hints:</p>

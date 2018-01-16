@@ -35,6 +35,7 @@ function Model() {
     this.currentDifficulty = null;
     this.token = null;
     this.hintType = null;
+    this.currentAnswerSet = null;
 
     this.reset = function(){
         this.playersInfo = [{points: 0}, {points: 0}, 0];

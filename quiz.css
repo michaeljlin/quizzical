@@ -131,6 +131,14 @@ input:checked + .slider:before{
     text-align: center;
 }
 
+#winner .container{
+    width: 100%;
+}
+
+#winner .row>.col-md-12{
+    text-align: center;
+}
+
 aside {
     border: 1px solid black;
     padding: 5px;
