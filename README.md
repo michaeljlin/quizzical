@@ -1,52 +1,39 @@
-# C9.17_hackathon 2
+## Quizzical
 
-Hackathon project involving the combination of different data sources into an application or game
+Live Link: https://michaeljlin.github.io/C9.17_hackathon2/
 
-### Requirements
-- Combine at least 3 **external** resources via AJAX requests and present their information in an application
-- Must be documented loosely on JSDOC standards
-- Must be issue-managed via meistertask 
-  - share the meistertask with daniel.paschal@learningfuze.com
-  - name your project 9.17 Team [your team number] Hackathon
+### Summary
+
+A 2-player competitive trivia game that uses Wikipedia, Youtube, and Twitter APIs as part of its hint system.
+
+### Details
+- Two players can challenge each other to different multiple choice trivia questions drawn from the <a href="https://opentdb.com/">OpenTDB database</a>.
+- Players can choose from 10 different categories and 3 different difficulties.
+- For a point cost on any question, a hint can be drawn from Wikipedia, Youtube, or Twitter.
+
+### Instructions
+
+- Use 'quick start' to immediately start a game with a medium difficulty question in the general knowledge category.
+- Use 'custom game' to set player names, length of game (from 5, 10, or 15 questions for each player), and the initial difficulty and category of the first question.
+- Press any hint button to search the respective source for a hint. Most hints are helpful, but due to the API search mechanics, not all hints are relevant. Good luck!
+- Press the 'instructions' button at any time to see the full details of the game.
+- Press the 'reset' button at any time to go back to the intro screen.
+
+### Technologies Utilized:
+- JavaScript
+- Jquery
+- AJAX
+- Wikipedia, Youtube, and Twitter APIs
+- Bootstrap
+- HTML
+- CSS
 
 
-### Judging Criteria
-- **Appeal** : is it visually appealing / well put together
-- **Code Quality** : is the code properly formatted, are variables and functions well defined and documented
-- **Presentation** : How well is it presented during the unveiling session
-- **Task / Issue Management** : How well was the development process documented / controlled.  Were there well-defined issues, milestones, and project management
-- **Innovative / Transformative** : Did the project do something new and exciting?  Was it bold and tried to do things that haven't been done much.  Did it combine the data sources together in a way that was more useful than either source by itself
-- **Ease of Use / Understanding** : Was it easy to use the application / game, or if it was more complex, was the application or game able to provide you with tutorials or instructions that made understanding it a breeze.
+### Credits
 
+Originally built for the LearningFuze Hackathon on 10/10/17 to 10/12/17
 
-### Teams
-- Team 1
-  - Francesca Sinocruz
-  - Prosith Khiev
-  - Krystal Enojado
-  - Peter Woo
-
-- Team 2
-  - Collin Wong
-  - Rebecca Brewster
-  - Jay Ko
-  - Anthony Sorise
-
-- Team 3
+- Team:
   - Michael Lin
   - Matt Barnett
   - Saeed Alavi
-
-- Team 4
-  - Eric Yoon
-  - Brian Kim
-  - Audrian Manly
-  
-- Team 5
-  - Harry Tran
-  - Michael Ahn
-  - Chris Kim
-
-### Deadline: 
-- 7:00PM Wednesday, October 12, 2017
-
