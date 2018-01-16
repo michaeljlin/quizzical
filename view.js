@@ -618,6 +618,8 @@ function Game(){
                     'href', 'https://en.wikipedia.org'+$(wikiElementContainer.find('a')[i]).attr('href')).attr('target', '_blank');
             }
         }
+
+        $('p').has('.mw-ext-cite-error').remove();
     };
 
     /*******************************************************************************************************************

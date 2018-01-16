@@ -112,6 +112,10 @@ input:checked + .slider:before{
     width: 100%;
 }
 
+.nextQuestionButtons {
+    margin-top: 5px;
+}
+
 #diff, #gameLength{
     text-align: center;
 }
@@ -136,6 +140,10 @@ input:checked + .slider:before{
 }
 
 #winner .row>.col-md-12{
+    text-align: center;
+}
+
+#setupBody .col-xs-12{
     text-align: center;
 }
 
