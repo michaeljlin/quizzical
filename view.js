@@ -681,7 +681,7 @@ function Game(){
      *   @returns: {undefined} none
      */
     this.prepareLoadingIcon = function(){
-        var bootstrapElementHolder = $('<div>').addClass('spinHolder col-md-1 col-md-offset-5');
+        var bootstrapElementHolder = $('<div>').addClass('spinHolder col-xs-1 col-xs-offset-3 col-md-1 col-md-offset-5');
         var loadingIcon = $('<i>').addClass("fa fa-spinner fa-spin").css('font-size', '150px');
 
         bootstrapElementHolder.append(loadingIcon);
