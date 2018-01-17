@@ -12,21 +12,20 @@ function Model() {
 
     this.questionCount = 0;
     this.maxQuestionCount = 10;
-
     this.playerStats = [{}, {}];
-    // sounds for game
 
-    this.soundArray = ['sounds/buzzer.mp3', 'sounds/correct.mp3'];
+    // sounds for game
     this.soundSwitch = false;
 
     this.correctAudioObject = new Audio('sounds/correct.mp3');
     this.wrongAudioObject = new Audio('sounds/buzzer.mp3');
     this.gameAudioObject = new Audio('sounds/ThemeSong.mp3');
     this.gameAudioObject.loop = true;
-    // this.gameAudioObject.play();
+
     //used for category # reference
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebrities', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
+
     // variables and methods below received from the view
     this.currentQuestion = null;
     this.currentAnswer = null;
@@ -234,7 +233,6 @@ function Model() {
                     $('.hintButton').removeClass('disabled');
                     self.setHintType(null);
                 }
-                // callback('https://en.wikipedia.org/?curid=' + data.query.search[0].pageid);
                 callback(data.query.search[0].title, secondCallback);
             },
             error: function (data) {
@@ -293,7 +291,6 @@ function Model() {
                 }
 
                 console.log(data.tweets.statuses[0].text);
-                // callback(data.tweets.statuses[0].text);
                 callback(assembledTweet, secondCallback);
             },
             error: function (data) {

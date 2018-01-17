@@ -24,8 +24,6 @@ function initializeGame() {
 
 function Game(){
     var self = this;
-    this.hintHTML = null;
-    this.trackSetTimeout = null;
 
     /*******************************************************************************************************************
      *   setupGame - Initializes the game by setting up basic view information and starting the player name entry modal.
@@ -40,7 +38,6 @@ function Game(){
         $('.btn').css({'outline': 'none'});
 
         $('#start').modal('toggle');
-        // $('#setPlayers').modal('toggle');
 
         $('.mainHintContent').toggle('hidden');
 
@@ -85,12 +82,12 @@ function Game(){
      *   @calls: none
      */
     this.setupClickHandlers = function(){
-        $('#answer1').click(view.pressAnswerButton);
-        $('#answer2').click(view.pressAnswerButton);
-        $('#answer3').click(view.pressAnswerButton);
-        $('#answer4').click(view.pressAnswerButton);
+        $('#answer1').click(self.pressAnswerButton);
+        $('#answer2').click(self.pressAnswerButton);
+        $('#answer3').click(self.pressAnswerButton);
+        $('#answer4').click(self.pressAnswerButton);
 
-        $('#setPlayerInfo').click(view.handleCustomGame);
+        $('#setPlayerInfo').click(self.handleCustomGame);
 
         $('.reset').click(this.reset);
         
@@ -109,12 +106,12 @@ function Game(){
             $('#winner').modal('toggle');
         });
 
-        $(document).on('click', '#randomQuestion', null, view.handleRandomQuestion);
+        $(document).on('click', '#randomQuestion', null, self.handleRandomQuestion);
 
-        $(document).on('click', '#wiki', {type:'wiki'}, view.hintToggle);
-        $(document).on('click', '#youtube', {type:'youtube'}, view.hintToggle);
-        $(document).on('click', '#twitter', {type:'twitter'}, view.hintToggle);
-        $(document).on('click', '#nextQuestionSubmit', null, view.getNextQuestion);
+        $(document).on('click', '#wiki', {type:'wiki'}, self.hintToggle);
+        $(document).on('click', '#youtube', {type:'youtube'}, self.hintToggle);
+        $(document).on('click', '#twitter', {type:'twitter'}, self.hintToggle);
+        $(document).on('click', '#nextQuestionSubmit', null, self.getNextQuestion);
     };
 
     this.getStart = function(){
@@ -159,10 +156,10 @@ function Game(){
      *   @calls: none
      */
     this.setupModalChain = function(){
-        $('#hint').on('hidden.bs.modal', view.clearModal);
-        $('#setPlayers').on('hidden.bs.modal', view.nextQuestion);
-        $('#nextQuestion').on('hidden.bs.modal', view.removeAnswerResult);
-        $('#winner').on('hidden.bs.modal', view.reset);
+        $('#hint').on('hidden.bs.modal', self.clearModal);
+        $('#setPlayers').on('hidden.bs.modal', self.nextQuestion);
+        $('#nextQuestion').on('hidden.bs.modal', self.removeAnswerResult);
+        $('#winner').on('hidden.bs.modal', self.reset);
     };
 
     /*******************************************************************************************************************
@@ -184,27 +181,6 @@ function Game(){
     this.timeRunOutTrigger = function(){
         console.log('Timeout has been triggered!');
         controller.answerButtonPressed('Time has run out!');
-    };
-
-    /*******************************************************************************************************************
-     *   timerCountdown - Initiates a question timer that will end the current question round in 15 seconds
-     *   @params: {undefined} none
-     *   @returns: {undefined} none
-     *   @calls: timeRunOutTrigger
-     */
-    this.timerCountdown = function(){
-        console.log('Timer has started!');
-        self.trackSetTimeout = setTimeout(self.timeRunOutTrigger, 15000);
-    };
-
-    /*******************************************************************************************************************
-     *   clearTimer - Ends the current timer by clearing the local variable trackSetTimeout
-     *   @params: {undefined} none
-     *   @returns: {undefined} none
-     *   @calls: none
-     */
-    this.clearTimer = function(){
-        clearTimeout(self.trackSetTimeout);
     };
 
     /*******************************************************************************************************************
@@ -315,7 +291,6 @@ function Game(){
         }];
 
         controller.setPlayerInfo(playerObject);
-        // $('#setPlayers').modal('toggle');
     };
 
     /*******************************************************************************************************************
@@ -417,19 +392,6 @@ function Game(){
     };
 
     /*******************************************************************************************************************
-     *   refreshPage - Refreshes all information on the document
-     *
-     *   @params: {object} nextTurnInfo - Contains updated information
-     *   @returns: {undefined} none
-     *   @calls: updateStatus, updateQuestion, updateAnswers
-     */
-    this.refreshPage = function(nextTurnInfo){
-        self.updateStatus(nextTurnInfo.status);
-        self.updateQuestion(nextTurnInfo.question);
-        self.updateAnswers(nextTurnInfo.answers);
-    };
-
-    /*******************************************************************************************************************
      *   displayPlayerNameAndAvatars - Refreshes player info
      *
      *   @params: {string} player1Name - The first player's username
@@ -507,16 +469,6 @@ function Game(){
         let answerNum = $(this).attr('data-value');
 
         controller.answerButtonPressed(answerNum);
-    };
-
-    /*******************************************************************************************************************
-     *   setHintHTML - Sets the current hint html code to a local variable
-     *
-     *   @params: {string} hintHTMLElement - The raw html code string
-     *   @returns: {undefined} none
-     */
-    this.setHintHTML = function(hintHTMLElement){
-        self.hintHTML = hintHTMLElement;
     };
 
     /*******************************************************************************************************************

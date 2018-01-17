@@ -1,13 +1,9 @@
 function Controller()
 {
-    this.playerOneName = null;
-    this.playerTwoName = null;
     this.playerOnePoint = 0;
     this.playerTwoPoint = 0;
     this.difficultyLevel = null;
     this.help = null;
-    this.playerTurn = null;
-    this.helpsArray = [{title:"youtube",quantities:3},{title:"wikipedia",numbers:3},{title:"pass",numbers:3}];
 
     this.reset = function(){
         this.playerOnePoint = 0;
@@ -27,7 +23,6 @@ function Controller()
     };
 
     this.setDBToken = function(){
-        // model.setDBToken('93c403411c2829a02478e84147dba7821904f2e84d9e5032e6fb8fed313a7cc0');
         model.getDBToken(function(token){
             console.log(`request result: ${token}`);
 
@@ -228,23 +223,6 @@ function Controller()
                 return requestStatus;
             });
         }
-    };
-
-
-    /***************************************************************************************************
-     * method name: setCurrentQuestionInModel
-     * functionality: getting question objects from view as parameter which is including category and difficulty level
-     and transfer it to model object by calling getTriviaQuestion and asking model to send back the generated question
-     by calling back function which is placed in parameters of getTriviaQuestion method
-     * @params {object(questionObject)}
-     * @returns: nothing
-     */
-
-    this.sanitizeText = function(rawString){
-        var quoteFix = rawString.replace(/&quot;/g,'\"');
-        var apostFix = quoteFix.replace(/&#039;/g,'\"');
-
-        return apostFix;
     };
 
     this.getPlayerName = function(avatarAddress)
