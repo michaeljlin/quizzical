@@ -352,7 +352,7 @@ aside {
         text-align: center;
     }
 
-    #info, .reset{
+    #info, .reset, #info-min{
         margin: 5px;
     }
 
