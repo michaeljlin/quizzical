@@ -17,6 +17,7 @@ body{
     background-image: url("images/general-back.jpg");
     background-repeat: no-repeat;
     background-size: auto;
+    
 }
 
 .toggle{
@@ -274,8 +275,59 @@ aside {
     }
 }
 
+@media screen and (min-width: 760px) and (max-width: 991px){
+    .playerOneStatusBox > div:nth-child(1) {
+        padding: 0px;
+    }
 
-@media screen and (max-width: 768px) {
+    .playerTwoStatusBox > div:nth-child(1) {
+        padding: 0px;
+    }
+
+    .playerOneStatusBox > p, .playerTwoStatusBox > p {
+        padding: 0px;
+    }
+
+    .sound {
+        bottom: 16px;
+    }
+
+    .toggle{
+        right: 8px;
+        top: 6px;
+    }
+    .controls {
+        margin-top: 10px;
+    }
+
+    .playerOnePoints, .playerTwoPoints {
+        margin-left: 2px;
+    }
+
+    .playerOneStatusBox>p, .playerTwoStatusBox>p{
+        display: inline-block;
+    }
+
+    .playerOneStatusBox, .playerTwoStatusBox{
+        padding-top: 5px;
+    }
+
+    .slider {
+        top: -8px;
+        left: 64px;
+        right: -60px;
+        bottom: 9px;
+    }
+    .reset {
+        margin-left: 5px;
+    }
+
+    #nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
+        margin-top: 35vh;
+    }
+}
+
+@media screen and (min-width: 460px) and (max-width: 768px) {
     .playerColumn{
         height: 50px;
     }
@@ -341,50 +393,21 @@ aside {
         position: relative;
         top: 2px;
     }
-}
-
-@media screen and (min-width: 760px) and (max-width: 991px){
-    .playerOneStatusBox > div:nth-child(1) {
-        padding: 0px;
-    }
-
-    .playerTwoStatusBox > div:nth-child(1) {
-        padding: 0px;
-    }
-
-    .playerOneStatusBox > p, .playerTwoStatusBox > p {
-        padding: 0px;
-    }
-
-    .sound {
-        bottom: 16px;
-    }
-
-    .toggle{
-        right: 8px;
-        top: 6px;
-    }
-
-    .playerOnePoints, .playerTwoPoints {
-        margin-left: 2px;
-    }
-
-    .playerOneStatusBox>p, .playerTwoStatusBox>p{
-        display: inline-block;
-    }
-
-    .playerOneStatusBox, .playerTwoStatusBox{
-        padding-top: 5px;
-    }
-
     .slider {
-        top: -8px;
-        left: 64px;
-        right: -60px;
-        bottom: 9px;
+        left: 71px;
+        right: -68px;
     }
-
-    #nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
-        margin-top: 35vh;
+    .toggle {
+        margin-top: 10px;
+        padding-top: 2%;
+    }
+    #answers {
+        margin-left: 1px;
+    }
+    .controls {
+        margin-left: 2px;
+        margin-top: 5px;
     }
 }
+
+
