@@ -37,19 +37,7 @@
 <body>
 
 
-    <header class="header">
-        <ul>
-            <li class="box red">q</li>
-            <li class="box yellow">u</li>
-            <li class="box blue">i</li>
-            <li class="box red">z</li>
-            <li class="box yellow">z</li>
-            <li class="box blue">i</li>
-            <li class="box red">c</li>
-            <li class="box yellow">a</li>
-            <li class="box blue">l</li>
-        </ul>
-    </header>
+
 
 
     <div class="modal fade" id="hint" tabindex="-1" data-keyboard="false" role="dialog">
@@ -260,23 +248,38 @@
         </div>
     </div>
 
+    <!-- Header and main title graphic - do not show on mobile -->
+    <header class="header hidden-xs">
+            <ul>
+                <li class="box red">q</li>
+                <li class="box yellow">u</li>
+                <li class="box blue">i</li>
+                <li class="box red">z</li>
+                <li class="box yellow">z</li>
+                <li class="box blue">i</li>
+                <li class="box red">c</li>
+                <li class="box yellow">a</li>
+                <li class="box blue last">l</li>
+            </ul>
+        </header>
+
     <div id="mainScreen" class="container">
 <!-- Main Game Area -->
         <section class="column col-md-12">
             <!-- Player and Stats Box -->
             <aside class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-md-offset-1">
                 <div class="column col-md-12 col-xs-12">
-                    <p class="col-md-12 panel panel-default currentTurn">Current Turn: <span id="turn" class="label label-default">Player 1</span></p>
+                    <p class="col-md-12 panel panel-default currentTurn">Current Turn: <span id="turn" class="label label-green">Player 1</span></p>
                     <div class="col-md-5 col-xs-5">
                         <div class="playerOneStatusBox panel panel-primary row playerColumn">
                             <div class="hidden-sm hidden-xs panel-heading">Status</div>
-                            <p class="col-md-12"><span id="playerOneName">P1</span> Points: <div id="playerOnePoints" class="playerLabel label label-default">0</div></p>
+                            <p class="col-md-12"><span id="playerOneName">P1</span> Points: <div id="playerOnePoints" class="playerLabel label label-black">0</div></p>
                         </div>
                     </div>
                     <div class="col-md-5 col-xs-5 col-md-offset-2 col-xs-offset-2">
                         <div class="playerTwoStatusBox panel panel-primary row playerColumn">
                             <div class="hidden-sm hidden-xs panel-heading">Status</div>
-                            <p class="col-md-12"><span id="playerTwoName">P2</span> Points: <div id="playerTwoPoints" class="playerLabel label label-default">0</div></p>
+                            <p class="col-md-12"><span id="playerTwoName">P2</span> Points: <div id="playerTwoPoints" class="playerLabel label label-black">0</div></p>
                         </div>
                     </div>
 
@@ -304,10 +307,10 @@
                     </div>
                 </div>
                 <div id="answers" class="col-md-12 col-sm-10 col-sm-offset-1 col-xs-12 col-md-offset-0 row">
-                    <div id="answer1" data-value="0" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center"><span id="answer1Text">Answer</span></div></div>
-                    <div id="answer2" data-value="1" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center"><span id="answer2Text">Answer</span></div></div>
-                    <div id="answer3" data-value="2" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center"><span id="answer3Text">Answer</span></div></div>
-                    <div id="answer4" data-value="3" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center"><span id="answer4Text">Answer</span></div></div>
+                    <div id="answer1" data-value="0" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center hoverBold"><span id="answer1Text">Answer</span></div></div>
+                    <div id="answer2" data-value="1" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center hoverBold"><span id="answer2Text">Answer</span></div></div>
+                    <div id="answer3" data-value="2" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center hoverBold"><span id="answer3Text">Answer</span></div></div>
+                    <div id="answer4" data-value="3" class="col-md-6 col-xs-12"><div class="btn btn-default btn-block text-center hoverBold"><span id="answer4Text">Answer</span></div></div>
                 </div>
                 <div id="help" class="col-md-10 col-sm-10 col-sm-offset-1 col-xs-10 col-md-offset-1 col-xs-offset-1 text-center row">
                     <p class="label label-success col-md-8 col-sm-8 col-xs-12 col-md-offset-2 col-sm-offset-2 hintBox">Available hints:</p>

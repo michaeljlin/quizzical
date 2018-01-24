@@ -1,7 +1,7 @@
 
 
 body{
-    background-image: linear-gradient(to left, rgba(69, 104, 220, 0.801), rgba(177, 106, 179, 0.815)), url(images/general-back.jpg);
+    background-image: url(images/general-back.jpg);
     background-repeat: no-repeat;
     background-size: auto;
     /* background-size: cover; */
@@ -31,13 +31,14 @@ body{
     /* display: inline-block; */
     text-align: center;
     padding: 5px;
-    margin-top: 4%;
+    margin-top: 2%;
     /* background-color: rgba(0,0,0,.4); */
 }
 
 .header > ul {
     list-style-type: none;
     text-align: center;
+    padding: 0px;
 }
   
 .box {
@@ -50,22 +51,25 @@ body{
     /* font-family: "Gameshow"; */
     box-shadow: 0 10px 20px black;
     font-family: 'Francois One', sans-serif;
+    text-shadow: 0 10px 20px rgba(0,0,0,.8);
+    border-radius: 2px;
+    /* min-width: 87px; */
 }
 
 .red {
 /* background-color: #FF5B5B; */
-background-color: rgba(197, 82, 136, 0.815);
+background-color: #FF5B5B;
 }
 
 .yellow {
-background-color: #3ba844;
+background-color:#FFFF5B;
 /* background-color: #FFFF5B; */
 
 }
 
 .blue {
 /* background-color: #5BC5FF; */
-background-color: rgba(69, 104, 220, 0.801);
+background-color: #5BC5FF;
 }
 
 .toggle{
@@ -74,6 +78,10 @@ background-color: rgba(69, 104, 220, 0.801);
 
 #startBody>div{
     width: 100%;
+}
+
+#startTitle {
+    font-weight: bold;
 }
 
 #nextQuestion .modal-content, #start .modal-content, #nextQuestion .modal-content, #setPlayers .modal-content{
@@ -138,6 +146,7 @@ input:checked + .slider:before{
 #hintBody .container{
     width: 100%;
 }
+
 
 .startContent{
     text-align: center;
@@ -205,6 +214,20 @@ aside {
     height: 100%;
 }
 
+.label-red {
+    background-color: #FF5B5B;
+}
+
+.label-green {
+    background-color: #3ac981;
+    letter-spacing: .1em;
+    color: black;
+}
+
+.label-black {
+    background-color: #000;
+}
+
 .playerColumn {
     opacity: 0.5;
     font-size: 100%;
@@ -214,6 +237,28 @@ aside {
 
 .currentTurn{
     font-size: 16px;
+    font-weight: bold;
+}
+
+@keyframes fade-in-out {
+    0% {
+        border: 3px solid rgba(255,255,0,.4);
+    }
+    25% {
+        border: 3px solid rgba(255,255,0,0.7);
+    }
+
+    50% {
+        border: 3px solid rgba(255,255,0,1);
+
+    }
+    75% {
+        border: 3px solid rgba(255,255,0,0.7);
+    }
+    100% {
+        border: 3px solid rgba(255,255,0,4);
+
+    }
 }
 
 .hintBox{
@@ -227,6 +272,10 @@ aside {
 
 #help{
     margin-top: 8%;
+}
+#help > p {
+    color: black;
+    font-weight: bold;
 }
 
 #wiki:hover,#youtube:hover,#twitter:hover{
@@ -244,7 +293,8 @@ aside {
 
 .activePlayer{
     opacity: 1;
-    border: 3px solid yellow;
+    /* border: 3px solid yellow; */
+    animation: fade-in-out 4s ease-in-out infinite;
 }
 
 
@@ -305,6 +355,15 @@ aside {
 #answer1,#answer2,#answer3,#answer4 {
     padding: 2px;
 }
+
+.hoverBold:hover {
+    background-color: #2c6fae;
+    opacity: 0.9;
+    border-radius: 4px;
+    border: 1px solid yellow;
+    color: white;
+}
+
 
 .answerIcon{
     text-align: center;
@@ -459,9 +518,7 @@ aside {
     }
 }
 
-@font-face {
-    font-family: 'Gameshow';
-    src: url("fonts/Gameshow.ttf");
-}
+
+
 
 
