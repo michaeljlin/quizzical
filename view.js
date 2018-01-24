@@ -211,8 +211,10 @@ function Game(){
     this.setAnswerResult = function(result, correctAnswer){
         var resultIconElement = new $('<span>');
         var answerElement = new $('<span>').text(correctAnswer).css({
-            'background-color': result === 'correct' ? 'white' : 'black',
-            'color': 'black'
+            'background-color': result === 'correct' ? 'white' : 'none',
+            'text-shadow': result === 'correct' ? 'none' : '0 0 30px #000',
+            'color': result === 'correct' ? 'black' : 'transparent'
+
         }).addClass(result === 'correct' ? '' : 'highlightText');
         var answerElementHolder = new $('<div>').text('The correct answer was: ').append(answerElement).addClass('answerIcon answerText col-md-12');
 

@@ -1,7 +1,20 @@
+
+
+body{
+    background-image: linear-gradient(to left, rgba(69, 104, 220, 0.801), rgba(177, 106, 179, 0.815)), url(images/general-back.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    /* background-size: cover; */
+    /* font-family: 'Francois One', sans-serif; */
+
+    
+}
+
 #mainScreen{
     width: 100%;
     margin-top: 1vh;
     display: none;
+    height: 95vh;
 }
 
 .currentTurn{
@@ -13,11 +26,46 @@
     font-size: 16px;
 }
 
-body{
-    background-image: url("images/general-back.jpg");
-    background-repeat: no-repeat;
-    background-size: auto;
-    
+
+.header {
+    /* display: inline-block; */
+    text-align: center;
+    padding: 5px;
+    margin-top: 4%;
+    /* background-color: rgba(0,0,0,.4); */
+}
+
+.header > ul {
+    list-style-type: none;
+    text-align: center;
+}
+  
+.box {
+    display: inline-block;
+    /* border: 1px solid black; */
+    padding: 2%;
+    color: black;
+    text-transform: uppercase;
+    font-size: 50px;
+    /* font-family: "Gameshow"; */
+    box-shadow: 0 10px 20px black;
+    font-family: 'Francois One', sans-serif;
+}
+
+.red {
+/* background-color: #FF5B5B; */
+background-color: rgba(197, 82, 136, 0.815);
+}
+
+.yellow {
+background-color: #3ba844;
+/* background-color: #FFFF5B; */
+
+}
+
+.blue {
+/* background-color: #5BC5FF; */
+background-color: rgba(69, 104, 220, 0.801);
 }
 
 .toggle{
@@ -201,7 +249,8 @@ aside {
 
 
 .highlightText:hover{
-    background-color: white !important;
+    color: black !important;
+    text-shadow: none !important;
 }
 
 .answerText{
@@ -408,6 +457,11 @@ aside {
         margin-left: 2px;
         margin-top: 5px;
     }
+}
+
+@font-face {
+    font-family: 'Gameshow';
+    src: url("fonts/Gameshow.ttf");
 }
 
 
