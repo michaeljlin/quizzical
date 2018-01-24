@@ -95,6 +95,7 @@ function Game(){
         $(document).on('change', '#sound-toggle-min', null, this.handleSound);
 
         $(document).on('click', '#info', null, this.triggerInstructions);
+        $(document).on('click', '#info-min', null, this.triggerInstructions);
 
         $(document).on('click', '#quick', null, this.handleQuick);
         $(document).on('click', '#custom', null, function(){
