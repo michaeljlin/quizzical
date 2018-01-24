@@ -57,19 +57,16 @@ body{
 }
 
 .red {
-/* background-color: #FF5B5B; */
-background-color: #FF5B5B;
+    background-color: #FF5B5B;
 }
 
 .yellow {
-background-color:#FFFF5B;
-/* background-color: #FFFF5B; */
-
+    background-color:#FFFF5B;
+    /* transform: translateY(-3px); */
 }
 
-.blue {
-/* background-color: #5BC5FF; */
-background-color: #5BC5FF;
+.blue { 
+    background-color: #5BC5FF;
 }
 
 .toggle{
