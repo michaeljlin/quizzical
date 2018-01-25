@@ -26,6 +26,7 @@ function Model() {
     this.categories = ['General Knowledge', 'Science & Nature', 'History', 'Geography', 'Celebrities', 'Animals', 'Sports', 'Books', 'Music', 'Film'];
     this.categoryNum = [9, 17, 23, 22, 26, 27, 21, 10, 12, 11];
 
+
     // variables and methods below received from the view
     this.currentQuestion = null;
     this.currentAnswer = null;
@@ -35,6 +36,7 @@ function Model() {
     this.token = null;
     this.hintType = null;
     this.currentAnswerSet = null;
+
 
     this.reset = function(){
         this.playersInfo = [{points: 0}, {points: 0}, 0];
@@ -116,6 +118,7 @@ function Model() {
         this.token = token;
     };
 
+
     this.getDBToken = function(callback){
         $.ajax({
             url: 'https://opentdb.com/api_token.php?command=request',
@@ -153,7 +156,7 @@ function Model() {
             url: tokenURL,
             data: {
                 category: category,  // represented by number
-                difficulty: difficultyLevel // string
+                difficulty: difficultyLevel, // string
             },
             dataType: 'json',
             method: 'Post',
