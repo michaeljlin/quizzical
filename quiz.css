@@ -519,7 +519,8 @@ aside {
         margin: 0 auto;
     }
     #hint {
-        padding-right: 0px;
+        padding-right: 0px !important;
+        padding-top: 2%;
     }
 }
 
