@@ -161,6 +161,7 @@ input:checked + .slider:before{
 
 .hintStyle{
     width: 75%;
+    margin: 0 auto;
 }
 
 .nextQuestionContainer{
