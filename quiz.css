@@ -161,7 +161,7 @@ input:checked + .slider:before{
 
 .hintStyle{
     width: 75%;
-    margin: 0 auto;
+    margin: 3% auto;
 }
 
 .nextQuestionContainer{
@@ -513,6 +513,13 @@ aside {
     .controls {
         margin-left: 2px;
         margin-top: 5px;
+    }
+    .hintStyle {
+        width: 95vw;
+        margin: 0 auto;
+    }
+    #hint {
+        padding-right: 0px;
     }
 }
 
