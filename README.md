@@ -1,6 +1,6 @@
 ## Quizzical
 
-Live Link: https://michaeljlin.github.io/C9.17_hackathon2/
+Live Link: https://michaeljlin.github.io/quizzical/
 
 ### Summary
 
