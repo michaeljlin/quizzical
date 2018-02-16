@@ -126,8 +126,6 @@ function Game(){
     };
 
     this.handleSound = function(){
-        console.log('sound switch triggered');
-
         if(this.id === 'sound-toggle'){
             $('#sound-toggle-min')[0].checked = !$('#sound-toggle-min')[0].checked;
         }
@@ -333,12 +331,6 @@ function Game(){
             diff = 'medium';
         }
         var questionObject = {category:catNum, difficulty: diff};
-
-        console.log("raw value: "+raw);
-        console.log("index value: "+number);
-        console.log("category number: "+catNum);
-        console.log("difficulty: "+diff);
-
         self.clearQuestionDiffPanel();
 
         controller.setCurrentQuestionInModel(questionObject);

@@ -24,7 +24,6 @@ function Controller()
 
     this.setDBToken = function(){
         model.getDBToken(function(token){
-            console.log(`request result: ${token}`);
 
             if(token !== 'error'){
                 model.setDBToken(token);
@@ -78,10 +77,8 @@ function Controller()
             model.resetHintType();
             model.playSoundCorrect();
             view.setAnswerResult('correct', model.currentAnswer);
-            console.log('Player '+ (currentTurn+1) + ' got the question correct! Toggling next question modal!');
 
             if(model.questionCount === model.getMaxQuestionCount() ){
-                console.log('Game has reached max questions!');
                 let pointScore = null;
 
                 if(model.playersInfo[0].points > model.playersInfo[1].points){
@@ -110,10 +107,8 @@ function Controller()
             model.resetHintType();
             model.playSoundWrong();
             view.setAnswerResult('wrong', model.currentAnswer);
-            console.log('Player '+ (currentTurn+1) + ' got the question wrong! Toggling next question modal!');
 
             if(model.questionCount ===  model.getMaxQuestionCount() ){
-                console.log('Game has reached max questions!');
                 let pointScore = null;
 
                 if(model.playersInfo[0].points > model.playersInfo[1].points){
@@ -173,7 +168,7 @@ function Controller()
             model.getTriviaQuestion(questionObject.category, questionObject.difficulty, function(dataBank){
 
                 if(dataBank === '404'){
-                    console.log('No more unique questions in current question category');
+                    console.error('No more unique questions in current question category');
                     view.removeAnswerResult();
 
                     let category = model.categories[model.categoryNum.indexOf(questionObject.category)];
@@ -183,7 +178,6 @@ function Controller()
                 }
 
                 model.questionCount++;
-                console.log('Current question count is: '+model.questionCount);
 
                 var fixedIncorrectAnswers = [];
 
@@ -336,10 +330,8 @@ function Controller()
 
         view.prepareLoadingIcon();
 
-        console.log("Question was: "+questionText);
 
         model.searchYoutube(questionText, function(result){
-            console.log('Searched youtube!');
             // $('#hintBody').append(result);
 
             var newIFrame = $('<iframe>').attr({
@@ -359,7 +351,6 @@ function Controller()
         var wordCount = 0;
         var newString = '';
         newStringArray = string.split(' ');
-        console.log(newStringArray);
 
         for(var i = 0; i < 3; i++){
             newString += newStringArray[Math.floor(Math.random()*(newStringArray.length-1) )];
@@ -398,18 +389,13 @@ function Controller()
 
         answerString += model.currentAnswer;
 
-        console.log('answer string is: ' + answerString);
-
         var tempTwitterElement = new $('<div>').addClass('tempTwitter col-md-6 col-md-offset-4');
 
         $('.outerHintContent').append(tempTwitterElement);
 
         questionText = this.randomThree(questionText);
 
-
         model.searchTwitter(questionText, model.getTwitterEmbed, function (result) {
-            console.log('raw embed data: ' + result);
-
             view.removeLoadingIcon();
             view.displayTwitterHint(result);
 

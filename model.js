@@ -126,18 +126,16 @@ function Model() {
             dataType: 'json',
             method: 'Post',
             success: function(data){
-                console.log(`got data:`, data);
-
                 if(data.response_code === 0){
                     callback(data.token);
                 }
                 else{
-                    console.log(`something went wrong`);
+                    console.error(`something went wrong`);
                     callback('error');
                 }
             },
             error: function(data){
-                console.log(`failed to get data, error dump: ${data}`)
+                console.error(`failed to get data, error dump: ${data}`)
             }
         });
     };
@@ -149,7 +147,6 @@ function Model() {
      * returns an object to view
      */
     this.getTriviaQuestion = function (category, difficultyLevel, callback) {
-        console.log('this ran');
         let tokenURL = 'https://opentdb.com/api.php?amount=1&type=multiple'+'&token='+this.token;
 
         $.ajax({
@@ -167,13 +164,13 @@ function Model() {
                     return;
                 }
 
-                console.log('success', data);
-                console.log(data.results[0]);
+
+
                 questionBank = data.results[0];
                 callback(questionBank);
             },
             error: function (data) {
-                console.log('something went wrong', data)
+                console.error('something went wrong', data)
             }
         });
     };
@@ -198,18 +195,16 @@ function Model() {
                 var YTResult = data.data;
                 var YTKeys = Object.keys(YTResult);
                 var videoId = YTResult[YTKeys[0]].id.videoId;
-                console.log('YT success', data);
-                console.log('YT first video id', YTResult[YTKeys[0]]);
-                console.log('https://www.youtube.com/watch?v=' + videoId);
+
                 // Can't use watch, need to use /embed/
                 // callback('https://www.youtube.com/watch?v=' + videoId);
                 callback('https://www.youtube.com/embed/' + videoId);
             },
             error: function (data) {
-                console.log('something went wrong with YT', data);
+                console.error('something went wrong with YT', data);
             }
         })
-    }
+    };
     /***************************************************************************************************
      * searchWikipedia
      * @params {string} string; either current question or possible answer
@@ -230,7 +225,6 @@ function Model() {
                 origin: '*'
             },
             success: function (data) {
-                console.log('Wiki success', data);
 
                 if(data.query.search.length === 0){
                     $('.hintButton').removeClass('disabled');
@@ -239,7 +233,7 @@ function Model() {
                 callback(data.query.search[0].title, secondCallback);
             },
             error: function (data) {
-                console.log('wiki fail', data);
+                console.error('wiki fail', data);
             }
         })
     };
@@ -255,12 +249,11 @@ function Model() {
                 origin: '*'
             },
             success: function (data) {
-                console.log('Wiki text success', data);
                 var text = data.parse.text['*'];
                 callback({text:text, name: string.replace(/ /g,"_")} );
             },
             error: function (data) {
-                console.log('wiki fail', data)
+                console.error('wiki fail', data)
             }
         })
     };
@@ -283,21 +276,17 @@ function Model() {
                 var tweetData = data.tweets.statuses[0];
                 var assembledTweet = 'https://twitter.com/'+tweetData.user.screen_name+'/status/'+tweetData.id_str;
 
-                console.log('embedded tweet url: '+assembledTweet);
-                console.log('twitter request success', data);
-
                 if(data.tweets.statuses.length === 0){
                     $('.hintButton').removeClass('disabled');
-                    console.log('twitter search found nothing');
+                    console.error('twitter search found nothing');
                     self.setHintType(null);
                     return;
                 }
 
-                console.log(data.tweets.statuses[0].text);
                 callback(assembledTweet, secondCallback);
             },
             error: function (data) {
-                console.log('twitter error', data)
+                console.error('twitter error', data)
             }
         })
     };
@@ -309,13 +298,12 @@ function Model() {
             url: 'https://publish.twitter.com/oembed?url='+string,
             dataType: 'jsonp', // Ask about 'No 'Access-Control-Allow-Origin' header is present on the requested resource.'
             success: function(data){
-                console.log('successfully started embed request!', data);
                 var embeddedHTMLCode = data.html;
 
                 callback(embeddedHTMLCode);
             },
             error: function(data){
-                console.log('twitter embed request error', data);
+                console.error('twitter embed request error', data);
             }
         })
     };
