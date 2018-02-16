@@ -1,6 +1,7 @@
 ## Quizzical
 
-Live Link: https://michaeljlin.github.io/quizzical/
+- Live Link: http://www.michaeljameslin.com/quiz
+- Alternative Live Link: https://michaeljlin.github.io/quizzical/
 
 ### Summary
 
