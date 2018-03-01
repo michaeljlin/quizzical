@@ -75,6 +75,11 @@ function Game(){
         $('#answer4Text').text('Answer');
     };
 
+
+    this.handleTokenError = function(){
+        $('.startContent').html('<div>The Trivia Database is not responding, please refresh or try accessing this page at a later time.</div>');
+    }
+
     /*******************************************************************************************************************
      *   setupClickHandlers - Attaches click handlers to all buttons in document window
      *   @params: {undefined} none

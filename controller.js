@@ -28,6 +28,9 @@ function Controller()
             if(token !== 'error'){
                 model.setDBToken(token);
             }
+            else{
+                view.handleTokenError();
+            }
         });
     };
 

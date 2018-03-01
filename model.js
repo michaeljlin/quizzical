@@ -135,7 +135,8 @@ function Model() {
                 }
             },
             error: function(data){
-                console.error(`failed to get data, error dump: ${data}`)
+                console.error(`failed to get data, error dump: ${data}`);
+                callback('error');
             }
         });
     };
