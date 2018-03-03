@@ -5,7 +5,7 @@
 
 ### Summary
 
-A 2-player competitive trivia game that uses Wikipedia, Youtube, and Twitter APIs as part of its hint system.
+> A 2-player competitive trivia game that uses Wikipedia, Youtube, and Twitter APIs as part of its hint system.
 
 ### Details
 - Two players can challenge each other to different multiple choice trivia questions drawn from the <a href="https://opentdb.com/">OpenTDB database</a>.
@@ -23,6 +23,10 @@ A 2-player competitive trivia game that uses Wikipedia, Youtube, and Twitter API
 - Turn the background music and sound effects on or off at any time by clicking the sound switch.
 
 ### Contributing & Deploying
+
+This repo contains all of the files needed to deploy the app on your local or external server. Simply clone the repo directly into your desired file structure location to get the app up and running.
+
+If you would like to report a bug or add a change to this repo, please feel free to make a fork of this project and submit a pull request.
 
 ### Key Technologies Utilized:
 - JavaScript & ES6
