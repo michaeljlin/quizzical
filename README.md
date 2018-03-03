@@ -12,7 +12,7 @@ A 2-player competitive trivia game that uses Wikipedia, Youtube, and Twitter API
 - Players can choose from 10 different categories and 3 different difficulties.
 - For a point cost on any question, a hint can be drawn from Wikipedia, Youtube, or Twitter.
 
-### Instructions
+### Play Instructions
 
 - Use 'quick start' to immediately start a game with a medium difficulty question in the general knowledge category.
 - Use 'custom game' to set player names, length of game (from 5, 10, or 15 questions for each player), and the initial difficulty and category of the first question.
@@ -22,15 +22,16 @@ A 2-player competitive trivia game that uses Wikipedia, Youtube, and Twitter API
 - Press the 'reset' button at any time to go back to the intro screen.
 - Turn the background music and sound effects on or off at any time by clicking the sound switch.
 
-### Technologies Utilized:
+### Contributing & Deploying
+
+### Key Technologies Utilized:
 - JavaScript & ES6
-- Jquery
+- jQuery
 - AJAX
 - Wikipedia, Youtube, and Twitter APIs
 - Bootstrap
-- HTML
-- CSS
-
+- HTML5
+- CSS3
 
 ### Credits
 
